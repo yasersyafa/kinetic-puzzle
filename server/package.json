@@ -1,0 +1,15 @@
+{
+  "name": "fixed-platform-puzzle-discord-server",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "OAuth2 token-exchange for Discord Activity. Optional — only needed when client uses authorize/authenticate.",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1"
+  }
+}
