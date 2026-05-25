@@ -1,0 +1,14 @@
+{
+  "name": "Fixed Platform Puzzle",
+  "short_name": "FixedPuzzle",
+  "description": "Move colored blocks off the grid. Wrong order = dead-end. Pure logic, no time pressure.",
+  "version": "0.1.0",
+  "orientation": "any",
+  "display": "fullscreen",
+  "background_color": "#1a1a1a",
+  "theme_color": "#4488ff",
+  "categories": ["games", "puzzle"],
+  "icons": [
+    { "src": "thumbnail.svg", "sizes": "960x540", "type": "image/svg+xml" }
+  ]
+}

@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 540" width="960" height="540">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="0%" r="120%">
+      <stop offset="0%" stop-color="#1f2937"/>
+      <stop offset="100%" stop-color="#0d1117"/>
+    </radialGradient>
+    <linearGradient id="boardShine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#222a3d"/>
+      <stop offset="100%" stop-color="#161b25"/>
+    </linearGradient>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.55"/>
+    </filter>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="hatch" x="0" y="0" width="22" height="22" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="22" stroke="#2d3548" stroke-width="1" stroke-opacity="0.35"/>
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="960" height="540" fill="url(#bg)"/>
+  <rect width="960" height="540" fill="url(#hatch)"/>
+
+  <!-- Board container -->
+  <g transform="translate(60, 90)" filter="url(#shadow)">
+    <!-- Outer board panel -->
+    <rect x="-12" y="-12" width="384" height="384" rx="14" fill="url(#boardShine)" stroke="#2d3548" stroke-width="2"/>
+
+    <!-- Cell grid (4x4 cells, 90px each) -->
+    <g stroke="#2d3548" stroke-width="1" fill="none">
+      <line x1="90" y1="0" x2="90" y2="360"/>
+      <line x1="180" y1="0" x2="180" y2="360"/>
+      <line x1="270" y1="0" x2="270" y2="360"/>
+      <line x1="0" y1="90" x2="360" y2="90"/>
+      <line x1="0" y1="180" x2="360" y2="180"/>
+      <line x1="0" y1="270" x2="360" y2="270"/>
+    </g>
+
+    <!-- Exit notches (gold) -->
+    <!-- TOP exits -->
+    <rect x="100" y="-16" width="70" height="5" fill="#ffcc44" rx="1"/>
+    <rect x="280" y="-16" width="70" height="5" fill="#ffcc44" rx="1"/>
+    <!-- LEFT exit -->
+    <rect x="-16" y="190" width="5" height="70" fill="#ffcc44" rx="1"/>
+    <!-- RIGHT exit -->
+    <rect x="371" y="10" width="5" height="70" fill="#ffcc44" rx="1"/>
+    <rect x="371" y="280" width="5" height="70" fill="#ffcc44" rx="1"/>
+    <!-- BOTTOM exits -->
+    <rect x="10" y="371" width="70" height="5" fill="#ffcc44" rx="1"/>
+    <rect x="190" y="371" width="70" height="5" fill="#ffcc44" rx="1"/>
+
+    <!-- Obstacle (Sokoban element) cell (1,1) -->
+    <g transform="translate(93, 93)">
+      <rect width="84" height="84" rx="6" fill="#404858" stroke="#6b7280" stroke-width="2"/>
+      <line x1="20" y1="20" x2="64" y2="64" stroke="#6b7280" stroke-width="3" stroke-linecap="round"/>
+      <line x1="20" y1="64" x2="64" y2="20" stroke="#6b7280" stroke-width="3" stroke-linecap="round"/>
+    </g>
+    <!-- Obstacle cell (2,2) -->
+    <g transform="translate(183, 183)">
+      <rect width="84" height="84" rx="6" fill="#404858" stroke="#6b7280" stroke-width="2"/>
+      <line x1="20" y1="20" x2="64" y2="64" stroke="#6b7280" stroke-width="3" stroke-linecap="round"/>
+      <line x1="20" y1="64" x2="64" y2="20" stroke="#6b7280" stroke-width="3" stroke-linecap="round"/>
+    </g>
+
+    <!-- Static blocks -->
+    <!-- Yellow at (0,0) -->
+    <rect x="3" y="3" width="84" height="84" rx="6" fill="#ffcc44" stroke="#ffffff" stroke-opacity="0.4" stroke-width="2"/>
+    <!-- Purple at (3,0) -->
+    <rect x="273" y="3" width="84" height="84" rx="6" fill="#aa55ff" stroke="#ffffff" stroke-opacity="0.4" stroke-width="2"/>
+    <!-- Green at (0,2) -->
+    <rect x="3" y="183" width="84" height="84" rx="6" fill="#55cc55" stroke="#ffffff" stroke-opacity="0.4" stroke-width="2"/>
+    <!-- Blue at (3,3) -->
+    <rect x="273" y="273" width="84" height="84" rx="6" fill="#4488ff" stroke="#ffffff" stroke-opacity="0.4" stroke-width="2"/>
+    <!-- Orange at (0,3) -->
+    <rect x="3" y="273" width="84" height="84" rx="6" fill="#ff8844" stroke="#ffffff" stroke-opacity="0.4" stroke-width="2"/>
+
+    <!-- Sliding block (RED) — motion trail + main block mid-slide right -->
+    <!-- Trail (ghost copies, decreasing opacity) -->
+    <rect x="93" y="3" width="84" height="84" rx="6" fill="#ff5555" opacity="0.18"/>
+    <rect x="123" y="3" width="84" height="84" rx="6" fill="#ff5555" opacity="0.32"/>
+    <rect x="153" y="3" width="84" height="84" rx="6" fill="#ff5555" opacity="0.55"/>
+    <!-- Active red block, mid-slide toward right exit -->
+    <g filter="url(#glow)">
+      <rect x="183" y="3" width="84" height="84" rx="6" fill="#ff5555" stroke="#ffffff" stroke-opacity="0.6" stroke-width="2"/>
+    </g>
+  </g>
+
+  <!-- Right side: title + tagline -->
+  <g transform="translate(530, 140)">
+    <!-- Title FIXED -->
+    <text x="0" y="0" font-family="'Bungee', 'Arial Black', sans-serif" font-size="68" font-weight="400" fill="#ffffff" letter-spacing="2">FIXED</text>
+    <!-- PLATFORM -->
+    <text x="0" y="76" font-family="'Bungee', 'Arial Black', sans-serif" font-size="68" font-weight="400" fill="#ffffff" letter-spacing="2">PLATFORM</text>
+    <!-- PUZZLE -->
+    <text x="0" y="152" font-family="'Bungee', 'Arial Black', sans-serif" font-size="68" font-weight="400" fill="#ffcc44" letter-spacing="2">PUZZLE</text>
+
+    <!-- Tagline -->
+    <text x="0" y="200" font-family="Arial, sans-serif" font-size="20" font-weight="700" fill="#9ca3af" letter-spacing="3">SLIDE · PLAN · SOLVE</text>
+
+    <!-- Arrow chevron accent -->
+    <g transform="translate(0, 235)">
+      <line x1="0" y1="0" x2="160" y2="0" stroke="#ffcc44" stroke-width="6" stroke-linecap="round"/>
+      <polygon points="160,-12 184,0 160,12" fill="#ffcc44"/>
+    </g>
+  </g>
+
+  <!-- Subtle vignette via thin border -->
+  <rect x="2" y="2" width="956" height="536" fill="none" stroke="#000" stroke-opacity="0.4" stroke-width="4" rx="4"/>
+</svg>

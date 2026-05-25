@@ -1,0 +1,26 @@
+{
+  "title": "Fixed Platform Puzzle",
+  "genre": "Puzzle",
+  "category": "Casual",
+  "tags": ["puzzle", "logic", "casual", "block", "grid", "brain"],
+  "description": "Grid-based logic puzzle game. Move colored blocks off the board in the correct order. One wrong move and you're stuck - plan carefully!",
+  "long_description": "Test your strategic thinking with 50 hand-crafted puzzle levels. Drag blocks toward any edge to remove them, but watch out - the order matters! Block your own path and you'll have to start over.\n\n- 50 levels with smooth difficulty curve\n- Mobile, tablet, and desktop support\n- ASMR-quality satisfying sounds\n- No timers, no stress - pure logic\n- Auto-save progress",
+  "controls": {
+    "mouse": "Click + drag blocks toward an edge",
+    "touch": "Tap + swipe blocks toward an edge"
+  },
+  "compression": "brotli",
+  "sdk": {
+    "version": "v3",
+    "events_implemented": [
+      "CrazyGames.SDK.init",
+      "CrazyGames.SDK.game.loadingStart",
+      "CrazyGames.SDK.game.loadingStop",
+      "CrazyGames.SDK.game.gameplayStart",
+      "CrazyGames.SDK.game.gameplayStop",
+      "CrazyGames.SDK.game.happytime",
+      "CrazyGames.SDK.ad.requestAd",
+      "CrazyGames.SDK.analytics.trackEvent"
+    ]
+  }
+}

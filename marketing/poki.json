@@ -1,0 +1,25 @@
+{
+  "title": "Fixed Platform Puzzle",
+  "category": "Puzzle",
+  "tags": ["puzzle", "logic", "casual", "block", "grid"],
+  "short_description": "Move colored blocks off the grid. Wrong order = dead-end. Pure logic, no time pressure.",
+  "long_description": "Test your logic skills in this strategic puzzle game. Arrange and remove blocks from the grid in the correct order. One wrong move can trap you - plan carefully!\n\nFeatures:\n- 50 progressively harder levels\n- No time pressure - puzzle at your own pace\n- Satisfying removal mechanics with ASMR sounds\n- Play on mobile, tablet, or desktop\n- Save progress automatically\n\nPerfect for casual puzzle fans.",
+  "controls": {
+    "mouse": "Click and drag blocks toward an edge to remove them",
+    "touch": "Tap and swipe blocks toward an edge to remove them",
+    "keyboard": "Esc to pause"
+  },
+  "orientation": "any",
+  "sdk": {
+    "version": "v2",
+    "events_implemented": [
+      "PokiSDK.init",
+      "PokiSDK.gameLoadingFinished",
+      "PokiSDK.gameplayStart",
+      "PokiSDK.gameplayStop",
+      "PokiSDK.commercialBreak",
+      "PokiSDK.rewardedBreak",
+      "PokiSDK.customEvent"
+    ]
+  }
+}
