@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { effectPool } from './EffectPool';
 import { TOKENS } from '../ui/Theme';
 import { Direction } from '../types/Game';
 
@@ -13,7 +14,8 @@ export function burstParticles(
     const angle = (Math.PI * 2 * i) / count + Math.random() * 0.4;
     const speed = 120 + Math.random() * 180;
     const size = 11 + Math.random() * 14;
-    const p = scene.add.rectangle(x, y, size, size, color);
+    const p = effectPool(scene).rectangle(x, y, size, size, color);
+    if (!p) continue;
     p.setStrokeStyle(4, TOKENS.ink, 1);
     p.setAlpha(0.95);
     scene.tweens.add({
@@ -25,7 +27,7 @@ export function burstParticles(
       scale: 0.3,
       duration: 500 + Math.random() * 250,
       ease: 'Cubic.easeOut',
-      onComplete: () => p.destroy(),
+      onComplete: () => effectPool(scene).release(p),
     });
   }
 }
@@ -49,7 +51,9 @@ export function confetti(scene: Phaser.Scene, durationMs = 1800): void {
       const c = CONFETTI_COLORS[Math.floor(Math.random() * CONFETTI_COLORS.length)];
       const w = 14 + Math.random() * 14;
       const h = 25 + Math.random() * 18;
-      const p = scene.add.rectangle(x, -20, w, h, c).setAngle(Math.random() * 360);
+      const p = effectPool(scene).rectangle(x, -20, w, h, c);
+      if (!p) return;
+      p.setAngle(Math.random() * 360);
       p.setStrokeStyle(4, TOKENS.ink, 1);
       scene.tweens.add({
         targets: p,
@@ -58,7 +62,7 @@ export function confetti(scene: Phaser.Scene, durationMs = 1800): void {
         angle: p.angle + 360 * (Math.random() > 0.5 ? 1 : -1),
         duration: 1400 + Math.random() * 1100,
         ease: 'Sine.easeIn',
-        onComplete: () => p.destroy(),
+        onComplete: () => effectPool(scene).release(p),
       });
     });
   }
@@ -108,7 +112,8 @@ export function dustPuff(
     const ox = vy !== 0 ? offset : 0;
     const oy = vx !== 0 ? offset : 0;
     const size = 8 + Math.random() * 8;
-    const p = scene.add.rectangle(x + ox, y + oy, size, size, 0xece2c0);
+    const p = effectPool(scene).rectangle(x + ox, y + oy, size, size, 0xece2c0);
+    if (!p) continue;
     p.setStrokeStyle(3, TOKENS.ink, 0.7);
     p.setAlpha(0.95);
     const dist = 32 + Math.random() * 40;
@@ -120,7 +125,7 @@ export function dustPuff(
       scale: 0.3,
       duration: 220 + Math.random() * 120,
       ease: 'Cubic.easeOut',
-      onComplete: () => p.destroy(),
+      onComplete: () => effectPool(scene).release(p),
     });
   }
 }
@@ -131,7 +136,8 @@ export function removalBloom(
   y: number,
   color: number,
 ): void {
-  const ring = scene.add.graphics();
+  const ring = effectPool(scene).graphic();
+  if (!ring) return;
   ring.lineStyle(9, TOKENS.ink, 1);
   ring.strokeCircle(0, 0, 46);
   ring.fillStyle(color, 0.55);
@@ -145,7 +151,7 @@ export function removalBloom(
     alpha: 0,
     duration: 260,
     ease: 'Cubic.easeOut',
-    onComplete: () => ring.destroy(),
+    onComplete: () => effectPool(scene).release(ring),
   });
 }
 
@@ -160,7 +166,8 @@ export function portalSuck(
     const lateral = (Math.random() - 0.5) * 36;
     const ox = dir === 'LEFT' ? off : dir === 'RIGHT' ? -off : lateral;
     const oy = dir === 'UP' ? off : dir === 'DOWN' ? -off : lateral;
-    const p = scene.add.rectangle(x + ox, y + oy, 9, 9, TOKENS.exitGlow);
+    const p = effectPool(scene).rectangle(x + ox, y + oy, 9, 9, TOKENS.exitGlow);
+    if (!p) continue;
     p.setStrokeStyle(2.5, TOKENS.ink, 1);
     scene.tweens.add({
       targets: p,
@@ -170,10 +177,11 @@ export function portalSuck(
       scale: 0.35,
       duration: 240 + Math.random() * 120,
       ease: 'Sine.easeIn',
-      onComplete: () => p.destroy(),
+      onComplete: () => effectPool(scene).release(p),
     });
   }
-  const ring = scene.add.graphics();
+  const ring = effectPool(scene).graphic();
+  if (!ring) return;
   ring.lineStyle(8, TOKENS.exitGlow, 1);
   ring.strokeCircle(0, 0, 38);
   ring.x = x;
@@ -185,13 +193,15 @@ export function portalSuck(
     alpha: 0,
     duration: 320,
     ease: 'Cubic.easeOut',
-    onComplete: () => ring.destroy(),
+    onComplete: () => effectPool(scene).release(ring),
   });
 }
 
 export function deadEndPulse(scene: Phaser.Scene): void {
   const { width, height } = scene.scale;
-  const overlay = scene.add.rectangle(width / 2, height / 2, width, height, TOKENS.danger, 0);
+  const overlay = effectPool(scene).rectangle(width / 2, height / 2, width, height, TOKENS.danger);
+  if (!overlay) return;
+  overlay.setAlpha(0);
   overlay.setDepth(900);
   scene.tweens.add({
     targets: overlay,
@@ -199,7 +209,7 @@ export function deadEndPulse(scene: Phaser.Scene): void {
     duration: 200,
     yoyo: true,
     repeat: 1,
-    onComplete: () => overlay.destroy(),
+    onComplete: () => effectPool(scene).release(overlay),
   });
   scene.cameras.main.shake(160, 0.006);
 }

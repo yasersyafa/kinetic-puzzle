@@ -217,7 +217,7 @@ export function neoButton(
 
   return {
     container,
-    setLabel: (t) => txt.setText(t),
+    setLabel: (t) => { if (txt.text !== t) txt.setText(t); },
     setFill: (f) => {
       currentFill = f;
       redraw(f);
@@ -257,15 +257,18 @@ export function dottedBackground(scene: Phaser.Scene): void {
   const { width, height } = scene.scale;
   const ui = paletteUI();
   scene.cameras.main.setBackgroundColor(ui.bgHex);
-  const g = scene.add.graphics();
-  g.fillStyle(TOKENS.ink, 0.18);
-  const spacing = 40;
-  for (let y = spacing / 2; y < height; y += spacing) {
-    for (let x = spacing / 2; x < width; x += spacing) {
-      g.fillCircle(x, y, 2.2);
-    }
+  // A tiny repeated texture replaces ~1,300 vector circles per frame.
+  // Draw at 2x density to preserve smooth dot edges without changing text resolution.
+  const key = 'ui-dot-tile-v1';
+  if (!scene.textures.exists(key)) {
+    const texture = scene.textures.createCanvas(key, 80, 80);
+    if (!texture) return;
+    const context = texture.context;
+    context.fillStyle = 'rgba(17,17,17,0.18)';
+    context.beginPath(); context.arc(40, 40, 4.4, 0, Math.PI * 2); context.fill();
+    texture.refresh();
   }
-  g.setDepth(-100);
+  scene.add.tileSprite(0, 0, width, height, key).setOrigin(0).setTileScale(0.5).setDepth(-100).setName('cached-dot-background');
 }
 
 export function drawLockIcon(

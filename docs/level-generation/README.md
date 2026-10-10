@@ -160,3 +160,11 @@ LEVEL_TEST_CAMPAIGN=<artifact-path>/campaign.json LEVEL_TEST_HEADLESS=1 npm run 
 ```
 
 This replays every generated solution through actual Phaser movement and compares after-animation state. Without the headless flag, tests use the renderer. Test bridges are opt-in and absent from normal builds. Human reports show predicted and preferred difficulty curves, evidence coverage, soft findings and unresolved metrics. See [IMPLEMENTATION_STATUS.md](IMPLEMENTATION_STATUS.md) for current validation evidence.
+
+## Rendering performance
+
+The dotted background uses one cached 80×80 canvas tile drawn at 2× density and repeated at the original 40px spacing. Exit shapes are cached images by orientation/cell size; their pulse remains a single image tween. Text resolution and block rendering are unchanged.
+
+Ambient exit particles, swipe dust, bursts, confetti, removal rings, portal effects and the dead-end overlay use a scene-local pool. It prewarms 32 rectangles, grows on demand to a shared cap of 192 effects, hides released objects and resets their visual properties before reuse. Cosmetic emissions are skipped if the pool is full. Scene shutdown cancels animations and destroys that scene's pool; cached textures remain available across levels. This avoids recurring particle create/destroy churn during play, while bounding retained objects.
+
+Hint labels update only when their status changes. Renderer-enabled browser checks exercise texture reuse, stable particle identities across ambient cycles, pool disposal on restart and puzzle replay. These checks do not establish a measured FPS improvement on a player's laptop.

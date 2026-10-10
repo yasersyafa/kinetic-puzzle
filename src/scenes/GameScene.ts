@@ -351,11 +351,6 @@ export class GameScene extends Phaser.Scene {
       { textSize: 30 },
     );
     this.refreshHintLabel();
-    this.time.addEvent({
-      delay: 1000,
-      loop: true,
-      callback: () => this.refreshHintLabel(),
-    });
     this.restartBtn = neoButton(
       this,
       width / 2 + btnSpacing / 2,

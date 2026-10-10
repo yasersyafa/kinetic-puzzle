@@ -15,6 +15,12 @@ Current validation: all 71 unit/property/solver/generation/evaluation/integratio
 Run `bun run playtest` (or `npm run playtest`). The new 20-level batch still needs human playtesting; approval of the previous six levels does not establish the experience of these twenty. Historical validation below describes earlier snapshots and behavior, including the former stars/Undo systems.
 
 
+## Rendering optimization follow-up
+
+The dotted background is now one cached 2× density tile; exit geometry is cached by orientation and cell size. Scene-local bounded pooling reuses ambient exit particles, dust, bursts, confetti, rings and dead-end overlays, with 32 prewarmed rectangles and a 192-object cap. Shutdown cancels effects and disposes the scene pool; textures survive level changes. Redundant periodic Hint-label updates were removed. Text resolution and procedural block visuals are unchanged.
+
+TypeScript checks and production build pass. All 30 renderer-enabled browser tests pass, including stable ambient particle identities, cached exit texture reuse, pool cleanup on Restart, all 20 puzzle replays and tutorial/progression integration. FPS improvement on the player's Intel MacBook has not been measured.
+
 ## Delivered
 
 - Shared Phaser-independent rules, deterministic transitions/state serialization, schema validation, BFS optimum proof, replay and bounded workers. Gameplay and movement-only Undo behavior are preserved.

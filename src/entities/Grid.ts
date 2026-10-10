@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { effectPool } from '../utils/EffectPool';
 import { CELL_SIZE, HUD_HEIGHT } from '../config/Constants';
 import { Block } from './Block';
 import { ExitZone } from '../types/Game';
@@ -143,74 +144,23 @@ export class Grid {
       const isHoriz = e.side === 'LEFT' || e.side === 'RIGHT';
       const len = this.cellSize - inset * 2;
 
-      const portal = scene.add.graphics();
-      this.createdObjects.push(portal);
-      portal.fillStyle(TOKENS.ink, 1);
-      if (e.side === 'TOP') {
-        portal.fillRoundedRect(
-          exitCenter.x - len / 2,
-          this.originY - thickness - 2,
-          len,
-          thickness,
-          4,
-        );
-        portal.fillStyle(TOKENS.exitGlow, 1);
-        portal.fillRoundedRect(
-          exitCenter.x - len / 2 + 6,
-          this.originY - thickness + 4,
-          len - 12,
-          thickness - 10,
-          3,
-        );
-      } else if (e.side === 'BOTTOM') {
-        portal.fillRoundedRect(
-          exitCenter.x - len / 2,
-          this.originY + this.rows * this.cellSize + 2,
-          len,
-          thickness,
-          4,
-        );
-        portal.fillStyle(TOKENS.exitGlow, 1);
-        portal.fillRoundedRect(
-          exitCenter.x - len / 2 + 6,
-          this.originY + this.rows * this.cellSize + 8,
-          len - 12,
-          thickness - 12,
-          3,
-        );
-      } else if (e.side === 'LEFT') {
-        portal.fillRoundedRect(
-          this.originX - thickness - 2,
-          exitCenter.y - len / 2,
-          thickness,
-          len,
-          4,
-        );
-        portal.fillStyle(TOKENS.exitGlow, 1);
-        portal.fillRoundedRect(
-          this.originX - thickness + 4,
-          exitCenter.y - len / 2 + 6,
-          thickness - 10,
-          len - 12,
-          3,
-        );
-      } else {
-        portal.fillRoundedRect(
-          this.originX + this.cols * this.cellSize + 2,
-          exitCenter.y - len / 2,
-          thickness,
-          len,
-          4,
-        );
-        portal.fillStyle(TOKENS.exitGlow, 1);
-        portal.fillRoundedRect(
-          this.originX + this.cols * this.cellSize + 8,
-          exitCenter.y - len / 2 + 6,
-          thickness - 12,
-          len - 12,
-          3,
-        );
+      const key = `exit-v1-${e.side}-${this.cellSize}`;
+      const horizontal = e.side === 'TOP' || e.side === 'BOTTOM';
+      const pw = horizontal ? len : thickness, ph = horizontal ? thickness : len;
+      if (!scene.textures.exists(key)) {
+        const shape = scene.make.graphics({ x: 0, y: 0 });
+        shape.fillStyle(TOKENS.ink).fillRoundedRect(0, 0, pw, ph, 4);
+        const insetX = 6;
+        const insetY = 6;
+        shape.fillStyle(TOKENS.exitGlow).fillRoundedRect(insetX, insetY,
+          horizontal ? len - 12 : thickness - (e.side === 'LEFT' ? 10 : 12),
+          horizontal ? thickness - (e.side === 'TOP' ? 10 : 12) : len - 12, 3);
+        shape.generateTexture(key, Math.ceil(pw), Math.ceil(ph)); shape.destroy();
       }
+      const px = horizontal ? exitCenter.x - len / 2 : e.side === 'LEFT' ? this.originX - thickness - 2 : this.originX + this.cols * this.cellSize + 2;
+      const py = horizontal ? e.side === 'TOP' ? this.originY - thickness - 2 : this.originY + this.rows * this.cellSize + 2 : exitCenter.y - len / 2;
+      const portal = scene.add.image(px, py, key).setOrigin(0).setName('cached-exit');
+      this.createdObjects.push(portal);
 
       scene.tweens.add({
         targets: portal,
@@ -272,7 +222,9 @@ export class Grid {
         const sy = center.y + (isHoriz ? jitter : 0);
         const size = 3 + Math.random() * 3;
         const color = Math.random() < 0.5 ? TOKENS.exitGlow : TOKENS.exitGlowAccent;
-        const p = scene.add.rectangle(sx, sy, size, size, color);
+        const pool = effectPool(scene);
+        const p = pool.rectangle(sx, sy, size, size, color);
+        if (!p) continue;
         p.setStrokeStyle(1.2, TOKENS.ink, 1);
         const dist = 10 + Math.random() * 18;
         scene.tweens.add({
@@ -283,7 +235,7 @@ export class Grid {
           scale: { from: 1, to: 0.4 },
           duration: 600 + Math.random() * 300,
           ease: 'Cubic.easeOut',
-          onComplete: () => p.destroy(),
+          onComplete: () => pool.release(p),
         });
       }
     };
