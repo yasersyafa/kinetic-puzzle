@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { cachedBlockBody } from './BlockTextures';
 import { BlockData, Color, BlockType, ExitSide, Direction } from '../types/Game';
 import { TOKENS } from '../ui/Theme';
 import { Grid } from './Grid';
@@ -17,7 +18,7 @@ export class Block extends Phaser.GameObjects.Container {
   public readonly unlockAt: number;
   public removed = false;
 
-  private bodyG: Phaser.GameObjects.Graphics;
+  private bodyImage: Phaser.GameObjects.Image;
   private iconG?: Phaser.GameObjects.Graphics;
   private countdownText?: Phaser.GameObjects.Text;
   private locked = false;
@@ -53,9 +54,8 @@ export class Block extends Phaser.GameObjects.Container {
     this.hitW = hitW;
     this.hitH = hitH;
 
-    this.bodyG = scene.add.graphics();
-    this.add(this.bodyG);
-    this.drawBody(this.fillColor());
+    this.bodyImage = cachedBlockBody(scene, pxW, pxH, this.fillColor(), this.type === 'obstacle');
+    this.add(this.bodyImage);
     this.drawIcon();
 
     this.setSize(hitW, hitH);
@@ -89,55 +89,6 @@ export class Block extends Phaser.GameObjects.Container {
       }
     }
     if (this.locked && remaining === 0) this.unlock();
-  }
-
-  private drawBody(fill: number): void {
-    const g = this.bodyG;
-    const w = this.bodyW;
-    const h = this.bodyH;
-    const cornerR = TOKENS.cornerR;
-    const shadowOffset = TOKENS.shadowOffset;
-    const borderPx = TOKENS.borderPx;
-
-    g.clear();
-    g.fillStyle(TOKENS.ink, 1);
-    g.fillRoundedRect(-w / 2 + shadowOffset, -h / 2 + shadowOffset, w, h, cornerR);
-    g.fillStyle(TOKENS.ink, 1);
-    g.fillRoundedRect(-w / 2, -h / 2, w, h, cornerR);
-    g.fillStyle(fill, 1);
-    g.fillRoundedRect(
-      -w / 2 + borderPx,
-      -h / 2 + borderPx,
-      w - borderPx * 2,
-      h - borderPx * 2,
-      Math.max(0, cornerR - borderPx / 2),
-    );
-
-    if (this.type === 'obstacle') {
-      g.lineStyle(4, TOKENS.ink, 0.55);
-      const inset = borderPx + 8;
-      const minX = -w / 2 + inset;
-      const maxX = w / 2 - inset;
-      const minY = -h / 2 + inset;
-      const maxY = h / 2 - inset;
-      const span = Math.max(w, h);
-      const step = 18;
-      for (let off = -span; off <= span; off += step) {
-        const x1 = minX + off;
-        const y1 = minY;
-        const x2 = x1 + (maxY - minY);
-        const y2 = maxY;
-        const cx1 = Math.max(minX, Math.min(maxX, x1));
-        const cy1 = minY + (cx1 - x1);
-        const cx2 = Math.max(minX, Math.min(maxX, x2));
-        const cy2 = minY + (cx2 - x1);
-        g.beginPath();
-        g.moveTo(cx1, cy1);
-        g.lineTo(cx2, cy2);
-        g.strokePath();
-      }
-    }
-
   }
 
   private drawIcon(): void {
@@ -423,8 +374,8 @@ export class Block extends Phaser.GameObjects.Container {
   }
 
   public setVisualOffset(dx: number, dy: number): void {
-    this.bodyG.x = dx;
-    this.bodyG.y = dy;
+    this.bodyImage.x = dx;
+    this.bodyImage.y = dy;
     if (this.iconG) {
       this.iconG.x = dx;
       this.iconG.y = dy;
@@ -432,7 +383,7 @@ export class Block extends Phaser.GameObjects.Container {
   }
 
   public clearVisualOffsetSmooth(duration = 110): void {
-    const targets: Phaser.GameObjects.GameObject[] = [this.bodyG];
+    const targets: Phaser.GameObjects.GameObject[] = [this.bodyImage];
     if (this.iconG) targets.push(this.iconG);
     this.scene.tweens.add({
       targets,

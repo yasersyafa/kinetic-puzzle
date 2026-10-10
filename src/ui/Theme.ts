@@ -266,7 +266,7 @@ export function dottedBackground(scene: Phaser.Scene): void {
     const context = texture.context;
     context.fillStyle = 'rgba(17,17,17,0.18)';
     context.beginPath(); context.arc(40, 40, 4.4, 0, Math.PI * 2); context.fill();
-    texture.refresh();
+    if (scene.game.renderer) texture.refresh();
   }
   scene.add.tileSprite(0, 0, width, height, key).setOrigin(0).setTileScale(0.5).setDepth(-100).setName('cached-dot-background');
 }

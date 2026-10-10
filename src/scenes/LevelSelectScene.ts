@@ -91,16 +91,21 @@ export class LevelSelectScene extends Phaser.Scene {
       .setOrigin(0.5);
     popIn(this, header, 100);
 
-    // Pack tabs on left column, grid centered in remaining right area
-    const tabsX = 230;
-    const tabW = 340;
-    const gridLeftBound = tabsX + tabW / 2; // right edge of tabs column
-    this.drawPackTabs(tabsX, 250);
+    this.drawPackTabs(240);
+    const selectedStage = STAGES.find(stage => stage.id === this.activePackId);
+    if (selectedStage) {
+      this.add.text(width / 2, 340, selectedStage.name.toUpperCase(), {
+        fontFamily: FONT_NEO,
+        fontSize: '24px',
+        color: TOKENS.inkHex,
+        align: 'center',
+      }).setOrigin(0.5);
+    }
     this.gridLayer = this.add.container(0, 0);
-    this.renderPackGrid(this.activePackId, width, height, gridLeftBound);
+    this.renderPackGrid(this.activePackId, width, height);
   }
 
-  private drawPackTabs(x: number, startY: number): void {
+  private drawPackTabs(y: number): void {
     const tabW = 340;
     const tabH = 100;
     const gap = 20;
@@ -108,16 +113,22 @@ export class LevelSelectScene extends Phaser.Scene {
 
     const activeIndex = Math.max(0, PACKS.findIndex(p => p.id === this.activePackId));
     const first = Math.floor(activeIndex / 4) * 4;
-    if (first > 0) neoPill(this, x - 90, this.scale.height - 140, '<', () => this.scene.start(SCENE_KEYS.LevelSelect, { activePackId: PACKS[first - 1].id }), { w: 130, h: 70, textSize: 30 });
-    if (first + 4 < PACKS.length) neoPill(this, x + 90, this.scale.height - 140, '>', () => this.scene.start(SCENE_KEYS.LevelSelect, { activePackId: PACKS[first + 4].id }), { w: 130, h: 70, textSize: 30 });
-    PACKS.slice(first, first + 4).forEach((pack, i) => {
-      const y = startY + i * (tabH + gap) + tabH / 2;
+    const visiblePacks = PACKS.slice(first, first + 4);
+    const tabsWidth = visiblePacks.length * tabW + Math.max(0, visiblePacks.length - 1) * gap;
+    const left = (this.scale.width - tabsWidth) / 2;
+    const arrowOffset = 95;
+    if (first > 0) neoPill(this, left - arrowOffset, y, '<', () => this.scene.start(SCENE_KEYS.LevelSelect, { activePackId: PACKS[first - 1].id }), { w: 130, h: 70, textSize: 30 });
+    if (first + 4 < PACKS.length) neoPill(this, left + tabsWidth + arrowOffset, y, '>', () => this.scene.start(SCENE_KEYS.LevelSelect, { activePackId: PACKS[first + 4].id }), { w: 130, h: 70, textSize: 30 });
+    visiblePacks.forEach((pack, i) => {
+      const x = left + tabW / 2 + i * (tabW + gap);
       const published = pack.levelIds.length > 0;
       const packUnlocked = published && store.canPlay(pack.levelIds[0]);
       const active = pack.id === this.activePackId;
       const fill = !packUnlocked ? TOKENS.lockGray : active ? TOKENS.sky : TOKENS.white;
       const cleared = pack.levelIds.filter(id => store.isCompleted(id)).length;
-      const label = `${pack.name.toUpperCase()}\n${published ? `${cleared}/${pack.levelIds.length} COMPLETED` : "COMING SOON"}`;
+      const stage = STAGES.find(stage => stage.id === pack.id);
+      const tabName = stage ? `STAGE ${stage.number}` : pack.name.toUpperCase();
+      const label = `${tabName}  ·  ${published ? `${cleared}/${pack.levelIds.length}` : 'SOON'}`;
 
       const btn = neoButton(
         this,
@@ -134,16 +145,18 @@ export class LevelSelectScene extends Phaser.Scene {
         },
         { textSize: 24 },
       );
+      const labelText = btn.container.list.find(child => child instanceof Phaser.GameObjects.Text) as Phaser.GameObjects.Text;
+      labelText.setWordWrapWidth(300, true);
       if (!packUnlocked) btn.setEnabled(false);
       slideUpIn(this, btn.container, 160 + i * 50);
     });
   }
 
-  private renderPackGrid(packId: string, width: number, height: number, _leftBound: number): void {
+  private renderPackGrid(packId: string, width: number, height: number): void {
     const pack = PACKS.find((p) => p.id === packId);
     if (!pack) return;
     if (!pack.levelIds.length) {
-      this.add.text((width + _leftBound) / 2, height / 2, 'COMING SOON', { fontFamily: FONT_NEO, fontSize: '48px', color: TOKENS.inkHex }).setOrigin(0.5);
+      this.add.text(width / 2, (290 + height) / 2, 'COMING SOON', { fontFamily: FONT_NEO, fontSize: '48px', color: TOKENS.inkHex }).setOrigin(0.5);
       return;
     }
     const store = useGameStore.getState();
@@ -151,15 +164,15 @@ export class LevelSelectScene extends Phaser.Scene {
     const cols = 5;
     const levelIds = pack.levelIds;
     const rows = Math.ceil(levelIds.length / cols);
-    const tile = 140;
+    const tile = 125;
     const gapX = 30;
     const gapY = 32;
     const gridW = cols * tile + (cols - 1) * gapX;
     const gridH = rows * tile + (rows - 1) * gapY;
-    const startX = _leftBound + (width - _leftBound - gridW) / 2 + tile / 2;
-    const startY = 250 + tile / 2;
-    const usableY = height - 120;
-    const adjStartY = startY + gridH > usableY ? usableY - gridH + tile / 2 : startY;
+    const startX = (width - gridW) / 2 + tile / 2;
+    const startY = 450;
+    const usableY = height - 84;
+    const adjStartY = Math.min(startY, usableY - gridH + tile / 2);
 
     levelIds.forEach((lvl, i) => {
       const col = i % cols;

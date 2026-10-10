@@ -163,8 +163,10 @@ This replays every generated solution through actual Phaser movement and compare
 
 ## Rendering performance
 
-The dotted background uses one cached 80×80 canvas tile drawn at 2× density and repeated at the original 40px spacing. Exit shapes are cached images by orientation/cell size; their pulse remains a single image tween. Text resolution and block rendering are unchanged.
+The dotted background uses one cached 80×80 canvas tile drawn at 2× density and repeated at the original 40px spacing. Exit shapes are cached images by orientation/cell size; their pulse remains a single image tween. Text resolution is unchanged. Block bodies now use shared cached textures as described below.
 
 Ambient exit particles, swipe dust, bursts, confetti, removal rings, portal effects and the dead-end overlay use a scene-local pool. It prewarms 32 rectangles, grows on demand to a shared cap of 192 effects, hides released objects and resets their visual properties before reuse. Cosmetic emissions are skipped if the pool is full. Scene shutdown cancels animations and destroys that scene's pool; cached textures remain available across levels. This avoids recurring particle create/destroy churn during play, while bounding retained objects.
 
 Hint labels update only when their status changes. Renderer-enabled browser checks exercise texture reuse, stable particle identities across ambient cycles, pool disposal on restart and puzzle replay. These checks do not establish a measured FPS improvement on a player's laptop.
+
+Block bodies (red, yellow, blue, purple and gray obstacles) are generated once into tightly bounded 2× density textures keyed by dimensions, fill, obstacle pattern and border/shadow style. Textures are baked with a canvas context so creation also works in HEADLESS verification without a GPU renderer. Each block owns an Image inside its original Container; equal appearances share the same texture across blocks and levels. Padding preserves the shadow and the image origin preserves the original body center. Static icons and dynamic lock countdowns remain separate. Hover, squash, visual offsets, unlock transparency, input and movement still act on each block independently. Destroying a block leaves its shared texture available.

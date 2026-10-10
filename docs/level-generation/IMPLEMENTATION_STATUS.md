@@ -21,6 +21,12 @@ The dotted background is now one cached 2× density tile; exit geometry is cache
 
 TypeScript checks and production build pass. All 30 renderer-enabled browser tests pass, including stable ambient particle identities, cached exit texture reuse, pool cleanup on Restart, all 20 puzzle replays and tutorial/progression integration. FPS improvement on the player's Intel MacBook has not been measured.
 
+## Shared block body textures
+
+Red, yellow, blue and purple block bodies and hatched gray obstacles now use shared 2× density canvas-baked textures. Body geometry, shadow padding and center alignment are preserved; each block retains its own Image and original Container, icons, countdown, input, hover, squash and movement. Cache keys include dimensions, fill, obstacle pattern and border/shadow style. Shared textures survive individual block removal and level changes.
+
+All 22 targeted renderer-enabled checks pass (20 live Stage 1 replays plus cache/pooling checks). Pixel tests verify body fills/borders for all five types, density, alignment, size separation, independent offsets, dependency/lock unlocks and texture survival. Five HEADLESS checks pass, including advanced existing L73/L74/L80 replays. Texture GPU refresh is guarded when no renderer exists, fixing HEADLESS startup for background, exit and block caches. The default generated production build passed final campaign verification and compilation; the emitted bundle includes these guards. TypeScript checks pass. No measured player-device FPS improvement is claimed.
+
 ## Delivered
 
 - Shared Phaser-independent rules, deterministic transitions/state serialization, schema validation, BFS optimum proof, replay and bounded workers. Gameplay and movement-only Undo behavior are preserved.

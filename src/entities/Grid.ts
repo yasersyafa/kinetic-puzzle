@@ -1,5 +1,6 @@
 import Phaser from 'phaser';
 import { effectPool } from '../utils/EffectPool';
+import { fillRoundedRect } from '../utils/CanvasShapes';
 import { CELL_SIZE, HUD_HEIGHT } from '../config/Constants';
 import { Block } from './Block';
 import { ExitZone } from '../types/Game';
@@ -148,14 +149,15 @@ export class Grid {
       const horizontal = e.side === 'TOP' || e.side === 'BOTTOM';
       const pw = horizontal ? len : thickness, ph = horizontal ? thickness : len;
       if (!scene.textures.exists(key)) {
-        const shape = scene.make.graphics({ x: 0, y: 0 });
-        shape.fillStyle(TOKENS.ink).fillRoundedRect(0, 0, pw, ph, 4);
-        const insetX = 6;
-        const insetY = 6;
-        shape.fillStyle(TOKENS.exitGlow).fillRoundedRect(insetX, insetY,
+        const texture = scene.textures.createCanvas(key, Math.ceil(pw), Math.ceil(ph));
+        if (!texture) throw new Error(`Unable to create exit texture ${key}`);
+        const context = texture.context;
+        context.fillStyle = '#111111'; fillRoundedRect(context, 0, 0, pw, ph, 4);
+        context.fillStyle = `#${TOKENS.exitGlow.toString(16)}`;
+        fillRoundedRect(context, 6, 6,
           horizontal ? len - 12 : thickness - (e.side === 'LEFT' ? 10 : 12),
           horizontal ? thickness - (e.side === 'TOP' ? 10 : 12) : len - 12, 3);
-        shape.generateTexture(key, Math.ceil(pw), Math.ceil(ph)); shape.destroy();
+        if (scene.game.renderer) texture.refresh();
       }
       const px = horizontal ? exitCenter.x - len / 2 : e.side === 'LEFT' ? this.originX - thickness - 2 : this.originX + this.cols * this.cellSize + 2;
       const py = horizontal ? e.side === 'TOP' ? this.originY - thickness - 2 : this.originY + this.rows * this.cellSize + 2 : exitCenter.y - len / 2;
