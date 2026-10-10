@@ -1,16 +1,15 @@
 import Phaser from 'phaser';
 import { SCENE_KEYS, TOTAL_LEVELS } from '../config/Constants';
 import { useGameStore } from '../managers/GameStateManager';
-import { AdManager } from '../managers/AdManager';
 import { confetti, fadeIn, fadeOutAndStart } from '../utils/Effects';
 import { TOKENS, FONT_NEO, neoButton, dottedBackground, popIn, slideUpIn } from '../ui/Theme';
 import { paletteUI } from '../config/Palettes';
 import { getRandomQuote } from '../config/Quotes';
-import { getLevel, starsFor } from '../config/Levels';
-import { Analytics } from '../managers/AnalyticsManager';
+import { getMoveLimit, getStage, STAGE_CONFIG } from '../config/Levels';
+import type { AttemptResult } from '../core/campaign/Stage';
 
 interface GameOverData {
-  result: 'WIN' | 'STUCK';
+  result: AttemptResult;
 }
 
 export class GameOverScene extends Phaser.Scene {
@@ -29,7 +28,7 @@ export class GameOverScene extends Phaser.Scene {
       confetti(this);
       this.layoutWin();
     } else {
-      this.layoutStuck(cx);
+      this.layoutStuck(cx, data.result);
     }
   }
 
@@ -39,15 +38,8 @@ export class GameOverScene extends Phaser.Scene {
     const store = useGameStore.getState();
     const isLast = store.currentLevel >= TOTAL_LEVELS;
 
-    const level = getLevel(store.currentLevel);
-    const par = level.parMoves;
-    const stars = starsFor(par, store.movesThisLevel);
-    const prevBest = store.starsFor(store.currentLevel);
-    store.recordStars(store.currentLevel, stars);
-    Analytics.track('star_earned', { levelId: store.currentLevel, stars, par, moves: store.movesThisLevel });
-
     const headTxt = this.add
-      .text(cx, 180, 'CLEARED!', {
+      .text(cx, 180, 'SUCCESS!', {
         fontFamily: FONT_NEO,
         fontSize: '94px',
         color: TOKENS.inkHex,
@@ -56,7 +48,7 @@ export class GameOverScene extends Phaser.Scene {
     popIn(this, headTxt, 0);
 
     const subTxt = this.add
-      .text(cx, 282, `LEVEL ${store.currentLevel} · ${store.movesThisLevel} MOVES · PAR ${par}`, {
+      .text(cx, 282, `LEVEL ${store.currentLevel} · ${store.movesThisLevel} MOVES${getMoveLimit(store.currentLevel) === undefined ? "" : ` / ${getMoveLimit(store.currentLevel)}`}`, {
         fontFamily: FONT_NEO,
         fontSize: '32px',
         color: TOKENS.inkHex,
@@ -64,7 +56,10 @@ export class GameOverScene extends Phaser.Scene {
       .setOrigin(0.5);
     this.fadeTextIn(subTxt, 140, 0.7);
 
-    this.drawStarRow(cx, 380, stars, prevBest);
+    const stage = getStage(store.currentLevel);
+    if (stage && store.currentLevel === stage.firstLevel + stage.levelCount - 1 && Array.from({ length: stage.levelCount }, (_, i) => stage.firstLevel + i).every(id => store.isCompleted(id))) {
+      this.add.text(cx, 380, `STAGE ${stage.number} COMPLETE`, { fontFamily: FONT_NEO, fontSize: '36px', color: TOKENS.inkHex }).setOrigin(0.5);
+    }
 
     this.drawQuotePanel(560, 680, 820, 460);
 
@@ -75,7 +70,7 @@ export class GameOverScene extends Phaser.Scene {
     const ui = paletteUI();
     if (isLast) {
       const doneTxt = this.add
-        .text(btnX, 540, 'ALL LEVELS DONE', {
+        .text(btnX, 540, STAGE_CONFIG && TOTAL_LEVELS < STAGE_CONFIG.targetLevels ? 'MORE LEVELS COMING SOON' : 'CAMPAIGN COMPLETE', {
           fontFamily: FONT_NEO,
           fontSize: '40px',
           color: TOKENS.inkHex,
@@ -87,10 +82,11 @@ export class GameOverScene extends Phaser.Scene {
       });
       slideUpIn(this, menuBtn.container, 480);
     } else {
-      const resumeBtn = neoButton(this, btnX, 560, btnW, btnH, 'RESUME', ui.primary, () => {
+      const resumeBtn = neoButton(this, btnX, 560, btnW, btnH, store.canPlay(store.currentLevel + 1) ? 'NEXT LEVEL' : 'FINISH EARLIER LEVELS', ui.primary, () => {
         useGameStore.getState().setCurrentLevel(useGameStore.getState().currentLevel + 1);
         fadeOutAndStart(this, SCENE_KEYS.Game);
       });
+      resumeBtn.setEnabled(store.canPlay(store.currentLevel + 1));
       slideUpIn(this, resumeBtn.container, 380);
 
       const restartBtn = neoButton(this, btnX, 710, btnW, btnH, 'RESTART', ui.accent, () => {
@@ -103,56 +99,6 @@ export class GameOverScene extends Phaser.Scene {
       });
       slideUpIn(this, menuBtn.container, 580);
     }
-  }
-
-  private drawStarRow(cx: number, cy: number, earned: 1 | 2 | 3, prevBest: number): void {
-    const size = 70;
-    const gap = 32;
-    const total = 3;
-    const startX = cx - ((size + gap) * (total - 1)) / 2;
-    for (let i = 0; i < total; i++) {
-      const x = startX + i * (size + gap);
-      const filled = i < earned;
-      const isNew = filled && i >= prevBest;
-      const star = this.drawStar(x, cy, size, filled ? 0xFFD23F : 0xD9D9D9);
-      star.setAlpha(0);
-      star.setScale(0);
-      this.tweens.add({
-        targets: star,
-        alpha: 1,
-        scale: 1,
-        duration: 320,
-        delay: 220 + i * 140,
-        ease: 'Back.easeOut',
-      });
-      if (isNew) {
-        this.tweens.add({
-          targets: star,
-          scale: { from: 1.3, to: 1 },
-          duration: 480,
-          delay: 220 + i * 140 + 320,
-          ease: 'Sine.easeOut',
-        });
-      }
-    }
-  }
-
-  private drawStar(x: number, y: number, size: number, color: number): Phaser.GameObjects.Graphics {
-    const g = this.add.graphics();
-    g.fillStyle(color, 1);
-    g.lineStyle(4, 0x222222, 1);
-    const outer = size / 2;
-    const inner = outer * 0.45;
-    const pts: Phaser.Math.Vector2[] = [];
-    for (let i = 0; i < 10; i++) {
-      const a = (Math.PI / 5) * i - Math.PI / 2;
-      const r = i % 2 === 0 ? outer : inner;
-      pts.push(new Phaser.Math.Vector2(Math.cos(a) * r, Math.sin(a) * r));
-    }
-    g.fillPoints(pts, true);
-    g.strokePoints(pts, true);
-    g.setPosition(x, y);
-    return g;
   }
 
   private fadeTextIn(t: Phaser.GameObjects.Text, delay: number, finalAlpha = 1, slide = 32): void {
@@ -211,12 +157,12 @@ export class GameOverScene extends Phaser.Scene {
     this.fadeTextIn(authorTxt, 520, 0.6);
   }
 
-  private layoutStuck(cx: number): void {
+  private layoutStuck(cx: number, result: AttemptResult): void {
     const cy = this.scale.height / 2;
     const store = useGameStore.getState();
 
     this.add
-      .text(cx, cy - 324, 'STUCK!', {
+      .text(cx, cy - 324, 'FAILED', {
         fontFamily: FONT_NEO,
         fontSize: '94px',
         color: TOKENS.inkHex,
@@ -224,7 +170,7 @@ export class GameOverScene extends Phaser.Scene {
       .setOrigin(0.5);
 
     this.add
-      .text(cx, cy - 216, 'No more moves available', {
+      .text(cx, cy - 216, result === 'MOVE_LIMIT' ? 'Move limit reached. Restart and try a new order.' : 'No legal moves remain. Restart and try a new order.', {
         fontFamily: FONT_NEO,
         fontSize: '26px',
         color: TOKENS.inkHex,
@@ -240,20 +186,8 @@ export class GameOverScene extends Phaser.Scene {
       })
       .setOrigin(0.5);
 
-    let busy = false;
     const ui = paletteUI();
-    neoButton(this, cx, cy + 18, 504, 108, 'CONTINUE (AD)', ui.secondary, async () => {
-      if (busy) return;
-      busy = true;
-      try {
-        const ok = await AdManager.showRewarded('continue');
-        if (ok) fadeOutAndStart(this, SCENE_KEYS.Game);
-      } finally {
-        busy = false;
-      }
-    });
-
-    neoButton(this, cx, cy + 154, 504, 108, 'RETRY', ui.accent, () => {
+    neoButton(this, cx, cy + 154, 504, 108, 'RESTART', ui.accent, () => {
       fadeOutAndStart(this, SCENE_KEYS.Game);
     });
 

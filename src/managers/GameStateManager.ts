@@ -2,241 +2,64 @@ import { campaignStorage } from './CampaignStorage';
 import { createStore } from 'zustand/vanilla';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { TOTAL_LEVELS } from '../config/Constants';
-import { CAMPAIGN_ID, CAMPAIGN_VERSION, IS_GENERATED_CAMPAIGN } from '../config/Levels';
+import { CAMPAIGN_ID, CAMPAIGN_VERSION, IS_GENERATED_CAMPAIGN, LEVELS, STAGES, levelVersion } from '../config/Levels';
+import { importCompletions, compatibleCompletions, progression, canPlayLevel, type Completions, type ProgressCatalog } from '../core/campaign/Progress';
 
-declare const __DEV__: boolean;
-const DEV = typeof __DEV__ !== 'undefined' && __DEV__;
-
-export const WATCH_COOLDOWN_MS = 3 * 60 * 1000;
-export const PERSIST_KEY = IS_GENERATED_CAMPAIGN ? `fpp-game-state-v2-${CAMPAIGN_ID}-${CAMPAIGN_VERSION}` : 'fpp-game-state-v2';
-
-export type StarCount = 1 | 2 | 3;
+export const PERSIST_KEY = IS_GENERATED_CAMPAIGN ? `fpp-game-state-v3-${CAMPAIGN_ID}` : 'fpp-game-state-v2';
+const LEGACY_KEY = IS_GENERATED_CAMPAIGN ? `fpp-game-state-v2-${CAMPAIGN_ID}-${CAMPAIGN_VERSION}` : undefined;
+const catalog: ProgressCatalog = { campaignId: CAMPAIGN_ID, campaignVersion: CAMPAIGN_VERSION, levelVersions: Object.fromEntries(LEVELS.map(l => [l.id, levelVersion(l.id)])), stages: STAGES };
+const tutorialKey = (level: number, version = 'dialogue-1') => `${level}:${catalog.levelVersions[level]}:${version}`;
 
 interface GameState {
-  currentLevel: number;
-  unlockedLevel: number;
-  movesThisLevel: number;
-  sfxEnabled: boolean;
-  audioEnabled: boolean;
-  tutorialSeenLevels: number[];
-
-  bestStars: Record<number, StarCount>;
-
-  equippedPalette: string;
-
-  watchCooldownUntil: number;
-
-  setCurrentLevel: (n: number) => void;
-  unlockNext: () => void;
-  incMoves: () => void;
-  resetMoves: () => void;
-  toggleAudio: () => void;
-  hasSeenTutorial: (level: number) => boolean;
-  markTutorialSeen: (level: number) => void;
-  recordStars: (levelId: number, stars: StarCount) => StarCount;
-  starsFor: (levelId: number) => StarCount | 0;
-  totalStars: () => number;
-
-  setEquippedPalette: (id: string) => void;
-  resetProgress: () => void;
-  unlockAll: () => void;
-  unlockUpTo: (levelId: number) => void;
-
-  startWatchCooldown: () => void;
-  isWatchOnCooldown: () => boolean;
-  getWatchCooldownSecondsLeft: () => number;
+  currentLevel: number; unlockedLevel: number; movesThisLevel: number;
+  sfxEnabled: boolean; audioEnabled: boolean; equippedPalette: string;
+  completedLevels: Completions; tutorialSeen: string[];
+  setCurrentLevel: (n: number) => void; unlockNext: () => void; incMoves: () => void; resetMoves: () => void;
+  toggleAudio: () => void; hasSeenTutorial: (level: number, version?: string) => boolean; markTutorialSeen: (level: number, version?: string) => void;
+  recordCompletion: (id: number) => void; isCompleted: (id: number) => boolean; canPlay: (id: number) => boolean;
+  setEquippedPalette: (id: string) => void; resetProgress: () => void; unlockAll: () => void; unlockUpTo: (id: number) => void;
 }
-
 export function persistedSlice(s: GameState): Record<string, unknown> {
-  return {
-    campaignId: CAMPAIGN_ID,
-    campaignVersion: CAMPAIGN_VERSION,
-    currentLevel: s.currentLevel,
-    unlockedLevel: s.unlockedLevel,
-    sfxEnabled: s.sfxEnabled,
-    audioEnabled: s.audioEnabled,
-    tutorialSeenLevels: s.tutorialSeenLevels,
-    bestStars: s.bestStars,
-    equippedPalette: s.equippedPalette,
-    watchCooldownUntil: s.watchCooldownUntil,
-  };
+  return { campaignId: CAMPAIGN_ID, campaignVersion: CAMPAIGN_VERSION, currentLevel: s.currentLevel,
+    unlockedLevel: progression(s.completedLevels, catalog), completedLevels: s.completedLevels, tutorialSeen: s.tutorialSeen,
+    sfxEnabled: s.sfxEnabled, audioEnabled: s.audioEnabled, equippedPalette: s.equippedPalette };
 }
-
-interface CloudSnapshot {
-  campaignId?: string;
-  campaignVersion?: string;
-  currentLevel?: number;
-  unlockedLevel?: number;
-  sfxEnabled?: boolean;
-  audioEnabled?: boolean;
-  tutorialSeenLevels?: number[];
-  bestStars?: Record<string, StarCount>;
-  equippedPalette?: string;
-  watchCooldownUntil?: number;
+function restore(raw: unknown): Partial<GameState> {
+  const p = raw && typeof raw === 'object' ? raw as Record<string, unknown> : {};
+  const completedLevels = importCompletions(p, catalog), unlockedLevel = progression(completedLevels, catalog);
+  return { completedLevels, unlockedLevel, currentLevel: Math.max(1, Math.min(unlockedLevel, typeof p.currentLevel === 'number' && Number.isInteger(p.currentLevel) ? p.currentLevel : 1)),
+    tutorialSeen: Array.isArray(p.tutorialSeen) ? p.tutorialSeen.filter((k): k is string => typeof k === 'string' && LEVELS.some(l => k.startsWith(`${l.id}:${catalog.levelVersions[l.id]}:`))) : [],
+    sfxEnabled: typeof p.sfxEnabled === 'boolean' ? p.sfxEnabled : typeof p.audioEnabled === 'boolean' ? p.audioEnabled : true,
+    audioEnabled: typeof p.audioEnabled === 'boolean' ? p.audioEnabled : typeof p.sfxEnabled === 'boolean' ? p.sfxEnabled : true,
+    equippedPalette: typeof p.equippedPalette === 'string' ? p.equippedPalette : 'classic' };
 }
-
 export function mergeCloudSnapshot(cloud: unknown): boolean {
   if (!cloud || typeof cloud !== 'object') return false;
-  // Zustand persist serializes as { state: {...}, version: n }
-  const root = cloud as { state?: CloudSnapshot } & CloudSnapshot;
-  const snap: CloudSnapshot = root.state ?? root;
-  if (IS_GENERATED_CAMPAIGN && (snap.campaignId !== CAMPAIGN_ID || snap.campaignVersion !== CAMPAIGN_VERSION)) return false;
-  if (!IS_GENERATED_CAMPAIGN && snap.campaignId && snap.campaignId !== CAMPAIGN_ID) return false;
-  const cur = store.getState();
-
-  const cloudStars = snap.bestStars
-    ? Object.values(snap.bestStars).reduce((a, b) => a + (b as number), 0)
-    : 0;
-  const localStars = cur.totalStars();
-  const cloudUnlock = snap.unlockedLevel ?? 0;
-  const cloudWins = cloudUnlock > cur.unlockedLevel || cloudStars > localStars;
-  if (!cloudWins) return false;
-
-  const patch: Partial<GameState> = {};
-  if (typeof snap.unlockedLevel === 'number') {
-    patch.unlockedLevel = Math.max(cur.unlockedLevel, snap.unlockedLevel);
-  }
-  if (typeof snap.currentLevel === 'number') {
-    patch.currentLevel = Math.max(cur.currentLevel, snap.currentLevel);
-  }
-  if (Array.isArray(snap.tutorialSeenLevels)) {
-    const set = new Set<number>([...cur.tutorialSeenLevels, ...snap.tutorialSeenLevels]);
-    patch.tutorialSeenLevels = [...set];
-  }
-  if (snap.bestStars && typeof snap.bestStars === 'object') {
-    const merged: Record<number, StarCount> = { ...cur.bestStars };
-    for (const [k, v] of Object.entries(snap.bestStars)) {
-      const id = Number(k);
-      if (!Number.isFinite(id)) continue;
-      const prev = merged[id] ?? 0;
-      const next = Math.max(prev, v as number) as StarCount;
-      if (next !== prev) merged[id] = next;
-    }
-    patch.bestStars = merged;
-  }
-  if (typeof snap.equippedPalette === 'string') {
-    patch.equippedPalette = snap.equippedPalette;
-  }
-  if (Object.keys(patch).length === 0) return false;
-  store.setState(patch);
-  return true;
+  const root = cloud as Record<string, unknown>, snap = (root.state ?? root) as Record<string, unknown>;
+  if (!snap || typeof snap !== 'object' || (snap.campaignId !== CAMPAIGN_ID && !(CAMPAIGN_ID === 'existing' && !snap.campaignId))) return false;
+  const cur = store.getState(), incoming = importCompletions(snap, catalog), completedLevels = { ...cur.completedLevels, ...incoming };
+  const tutorialSeen = [...new Set([...cur.tutorialSeen, ...(restore(snap).tutorialSeen ?? [])])];
+  if (JSON.stringify(completedLevels) === JSON.stringify(cur.completedLevels) && tutorialSeen.length === cur.tutorialSeen.length) return false;
+  store.setState({ completedLevels, unlockedLevel: progression(completedLevels, catalog), tutorialSeen }); return true;
 }
-
-const store = createStore<GameState>()(
-  persist(
-    (set, get) => ({
-      currentLevel: 1,
-      unlockedLevel: 1,
-      movesThisLevel: 0,
-      sfxEnabled: true,
-      audioEnabled: true,
-      tutorialSeenLevels: [],
-
-      bestStars: {},
-
-      equippedPalette: 'classic',
-
-      watchCooldownUntil: 0,
-
-      setCurrentLevel: (n) => set({ currentLevel: n, movesThisLevel: 0 }),
-      unlockNext: () =>
-        set((s) => ({
-          unlockedLevel: Math.min(TOTAL_LEVELS, Math.max(s.unlockedLevel, s.currentLevel + 1)),
-        })),
-      incMoves: () => set((s) => ({ movesThisLevel: s.movesThisLevel + 1 })),
-      resetMoves: () => set({ movesThisLevel: 0 }),
-      toggleAudio: () =>
-        set((s) => {
-          const next = !s.sfxEnabled;
-          return { sfxEnabled: next, audioEnabled: next };
-        }),
-      hasSeenTutorial: (level) => get().tutorialSeenLevels.includes(level),
-      markTutorialSeen: (level) =>
-        set((s) =>
-          s.tutorialSeenLevels.includes(level)
-            ? s
-            : { tutorialSeenLevels: [...s.tutorialSeenLevels, level] },
-        ),
-      recordStars: (levelId, stars) => {
-        const prev = get().bestStars[levelId] ?? 0;
-        const next: StarCount = (Math.max(prev, stars) as StarCount);
-        if (next !== prev) {
-          set((s) => ({ bestStars: { ...s.bestStars, [levelId]: next } }));
-        }
-        return next;
-      },
-      starsFor: (levelId) => get().bestStars[levelId] ?? 0,
-      totalStars: () =>
-        Object.values(get().bestStars).reduce((sum, s) => sum + (s as number), 0),
-      setEquippedPalette: (id) => set({ equippedPalette: id }),
-      resetProgress: () =>
-        set({
-          currentLevel: 1, unlockedLevel: 1, movesThisLevel: 0, tutorialSeenLevels: [],
-          bestStars: {}, watchCooldownUntil: 0,
-        }),
-      unlockAll: () => set({ unlockedLevel: TOTAL_LEVELS }),
-      unlockUpTo: (levelId) =>
-        set((s) => ({
-          unlockedLevel: Math.min(TOTAL_LEVELS, Math.max(s.unlockedLevel, levelId)),
-        })),
-
-      startWatchCooldown: () => {
-        if (DEV) return;
-        set({ watchCooldownUntil: Date.now() + WATCH_COOLDOWN_MS });
-      },
-      isWatchOnCooldown: () => {
-        if (DEV) return false;
-        return Date.now() < get().watchCooldownUntil;
-      },
-      getWatchCooldownSecondsLeft: () => {
-        if (DEV) return 0;
-        const remain = get().watchCooldownUntil - Date.now();
-        return Math.max(0, Math.ceil(remain / 1000));
-      },
-    }),
-    {
-      name: PERSIST_KEY,
-      storage: createJSONStorage(() => campaignStorage(localStorage)),
-      partialize: (s) => persistedSlice(s) as Partial<GameState>,
-      migrate: (persisted: unknown) => {
-        if (persisted && typeof persisted === 'object') {
-          const p = persisted as Record<string, unknown>;
-          if (p.sfxEnabled === undefined && typeof p.audioEnabled === 'boolean') {
-            p.sfxEnabled = p.audioEnabled;
-          }
-          if (p.audioEnabled === undefined && typeof p.sfxEnabled === 'boolean') {
-            p.audioEnabled = p.sfxEnabled;
-          }
-          if (!Array.isArray(p.tutorialSeenLevels)) {
-            p.tutorialSeenLevels = p.tutorialDone === true ? [1, 3, 5] : [];
-          }
-          if (!p.bestStars || typeof p.bestStars !== 'object') {
-            p.bestStars = {};
-          }
-          // Migrate equippedSkin → equippedPalette
-          if (typeof p.equippedPalette !== 'string') {
-            if (typeof p.equippedSkin === 'string') {
-              p.equippedPalette = 'classic';
-            } else {
-              p.equippedPalette = 'classic';
-            }
-          }
-          delete p.streak;
-          delete p.lastPlayDate;
-          delete p.dailyHistory;
-          delete p.dailyMode;
-          delete p.dailyLevelId;
-          delete p.equippedSkin;
-          delete p.tutorialDone;
-        }
-        return persisted as GameState;
-      },
-    }
-  )
-);
-
-export const useGameStore = {
-  getState: () => store.getState(),
-  setState: store.setState,
-  subscribe: store.subscribe,
-};
+const baseStorage = typeof localStorage !== 'undefined' ? campaignStorage(localStorage) : undefined;
+const storage = baseStorage && { ...baseStorage, getItem(name: string) { return !localStorage.getItem(name) && LEGACY_KEY && localStorage.getItem(LEGACY_KEY) ? baseStorage.getItem(LEGACY_KEY) : baseStorage.getItem(name); } };
+const store = createStore<GameState>()(persist((set, get) => ({
+  currentLevel: 1, unlockedLevel: 1, movesThisLevel: 0, sfxEnabled: true, audioEnabled: true,
+  completedLevels: {}, tutorialSeen: [], equippedPalette: 'classic',
+  setCurrentLevel: n => set({ currentLevel: Math.max(1, Math.min(TOTAL_LEVELS, n)), movesThisLevel: 0 }),
+  unlockNext: () => set(s => ({ unlockedLevel: progression(s.completedLevels, catalog) })),
+  incMoves: () => set(s => ({ movesThisLevel: s.movesThisLevel + 1 })), resetMoves: () => set({ movesThisLevel: 0 }),
+  toggleAudio: () => set(s => ({ sfxEnabled: !s.sfxEnabled, audioEnabled: !s.sfxEnabled })),
+  hasSeenTutorial: (level, version) => get().tutorialSeen.includes(tutorialKey(level, version)),
+  markTutorialSeen: (level, version) => set(s => ({ tutorialSeen: [...new Set([...s.tutorialSeen, tutorialKey(level, version)])] })),
+  recordCompletion: id => { if (catalog.levelVersions[id]) set(s => ({ completedLevels: { ...compatibleCompletions(s.completedLevels, catalog), [id]: { levelVersion: catalog.levelVersions[id] } } })); },
+  isCompleted: id => !!catalog.levelVersions[id] && get().completedLevels[id]?.levelVersion === catalog.levelVersions[id],
+  canPlay: id => !!catalog.levelVersions[id] && canPlayLevel(id, get().unlockedLevel, get().completedLevels, STAGES),
+  setEquippedPalette: id => set({ equippedPalette: id }),
+  resetProgress: () => set({ currentLevel: 1, unlockedLevel: 1, movesThisLevel: 0, completedLevels: {}, tutorialSeen: [] }),
+  unlockAll: () => set({ unlockedLevel: TOTAL_LEVELS }),
+  unlockUpTo: id => set(s => ({ unlockedLevel: Math.min(TOTAL_LEVELS, Math.max(s.unlockedLevel, id)) })),
+}), { name: PERSIST_KEY, version: 3, storage: storage ? createJSONStorage(() => storage) : undefined,
+  partialize: s => persistedSlice(s) as Partial<GameState>, migrate: raw => ({ ...restore(raw), campaignId: CAMPAIGN_ID, campaignVersion: CAMPAIGN_VERSION }), merge: (raw, current) => ({ ...current, ...restore(raw) }) }));
+export const useGameStore = { getState: () => store.getState(), setState: store.setState, subscribe: store.subscribe };

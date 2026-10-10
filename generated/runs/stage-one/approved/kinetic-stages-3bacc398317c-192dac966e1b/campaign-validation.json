@@ -1,0 +1,107 @@
+{
+  "success": true,
+  "errors": [],
+  "warnings": [],
+  "difficultyCurve": [
+    {
+      "levelId": 1,
+      "score": 24.184172661870505,
+      "role": "TEACH"
+    },
+    {
+      "levelId": 2,
+      "score": 29.737739032620922,
+      "role": "TEACH"
+    },
+    {
+      "levelId": 3,
+      "score": 33.52222222222222,
+      "role": "TEACH"
+    },
+    {
+      "levelId": 4,
+      "score": 34.41111111111111,
+      "role": "PRACTICE"
+    },
+    {
+      "levelId": 5,
+      "score": 32.7,
+      "role": "PRACTICE"
+    },
+    {
+      "levelId": 6,
+      "score": 32.43524947119572,
+      "role": "TWIST"
+    },
+    {
+      "levelId": 7,
+      "score": 40.79928998505231,
+      "role": "PRACTICE"
+    },
+    {
+      "levelId": 8,
+      "score": 39.775,
+      "role": "PRACTICE"
+    },
+    {
+      "levelId": 9,
+      "score": 34.8,
+      "role": "TWIST"
+    },
+    {
+      "levelId": 10,
+      "score": 43.26666666666667,
+      "role": "PRACTICE"
+    },
+    {
+      "levelId": 11,
+      "score": 42.756964656964655,
+      "role": "PRACTICE"
+    },
+    {
+      "levelId": 12,
+      "score": 42.394843150530356,
+      "role": "TWIST"
+    },
+    {
+      "levelId": 13,
+      "score": 42.46393613690911,
+      "role": "PRACTICE"
+    },
+    {
+      "levelId": 14,
+      "score": 40.49042089985486,
+      "role": "PRACTICE"
+    },
+    {
+      "levelId": 15,
+      "score": 46.35574177529484,
+      "role": "TWIST"
+    },
+    {
+      "levelId": 16,
+      "score": 44.01746031746031,
+      "role": "PRACTICE"
+    },
+    {
+      "levelId": 17,
+      "score": 44.72857142857143,
+      "role": "TWIST"
+    },
+    {
+      "levelId": 18,
+      "score": 37.91456494325347,
+      "role": "RELIEF"
+    },
+    {
+      "levelId": 19,
+      "score": 43.33333333333333,
+      "role": "MASTERY"
+    },
+    {
+      "levelId": 20,
+      "score": 46.42941176470588,
+      "role": "MASTERY"
+    }
+  ]
+}

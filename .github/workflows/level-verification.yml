@@ -17,6 +17,10 @@ jobs:
       - run: npm run build
       - run: npx playwright install --with-deps chromium
       - run: npm run test:browser
+      - name: Replay published Stage 1 with renderer and tutorial/progression checks
+        run: |
+          campaign_file=$(node -p "JSON.parse(require('fs').readFileSync('generated/runs/stage-one/latest.json', 'utf8')).campaignPath")
+          LEVEL_TEST_CAMPAIGN="$campaign_file" npm run test:browser
       - name: Build and replay a verified generated campaign
         run: |
           npm run levels:build -- --count 10 --seed 42 --pool-size 2 --max-states 10000 --timeout-ms 30000 --max-run-ms 600000 --output generated/runs/ci-generated

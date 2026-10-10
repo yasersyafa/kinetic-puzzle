@@ -1,3 +1,4 @@
+import { playerTelemetry } from '../systems/PlayerTelemetry';
 import Phaser from 'phaser';
 import { SCENE_KEYS } from '../config/Constants';
 import { useGameStore } from '../managers/GameStateManager';
@@ -53,6 +54,8 @@ export class PauseScene extends Phaser.Scene {
         yesLabel: 'RESTART',
         noLabel: 'CANCEL',
         onYes: () => {
+          playerTelemetry.increment("restartCount");
+          playerTelemetry.finish(false, "RESTART");
           this.scene.stop(SCENE_KEYS.Game);
           this.scene.stop();
           this.scene.start(SCENE_KEYS.Game);

@@ -1,14 +1,28 @@
-## Current product policy after playtest feedback
+# Stage campaign tooling
 
-The earlier generated 80-level multi-exit campaign is historical and no longer the playtest target. Run `bun run playtest` or `npm run playtest` for the small shared-exit batch. `bun run levels:playtest:build` regenerates it with bounded search and verified export.
+The active campaign grows in verified batches of 20 toward 500–1000 levels. Stage 1 contains only red ordinary blocks, yellow one-direction blocks and gray static obstacles, with one shared exit and unlimited moves. Stage 2 introduces blue dependent blocks followed by purple exit-count locks; its move limit is the proven optimum +2. Stage 3 uses +1; Stage 4 onward uses the optimum. Only Stage 1 content is currently published; future stage definitions are not playable placeholders.
 
-All new pipeline contracts carry `single-exit-semantic-1.0.0`: exactly one exit; ordinary blocks red, constrained yellow, dependent blue and count locks purple. Cosmetic palettes affect UI while mechanic colors stay fixed. Generated builds reject multiple exits and nonsemantic level colors. Product-policy generation uses compact interacting boards; historical forced corridors and isolated exit lanes are excluded from that path.
+`bun run playtest` (or `npm run playtest`) opens the approved Stage 1 snapshot selected by `generated/runs/stage-one/latest.json`. Normal `dev` and `build` select that same snapshot. Each generated build independently verifies its proofs and artifact integrity before bundling. Use `--env legacy` to load the original campaign, or `--env campaign=<approved/campaign.json>` for another verified snapshot.
 
-For a future 80-level rebuild, the default product curriculum limits onboarding to two slots, teaches obstacle/constrained/dependent/lock/ice at slots 3/6/11/19/31, and requires decision structure and movable stoppers thereafter. No new 80-level campaign has yet passed these revised requirements. Structural decision metrics and the unchanged heuristic score are not empirical difficulty or enjoyment.
+```sh
+bun run levels:stage:build
+bun run playtest
+npm run typecheck
+npm test
+npm run build
+```
+
+`levels:stage:build` / `levels:playtest:build` run through tsx/Node, including memory-bounded final verification workers. Do not invoke the TypeScript file directly with Bun. `--help` documents seed, attempt, candidate and time budgets. Repeat the same command to resume checkpointed work. Every stored candidate is regenerated from its seed/attempt and reevaluated before reuse. A partial run never replaces `latest.json`; exports are immutable and atomic. `previous.json` retains the preceding selection after a later successful export, allowing rollback of the pointer.
+
+The stage metadata is part of the runtime content hash (campaign schema 2.1). Publishing a stage requires all 20 positions, compatible mechanics, one exit, proven optimum, replay, design evidence, diversity and campaign pacing checks. The earlier six-level shared-exit pack remains a reference; `levels:reference:build` rebuilds it. Historical 80-slot tooling below is retained for regression and research, not the new campaign's progression plan.
+
+Runtime results are SUCCESS or FAILED. Undo is removed; Restart resets the board and moves. Invalid swipes do not consume moves, and a win on the last allowed move succeeds. Hint searches the current state with the shared rules and displays a suggested action without moving blocks. Autoplay demonstrations never award completion. Palette customization changes interface colors only.
+
+Progress uses a stable campaign storage key and per-level content versions. Appending levels preserves matching completions; changed levels must be cleared again. Legacy stars migrate only for matching content identity. Cloud merges use the same compatibility checks. Stage access requires completing the previous stage. Tutorial history is keyed by level content and dialogue version. The red speaking square guides actions in a side panel; Skip ends guidance, and Tutorial restarts the level to replay it.
 
 # Autonomous level tooling
 
-Offline Node.js/TypeScript tooling shares deterministic transition rules with the Phaser runtime. Runtime gameplay never calls AI. Existing gameplay and campaign remain the default; generated campaigns use an explicit build target and isolated progression.
+Offline Node.js/TypeScript tooling shares deterministic transition rules with the Phaser runtime. Runtime gameplay never calls AI. The original campaign remains available through the legacy build target; campaign identities keep their progress separate.
 
 ## Commands
 
@@ -54,7 +68,7 @@ npm run levels:build -- --count 80 --seed 42 --pool-size 2 --beam-width 32 \
 
 ## Rules and proof boundaries
 
-Rules v1 preserve existing movement, exit, ice landing/push, single-direction constraints, dependency unlock and exit-count locks. Blocks are 1x1; obstacles are permanent; ice may overlap a block. Dependency cycles, invalid references/overlap and unsupported restricted exits are rejected. Undo retains the existing movement-only policy: it does not resurrect exited blocks or rewind move counters.
+Rules v1 preserve existing movement, exit, ice landing/push, single-direction constraints, dependency unlock and exit-count locks. Blocks are 1x1; obstacles are permanent; ice may overlap a block. Dependency cycles, invalid references/overlap and unsupported restricted exits are rejected. Undo is unavailable. All solver and evidence searches cover swipes; Hint does not alter state.
 
 BFS proves shortest solutions; paths are replayed against the shared rules. TIMEOUT and RESOURCE_LIMIT are distinct from UNSOLVABLE. Candidate, evidence and final verification run in workers with a 256 MB heap limit and watchdog. Audit CLI supports individual levels:
 
@@ -80,7 +94,7 @@ Each evidence spec contains a unique ID, claim, scope and optional actor `blockI
 | COUNTERFACTUAL_EFFECT | `direction-interaction`, `dependency-planning`, `lock-planning`: relaxing selected constraints changes proven optimal cost or enables a winning path forbidden by the original constraint |
 | EXISTS_REACHABLE_TRAP | `false-opportunity`, `dead-end-avoidance`: complete reachable graph proves a reachable choice between winning and losing successors |
 
-Proof reports explicitly identify the SWIPES_ONLY action domain. Universal claims search for a winning counterexample in the shared rules swipe graph; history-based runtime Undo and hint utilities are not search actions. This does not certify absence of every possible Undo-assisted design bypass. History-sensitive claims retain monitor progress in state keys. Counterfactual witnesses are replayed using relaxed rules; they are not claimed as original-game solutions. Incomplete searches remain UNKNOWN. Structural planning/trap proofs do not prove a player's cognitive process or perceived fairness. Learning text expresses intent; human learning/enjoyment still requires playtesting.
+Proof reports explicitly identify the SWIPES_ONLY action domain. Universal claims search for a winning counterexample in the shared rules swipe graph. Runtime Undo is unavailable; hints suggest actions without altering state. History-sensitive claims retain monitor progress in state keys. Counterfactual witnesses are replayed using relaxed rules; they are not claimed as original-game solutions. Incomplete searches remain UNKNOWN. Structural planning/trap proofs do not prove a player's cognitive process or perceived fairness. Learning text expresses intent; human learning/enjoyment still requires playtesting.
 
 Every default slot requires primary evidence. TEACH adds a mechanic only after its prerequisites were taught earlier with evidence. The final contract includes all mechanics and verifies displacement, ice, direction, dependency, lock and obstacle interactions.
 

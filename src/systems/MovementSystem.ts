@@ -4,7 +4,7 @@ import type { Grid } from '../entities/Grid';
 import { SlideRules } from '../core/puzzle/GameRules';
 export type { SlideResult } from '../core/puzzle/GameRules';
 
-// Phaser entities satisfy the pure rules ports. Animation and Undo remain in GameScene.
+// Phaser entities satisfy the pure rules ports. Animation remains in GameScene.
 export class MovementSystem extends SlideRules {
   override anyValidMove(blocks: Block[], grid: Grid): boolean {
     return super.anyValidMove(blocks, grid);

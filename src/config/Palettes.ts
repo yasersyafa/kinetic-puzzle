@@ -1,6 +1,6 @@
 import { Color } from '../types/Game';
 import { useGameStore } from '../managers/GameStateManager';
-import { PACKS } from './Levels';
+import { PACKS, STAGES } from './Levels';
 
 export type PaletteId = 'classic' | 'sunset' | 'ocean';
 
@@ -68,7 +68,7 @@ export const PALETTES: Palette[] = [
       danger: 0xd96b6b,
       exitGlow: 0xff6b3d,
     },
-    unlock: { tag: 'pack-clear', packId: 'tutorial' },
+    unlock: { tag: 'pack-clear', packId: 'stage-1' },
   },
   {
     id: 'ocean',
@@ -91,7 +91,7 @@ export const PALETTES: Palette[] = [
       danger: 0x6a87b8,
       exitGlow: 0x4a90c2,
     },
-    unlock: { tag: 'pack-clear', packId: 'gears' },
+    unlock: { tag: 'pack-clear', packId: 'stage-2' },
   },
 ];
 
@@ -112,9 +112,10 @@ export function isPaletteUnlocked(id: PaletteId): boolean {
   const store = useGameStore.getState();
   if (p.unlock.tag === 'always') return true;
   if (p.unlock.tag === 'pack-clear' && p.unlock.packId) {
-    const pack = PACKS.find((pk) => pk.id === p.unlock.packId);
-    if (!pack) return false;
-    return pack.levelIds.every((lvl) => store.starsFor(lvl) > 0);
+    const packId = STAGES.length ? p.unlock.packId : p.unlock.packId === 'stage-1' ? 'tutorial' : 'gears';
+    const pack = PACKS.find((pk) => pk.id === packId);
+    if (!pack || !pack.levelIds.length) return false;
+    return pack.levelIds.every((lvl) => store.isCompleted(lvl));
   }
   return false;
 }
@@ -124,10 +125,11 @@ export function unlockProgress(id: PaletteId): { current: number; total: number 
   const store = useGameStore.getState();
   if (p.unlock.tag === 'always') return null;
   if (p.unlock.tag === 'pack-clear' && p.unlock.packId) {
-    const pack = PACKS.find((pk) => pk.id === p.unlock.packId);
+    const packId = STAGES.length ? p.unlock.packId : p.unlock.packId === 'stage-1' ? 'tutorial' : 'gears';
+    const pack = PACKS.find((pk) => pk.id === packId);
     if (!pack) return null;
-    const cleared = pack.levelIds.filter((lvl) => store.starsFor(lvl) > 0).length;
-    return { current: cleared, total: pack.levelIds.length };
+    const cleared = pack.levelIds.filter((lvl) => store.isCompleted(lvl)).length;
+    return { current: cleared, total: pack.levelIds.length || STAGES.find(s => s.id === packId)?.levelCount || 20 };
   }
   return null;
 }

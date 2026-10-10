@@ -1,4 +1,4 @@
-import { LEVELS, SOLUTIONS } from './config/Levels';
+import { LEVELS, SOLUTIONS, STAGES } from './config/Levels';
 import { installPlaytestPanel } from './ui/PlaytestPanel';
 import { playerTelemetry } from './systems/PlayerTelemetry';
 import Phaser from 'phaser';
@@ -92,7 +92,7 @@ function installCloudWriter(): void {
       timer = null;
       const slice = persistedSlice(useGameStore.getState());
       // Wrap in zustand-persist-shaped envelope so reload merges cleanly.
-      SDKManager.cloudSave(PERSIST_KEY, { state: slice, version: 0 });
+      SDKManager.cloudSave(PERSIST_KEY, { state: slice, version: 3 });
     }, 800);
   });
 }
@@ -136,10 +136,10 @@ window.addEventListener('load', async () => {
   document.addEventListener('visibilitychange',()=>playerTelemetry.setPaused(document.hidden,'visibility'));
   window.addEventListener('pagehide',()=>playerTelemetry.finish(false));
 
-  if (typeof __DEV__ !== 'undefined' && __DEV__) {
+  if (typeof __DEV__ !== 'undefined' && __DEV__ && !STAGES.length) {
     // Dev cheats: unlock all levels + zero watch cooldown.
     useGameStore.getState().unlockAll();
-    console.info('[dev] all levels unlocked + watch cooldown disabled');
+    console.info('[dev] legacy levels unlocked');
   }
 
   emitProgress(35, 'Connecting SDK...');

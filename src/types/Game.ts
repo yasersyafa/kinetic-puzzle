@@ -30,10 +30,3 @@ export interface LevelData {
   pack?: string;
   iceCells?: [number, number][];
 }
-
-export interface MoveHistoryEntry {
-  blockId: string;
-  prevPos: [number, number];
-  removed: boolean;
-  unlockedDeps?: string[];
-}

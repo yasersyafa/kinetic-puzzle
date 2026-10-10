@@ -2,9 +2,9 @@ import type { LevelData } from '../../../src/types/Game';
 import { gameRules } from '../../../src/core/puzzle/GameRules';
 import { exploreGraph } from './StateGraph';
 import type { SolverOptions } from '../core/SolverV2';
-export interface DecisionAnalysis {status:'VERIFIED'|'UNKNOWN';states:number;optimalMoves?:number;decisionPoints?:number;prematureExitTraps?:number;initialOptimalActionFraction?:number;reason?:string}
+export interface DecisionAnalysis {trapScope?:'REACHABLE_WINNING_STATES';status:'VERIFIED'|'UNKNOWN';states:number;optimalMoves?:number;decisionPoints?:number;prematureExitTraps?:number;initialOptimalActionFraction?:number;reason?:string}
 /** Measures choices on a deterministic shortest path, not perceived human difficulty. */
-export function analyzeDecisions(level:LevelData,budget:SolverOptions={}):DecisionAnalysis {
+export function analyzeDecisions(level:LevelData,budget:SolverOptions={},trapScope?:'REACHABLE_WINNING_STATES'):DecisionAnalysis {
   const graph=exploreGraph(level,budget);
   if(!graph.complete)return {status:'UNKNOWN',states:graph.states.length,reason:graph.reason};
   const reverse:number[][]=graph.states.map(()=>[]),distance=graph.states.map(()=>Infinity),queue:number[]=[];
@@ -21,5 +21,6 @@ export function analyzeDecisions(level:LevelData,budget:SolverOptions={}):Decisi
     prematureExitTraps+=edges.filter(e=>!Number.isFinite(distance[e.to])&&gameRules.applyAction(graph.states[current],e.action).result.kind==='exit').length;
     previous=current;current=best[0].to;
   }
-  return {status:'VERIFIED',states:graph.states.length,optimalMoves:distance[0],decisionPoints,prematureExitTraps,initialOptimalActionFraction:graph.edges[0].filter(e=>distance[e.to]===distance[0]-1).length/Math.max(1,graph.edges[0].length)};
+  if(trapScope==='REACHABLE_WINNING_STATES')prematureExitTraps=graph.edges.reduce((sum,edges,i)=>sum+(Number.isFinite(distance[i])?edges.filter(e=>!Number.isFinite(distance[e.to])&&gameRules.applyAction(graph.states[i],e.action).result.kind==='exit').length:0),0);
+  return {status:'VERIFIED',...(trapScope?{trapScope}:{}),states:graph.states.length,optimalMoves:distance[0],decisionPoints,prematureExitTraps,initialOptimalActionFraction:graph.edges[0].filter(e=>distance[e.to]===distance[0]-1).length/Math.max(1,graph.edges[0].length)};
 }

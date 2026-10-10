@@ -1,0 +1,32 @@
+{
+  "stageBuilderVersion": "1.0.0",
+  "stageGeneratorVersion": "1.0.0",
+  "proposalSearchVersion": "1.0.0",
+  "seed": 20261011,
+  "purpose": "Stage 1 player testing",
+  "candidateCount": 341,
+  "reusedCount": 16,
+  "rejectionCounts": {
+    "proposal_NOT_FOUND": 179,
+    "proposal_RESOURCE_LIMIT": 17,
+    "move_range": 141
+  },
+  "initialSearchStatistics": {
+    "candidateCount": 341,
+    "rejectionCounts": {
+      "proposal_NOT_FOUND": 179,
+      "proposal_RESOURCE_LIMIT": 17,
+      "move_range": 141
+    }
+  },
+  "budget": {
+    "solver": {
+      "maxStates": 30000,
+      "maxTransitions": 400000,
+      "timeoutMs": 3000
+    },
+    "attemptsPerSlot": 6000,
+    "candidateBudget": 120000,
+    "maxRunMs": 2700000
+  }
+}

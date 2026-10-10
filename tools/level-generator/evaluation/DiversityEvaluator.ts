@@ -1,7 +1,7 @@
 import { createState,gameRules,type Action } from '../../../src/core/puzzle/GameRules';
 import type { LevelData, Direction, ExitSide } from '../../../src/types/Game';
 // Identity-independent graph canonicalization: per-cell labels replace block IDs in dependencies.
-export function canonicalSignature(level: LevelData): string {
+function geometricSignatures(level: LevelData): string[] {
   const transforms = [
     {point:(x:number,y:number)=>[x,y],dir:{UP:'UP',DOWN:'DOWN',LEFT:'LEFT',RIGHT:'RIGHT'},side:{TOP:'TOP',BOTTOM:'BOTTOM',LEFT:'LEFT',RIGHT:'RIGHT'}},
     {point:(x:number,y:number)=>[level.cols-1-x,y],dir:{UP:'UP',DOWN:'DOWN',LEFT:'RIGHT',RIGHT:'LEFT'},side:{TOP:'TOP',BOTTOM:'BOTTOM',LEFT:'RIGHT',RIGHT:'LEFT'}},
@@ -29,21 +29,22 @@ export function canonicalSignature(level: LevelData): string {
     }).sort();
     signatures.push(JSON.stringify([transpose?level.rows:level.cols,transpose?level.cols:level.rows,blocks,exits,(level.iceCells??[]).map(p=>point(...p).join(',')).sort()]));
   }
-  return signatures.sort()[0];
+  return signatures;
 }
+export function canonicalSignature(level: LevelData): string { return geometricSignatures(level).sort()[0]; }
 export function similarity(a: LevelData,b:LevelData):number {
   if (canonicalSignature(a)===canonicalSignature(b)) return 1;
   const x=structuralFeatures(a),y=structuralFeatures(b);const intersection=[...x].filter(v=>y.has(v)).length;
   return intersection/new Set([...x,...y]).size;
 }
-export interface DiversityAnalysis { exactDuplicate:boolean;solutionSimilarity?:number;solutionSimilarLevelId?:number; similarLevelId?:number; similarity:number; reasons:string[] }
-export function evaluateDiversity(level:LevelData,catalog:readonly LevelData[]):DiversityAnalysis {
+export interface DiversityAnalysis { modelVersion?:string; exactDuplicate:boolean;solutionSimilarity?:number;solutionSimilarLevelId?:number; similarLevelId?:number; similarity:number; reasons:string[] }
+export function evaluateDiversity(level:LevelData,catalog:readonly LevelData[],mode?:'LAYOUT_AND_STRUCTURE'):DiversityAnalysis {
   const signature=canonicalSignature(level); let best=0, id:number|undefined; let exact=false;
   for (const other of catalog) {
-    const same=signature===canonicalSignature(other);const score=same?1:similarity(level,other);
+    const same=signature===canonicalSignature(other);const score=same?1:mode==='LAYOUT_AND_STRUCTURE'?layoutSimilarity(level,other):similarity(level,other);
     if (score>best) {best=score;id=other.id;} if(same)exact=true;
   }
-  return {exactDuplicate:exact,similarLevelId:id,similarity:best,reasons:exact?['Equivalent layout under valid geometric transform and ID renaming']:best>0?['Structural feature similarity (estimate; not equivalence proof)']:[]};
+  return {exactDuplicate:exact,similarLevelId:id,similarity:best,...(mode?{modelVersion:'layout-and-structure-1.0.0'}:{}),reasons:exact?['Equivalent layout under valid geometric transform and ID renaming']:best>0?[mode?'Geometry overlap plus structural features (estimate; not equivalence proof)':'Structural feature similarity (estimate; not equivalence proof)']:[]};
 }
 
 export function solutionPattern(level:LevelData,path:readonly Action[]):string[] {
@@ -64,3 +65,14 @@ export function structuralFeatures(l:LevelData):Set<string>{return new Set([
     `movables:${l.blocks.filter(b=>b.type!=='obstacle').length}`,`obstacles:${l.blocks.filter(b=>b.type==='obstacle').length}`,
     `exits:${l.exits.length}`,`ice:${l.iceCells?.length??0}`,`par:${Math.floor(l.parMoves/3)}`,
   ]);}
+
+function geometryTokens(signature:string):Set<string>{
+  const [cols,rows,blocks,exits,ice]=JSON.parse(signature) as [number,number,string[],string[],string[]];
+  return new Set([`grid:${cols}:${rows}`,...blocks.map(b=>`block:${b}`),...exits.map(e=>`exit:${e}`),...ice.map(c=>`ice:${c}`)]);
+}
+export function layoutSimilarity(a:LevelData,b:LevelData):number {
+  if(canonicalSignature(a)===canonicalSignature(b))return 1;
+  const target=geometryTokens(canonicalSignature(b));
+  const geometry=Math.max(...geometricSignatures(a).map(signature=>{const tokens=geometryTokens(signature),shared=[...tokens].filter(t=>target.has(t)).length;return 2*shared/(tokens.size+target.size);}));
+  return 0.75*geometry+0.25*similarity(a,b);
+}

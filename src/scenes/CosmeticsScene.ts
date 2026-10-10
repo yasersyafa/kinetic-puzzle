@@ -26,7 +26,7 @@ export class CosmeticsScene extends Phaser.Scene {
     slideUpIn(this, back.container, 60, -20);
 
     const header = this.add
-      .text(width / 2 + 36, 100, 'COLOR PALETTE', {
+      .text(width / 2 + 36, 100, 'INTERFACE PALETTE', {
         fontFamily: FONT_NEO,
         fontSize: '54px',
         color: TOKENS.inkHex,
@@ -58,8 +58,8 @@ export class CosmeticsScene extends Phaser.Scene {
       cardBg.fillRoundedRect(-tile / 2 + 6, -tile / 2 + 6, tile - 12, tile - 12, 20);
       card.add([cardShadow, cardBg]);
 
-      // Color swatch row: 6 blocks of the palette
-      const colorKeys: Array<keyof typeof p.colors> = ['red', 'blue', 'green', 'yellow', 'purple', 'orange'];
+      // Interface colors; gameplay blocks always retain their mechanic colors.
+      const colorKeys = ['primary', 'secondary', 'accent', 'danger'] as const;
       const swatchSize = 56;
       const swatchGap = 12;
       const swatchTotal = colorKeys.length * swatchSize + (colorKeys.length - 1) * swatchGap;
@@ -71,7 +71,7 @@ export class CosmeticsScene extends Phaser.Scene {
         sg.fillRoundedRect(sx - swatchSize / 2 + 3, -40 + 3, swatchSize, swatchSize, 8);
         sg.fillStyle(TOKENS.ink, 1);
         sg.fillRoundedRect(sx - swatchSize / 2, -40, swatchSize, swatchSize, 8);
-        sg.fillStyle(p.colors[key], 1);
+        sg.fillStyle(p.ui[key], 1);
         sg.fillRoundedRect(sx - swatchSize / 2 + 4, -36, swatchSize - 8, swatchSize - 8, 6);
         if (!unlocked) sg.setAlpha(0.35);
         card.add(sg);

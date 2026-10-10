@@ -26,8 +26,8 @@ for(const id of ids) test(`live Phaser replay L${id} matches pure rules after an
       for(const scene of game.scene.scenes)if(scene.scene.isActive())game.scene.stop(scene.sys.settings.key);
       store.getState().setEquippedPalette('ocean');store.getState().setCurrentLevel(id);game.scene.start('GameScene');
       const sleep=()=>new Promise(r=>setTimeout(r,10));let scene:any;
-      for(let i=0;i<1000;i++){scene=game.scene.getScene('GameScene');if(scene.grid&&scene.grid!==previousGrid&&scene.blocks?.length&&scene.undoBtn&&game.scene.isActive('GameScene'))break;await sleep();}
-      scene.time.timeScale=30;scene.tweens.timeScale=30;scene.tutorial?.destroy();scene.tutorial=undefined;
+      for(let i=0;i<1000;i++){scene=game.scene.getScene('GameScene');if(scene.grid&&scene.grid!==previousGrid&&scene.blocks?.length&&scene.restartBtn&&game.scene.isActive('GameScene'))break;await sleep();}
+      scene.time.timeScale=30;scene.tweens.timeScale=30;scene.tutorial?.destroy();scene.tutorial=undefined;scene.dialogue?.destroy();scene.dialogue=undefined;
       const transitions:any[]=[];
       // Suppress scene navigation only, preserving actual movement and unlock processing.
       let won=false;scene.endLevel=(result:string)=>{won=result==='WIN';};
@@ -52,39 +52,21 @@ for(const id of ids) test(`live Phaser replay L${id} matches pure rules after an
   expect(errors).toEqual([]);
   page.off('pageerror',onError);
 });
-test('Undo preserves existing movement-only policy; restart resets state; consent defaults off',async({page})=>{
-  test.skip(!!exported,'Existing Undo fixture is validated in the default campaign suite');
-  await page.goto('/');await page.waitForFunction(()=>window.kineticTest?.game.scene.isActive('MenuScene'));
-  const result=await page.evaluate(async()=>{
-    const {game,store,levels}=window.kineticTest;const sleep=()=>new Promise(r=>setTimeout(r,15));
-    game.scene.stop('MenuScene');store.getState().setCurrentLevel(2);game.scene.start('GameScene');
-    let scene:any;for(let i=0;i<1000;i++){scene=game.scene.getScene('GameScene');if(scene.grid&&scene.undoBtn&&scene.blocks?.length)break;await sleep();}
-    scene.time.timeScale=30;scene.tweens.timeScale=30;scene.tutorial?.destroy();scene.tutorial=undefined;
-    const b=scene.blocks.find((b:any)=>b.blockId==='m1'),initial=[...b.gridPos];
-    const dirs=['UP','DOWN','LEFT','RIGHT'];const dir=dirs.find(d=>scene.movement.slide(b,scene.grid,d,scene.blocks).kind==='slide');
-    scene.handleSwipe(b,dir);while(scene.busy)await sleep();scene.undo();await sleep();const restored=JSON.stringify(b.gridPos)===JSON.stringify(initial);
-    const moves=store.getState().movesThisLevel;
-    const telemetry=window.kineticPlaytest.exportJsonl();
-    const oldGrid=scene.grid;scene.scene.restart();
-    for(let i=0;i<1000;i++){if(scene.grid!==oldGrid&&scene.blocks?.length&&game.scene.isActive('GameScene'))break;await sleep();}
-    return {restored,moves,telemetry,restarted:scene.grid!==oldGrid,restartedMoves:store.getState().movesThisLevel};
+test('Undo is unavailable; restart resets moves and the complete board; consent defaults off', async ({page}) => {
+  await page.goto('/'); await page.waitForFunction(() => window.kineticTest?.game.scene.isActive('MenuScene'));
+  const result = await page.evaluate(async () => {
+    const {game,store,solutions} = window.kineticTest, sleep = () => new Promise(r => setTimeout(r,10));
+    game.scene.stop('MenuScene'); store.getState().setCurrentLevel(2); game.scene.start('GameScene');
+    const scene = game.scene.getScene('GameScene');
+    for(let i=0;i<1000;i++){if(scene.grid&&scene.restartBtn&&scene.blocks?.length)break;await sleep();}
+    scene.time.timeScale=30; scene.tweens.timeScale=30; scene.tutorial?.destroy(); scene.tutorial=undefined; scene.dialogue?.destroy(); scene.dialogue=undefined;
+    const initial = scene.blocks.map((b:any)=>({id:b.blockId,pos:[...b.gridPos],removed:b.removed})), action=solutions[2][0];
+    scene.handleSwipe(scene.blocks.find((b:any)=>b.blockId===action.blockId),action.dir); while(scene.busy)await sleep();
+    const moves=store.getState().movesThisLevel, oldGrid=scene.grid, noUndo=typeof scene.undo==='undefined'&&typeof scene.undoBtn==='undefined';
+    scene.scene.restart(); for(let i=0;i<1000;i++){if(scene.grid!==oldGrid&&scene.restartBtn&&scene.blocks?.length)break;await sleep();}
+    return {noUndo,moves,restartedMoves:store.getState().movesThisLevel,initial,restarted:scene.blocks.map((b:any)=>({id:b.blockId,pos:[...b.gridPos],removed:b.removed})),telemetry:window.kineticPlaytest.exportJsonl()};
   });
-  expect(result.restored).toBe(true);expect(result.moves).toBe(1);expect(result.telemetry).toBe('');expect(result.restarted).toBe(true);expect(result.restartedMoves).toBe(0);
-});
-
-test('Undo does not resurrect an exited block or rewind lock counters',async({page})=>{
-  test.skip(!!exported,'Existing removal fixture');
-  await page.goto('/');await page.waitForFunction(()=>window.kineticTest?.game.scene.isActive('MenuScene'));
-  const state=await page.evaluate(async()=>{
-    const {game,store}=window.kineticTest;
-    game.scene.stop('MenuScene');store.getState().setCurrentLevel(1);game.scene.start('GameScene');
-    const sleep=()=>new Promise(r=>setTimeout(r,10));const scene=game.scene.getScene('GameScene');
-    for(let i=0;i<1000;i++){if(scene.grid&&scene.blocks?.length&&scene.undoBtn)break;await sleep();}
-    scene.time.timeScale=30;scene.tweens.timeScale=30;scene.tutorial?.destroy();scene.tutorial=undefined;
-    const b=scene.blocks.find((b:any)=>b.blockId==='m1');scene.handleSwipe(b,'RIGHT');while(scene.busy)await sleep();
-    scene.undo();return {removed:b.removed,exitCount:scene.grid.getExitCount(),moves:store.getState().movesThisLevel};
-  });
-  expect(state).toEqual({removed:true,exitCount:1,moves:1});
+  expect(result.noUndo).toBe(true); expect(result.moves).toBe(1); expect(result.restartedMoves).toBe(0); expect(result.restarted).toEqual(result.initial); expect(result.telemetry).toBe('');
 });
 
 test('playtest consent panel exports locally and revocation deletes data',async({page})=>{
@@ -106,7 +88,7 @@ test('playtest sample navigation opens levels directly with explicit consent',as
   await page.waitForFunction(()=>window.kineticTest?.game.scene.isActive('MenuScene'));
   await expect(page.getByRole('dialog')).toBeVisible();
   await expect(page.getByText('Collection disabled · 0 attempts')).toBeVisible();
-  const first=exported&&exported.levels.length<=12?2:41,next=exported&&exported.levels.length<=12?3:55;
+  const first=exported&&exported.levels.length<=20?2:41,next=exported&&exported.levels.length<=20?3:55;
   await page.getByLabel('Playtest level').selectOption(String(first));
   await page.getByRole('button',{name:'Start selected level'}).click();
   await page.waitForFunction(id=>window.kineticTest.store.getState().currentLevel===id&&window.kineticTest.game.scene.getScene('GameScene').grid&&window.kineticTest.game.scene.isActive('GameScene'),first);

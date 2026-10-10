@@ -33,7 +33,9 @@
     "levels:regression": "tsx tools/level-generator/regression.ts",
     "test:browser": "playwright test",
     "playtest": "webpack serve --config webpack.config.js --mode development --env playtest",
-    "levels:playtest:build": "tsx tools/level-generator/challenge-playtest.ts"
+    "levels:playtest:build": "tsx tools/level-generator/stage-build.ts",
+    "levels:reference:build": "tsx tools/level-generator/challenge-playtest.ts",
+    "levels:stage:build": "tsx tools/level-generator/stage-build.ts"
   },
   "keywords": [
     "phaser",

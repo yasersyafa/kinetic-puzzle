@@ -15,6 +15,7 @@ import {
   slideUpIn,
   idlePulse,
 } from '../ui/Theme';
+import { LEVELS, STAGES } from '../config/Levels';
 import { Direction } from '../types/Game';
 import { paletteUI } from '../config/Palettes';
 
@@ -148,7 +149,7 @@ export class MenuScene extends Phaser.Scene {
     slideUpIn(this, audioBtn.container, 100, -30);
 
     this.add
-      .text(cx, height - 44, `LEVELS UNLOCKED: ${store.unlockedLevel}`, {
+      .text(cx, height - 44, STAGES.length ? `${LEVELS.length} LEVELS AVAILABLE · ${Object.keys(store.completedLevels).length} COMPLETED` : `LEVELS UNLOCKED: ${store.unlockedLevel}`, {
         fontFamily: FONT_NEO,
         fontSize: '22px',
         color: TOKENS.inkHex,

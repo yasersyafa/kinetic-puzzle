@@ -1,0 +1,158 @@
+{
+  "schemaVersion": "2.0.0",
+  "exporterVersion": "2.2.0",
+  "campaignId": "kinetic-stages",
+  "campaignVersion": "3bacc398317c",
+  "auditVersion": "192dac966e1b",
+  "contentHash": "3bacc398317c27eee7c377a2cb32c6f5993b13d34cc9d0e8da15ef7ea150ac62",
+  "auditHash": "192dac966e1b723eb1f71196b234f50edf5baf9a0e49de356b655cab77b98c05",
+  "provenance": [
+    {
+      "seed": 20261011,
+      "attempt": 0,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 0,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 20,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 1,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 9,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 77,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 36,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 15,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 12,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 55,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 177,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 90,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 518,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 544,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 873,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 1950,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 3,
+      "generatorVersion": "stage-1.0.0",
+      "strategy": "mutation",
+      "parentId": "shared-exit-reference-L2",
+      "sourceCandidateHash": "e04cc1a58777c6ae4086b77a793e525fecdd4ae70026a889130175061b310fe0",
+      "sourceGeneratorVersion": "3.1.0",
+      "history": [
+        {
+          "reason": "Require meaningful irreversible exit choices",
+          "operation": "Constrain the aligned block; change actor/obstacle positions and optionally add a red actor"
+        }
+      ]
+    },
+    {
+      "seed": 20261011,
+      "attempt": 25,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 11,
+      "generatorVersion": "stage-1.0.0",
+      "strategy": "mutation",
+      "parentId": "shared-exit-reference-L2",
+      "sourceCandidateHash": "e04cc1a58777c6ae4086b77a793e525fecdd4ae70026a889130175061b310fe0",
+      "sourceGeneratorVersion": "3.1.0",
+      "history": [
+        {
+          "reason": "Require meaningful irreversible exit choices",
+          "operation": "Constrain the aligned block; change actor/obstacle positions and optionally add a red actor"
+        }
+      ]
+    },
+    {
+      "seed": 20261011,
+      "attempt": 298,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    }
+  ],
+  "files": {
+    "campaign.json": "19cf5bd3c42bf8f4153a0fc631eef4c8786070cad1f92152bd6fdb9696c5d88d",
+    "contracts.json": "e6897a639a2350945fac6ed00b24dcb53e350276794fec688c0397fb29cecce4",
+    "reports.json": "a44ef55d1d0eccaf8f17bb569784744dc92cafb9f3e176935f7a374700c8fbff",
+    "contexts.json": "aa54740ea6b60cf2d4a48a8794317fe62f69f3f9999170d1fbf531d362584bc8",
+    "campaign-validation.json": "0045142db3fe5b8bec330b1bb4ada0d3781d10ddd4ea2db8a38a57b2a51e1759",
+    "predictions.json": "3279dc20dec816939dd9d9a5a6d618c9299c70c098a47949e83c4ce2ea7d8d4f",
+    "generation.json": "7a61143ee6c9de631f3a434f0ac91b1d76268a85d2185cbb2083f30d3bd12119"
+  }
+}

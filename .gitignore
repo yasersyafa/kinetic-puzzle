@@ -17,3 +17,15 @@ marketing/*.png
 generated/
 test-results/
 playwright-report/
+
+# Approved Stage 1 release artifacts; local search logs remain ignored
+!generated/
+generated/*
+!generated/runs/
+generated/runs/*
+!generated/runs/stage-one/
+generated/runs/stage-one/*
+!generated/runs/stage-one/latest.json
+!generated/runs/stage-one/approved/
+generated/runs/stage-one/approved/*
+!generated/runs/stage-one/approved/kinetic-stages-3bacc398317c-192dac966e1b/

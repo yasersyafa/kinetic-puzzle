@@ -1,5 +1,20 @@
 # Implementation status
 
+## Current staged release
+
+Stage 1 contains 20 independently verified levels, using one exit, red simple blocks, yellow direction-constrained blocks and obstacles. Moves are unlimited. The game now reports SUCCESS/FAILED, removes Undo, provides current-state hints, and teaches through interactive dialogue with an animated red square character. Restart resets the full puzzle; demonstration playback cannot award completion.
+
+Campaign `kinetic-stages`, content `3bacc398317c`, audit `192dac966e1b`, is the default build/playtest snapshot. Each solution has BFS optimum proof, replay, mandatory contract evidence and final artifact verification. Optimal moves: 2/7/9/9/10/9/12/12/10/15/13/14/14/13/18/15/14/10/15/17. Levels 6–20 prove required movable stoppers. Levels 17, 19 and 20 prove premature-exit traps across reachable winning states; this scope differs from earlier canonical-path-only trap counts. Layout-and-structure diversity compares geometry as well as structural features; legacy evaluator results remain compatible.
+
+The stage builder uses seeded proposals and mutations of the previously player-tested shared-exit layout. Bounded heuristic search only proposes solution paths; BFS and mandatory evaluators remain approval authorities. Budgets, checkpoints, candidate provenance and immutable approved snapshots support bounded regeneration and exact artifact reuse.
+
+The campaign foundation supports up to 1,000 levels in complete 20-level batches. Stage 2 is configured for dependent and lock blocks with optimal+2 moves, Stage 3 optimal+1, and Stage 4 onward optimal. These future stages have no published content yet. Completion records bind to individual content versions so appending a batch preserves unchanged progress; stages unlock sequentially and unpublished content remains unavailable.
+
+Current validation: all 71 unit/property/solver/generation/evaluation/integration tests and all 29 renderer-enabled browser tests pass. Browser coverage includes all 20 live Phaser replays, Restart, consent/export/revocation, tutorial interaction/replay, SUCCESS persistence, move-limit boundaries, nonmutating hints, demonstration progression protection and matching legacy-save migration. TypeScript checks pass, and the production build independently verifies the 20-level snapshot before compiling.
+
+Run `bun run playtest` (or `npm run playtest`). The new 20-level batch still needs human playtesting; approval of the previous six levels does not establish the experience of these twenty. Historical validation below describes earlier snapshots and behavior, including the former stars/Undo systems.
+
+
 ## Delivered
 
 - Shared Phaser-independent rules, deterministic transitions/state serialization, schema validation, BFS optimum proof, replay and bounded workers. Gameplay and movement-only Undo behavior are preserved.

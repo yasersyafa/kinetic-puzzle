@@ -1,7 +1,8 @@
-import { CAMPAIGN_ID,CAMPAIGN_VERSION,levelVersion } from '../config/Levels';
+import { CAMPAIGN_ID,CAMPAIGN_VERSION,levelVersion,getStage,getMoveLimit } from '../config/Levels';
 export interface AttemptTelemetry {
   schemaVersion:'1.0.0'|'2.0.0';campaignId:string;campaignVersion:string;levelId:number;levelVersion:string;attemptId:string;
   testerId?:string;sessionId?:string;abandoned?:boolean;reportedDifficulty?:number;timeBasis?:'ACTIVE';
+  stageId?:string;moveLimit?:number;outcome?:'WIN'|'MOVE_LIMIT'|'STUCK'|'RESTART'|'ABANDONED';
   completed:boolean;completionTimeMs:number;moveCount:number;undoCount:number;restartCount:number;hintCount:number;deadEndCount:number;mode:'HUMAN'|'AUTOPLAY';
 }
 const KEY='kinetic-local-playtest-v2';
@@ -22,13 +23,13 @@ export class PlayerTelemetry {
   }
   start(levelId:number,autoplay:boolean):void {
     this.finish(false);if(!this.consent)return;
-    this.current={last:this.clock(),activeMs:0,row:{schemaVersion:'2.0.0',campaignId:CAMPAIGN_ID,campaignVersion:CAMPAIGN_VERSION,levelId,levelVersion:levelVersion(levelId),attemptId:crypto.randomUUID(),testerId:this.testerId,sessionId:this.sessionId,timeBasis:'ACTIVE',completed:false,completionTimeMs:0,moveCount:0,undoCount:0,restartCount:0,hintCount:0,deadEndCount:0,mode:autoplay?'AUTOPLAY':'HUMAN'}};
+    this.current={last:this.clock(),activeMs:0,row:{schemaVersion:'2.0.0',campaignId:CAMPAIGN_ID,campaignVersion:CAMPAIGN_VERSION,levelId,levelVersion:levelVersion(levelId),attemptId:crypto.randomUUID(),testerId:this.testerId,sessionId:this.sessionId,timeBasis:'ACTIVE',completed:false,completionTimeMs:0,moveCount:0,undoCount:0,restartCount:0,hintCount:0,deadEndCount:0,mode:autoplay?'AUTOPLAY':'HUMAN',stageId:getStage(levelId)?.id,moveLimit:getMoveLimit(levelId)}};
   }
   private tick():void{if(!this.current)return;const now=this.clock();if(!this.paused.size)this.current.activeMs+=Math.max(0,now-this.current.last);this.current.last=now;}
   setPaused(value:boolean,reason='scene'):void{this.tick();if(value)this.paused.add(reason);else this.paused.delete(reason);}
   increment(field:'moveCount'|'undoCount'|'restartCount'|'hintCount'|'deadEndCount'):void{if(this.current)this.current.row[field]++;}
-  finish(completed:boolean):void {
-    if(!this.current)return;this.tick();const {row,activeMs}=this.current;row.completed=completed;row.abandoned=!completed;row.completionTimeMs=Math.round(activeMs);
+  finish(completed:boolean,outcome:AttemptTelemetry['outcome']=completed?'WIN':'ABANDONED'):void {
+    if(!this.current)return;this.tick();const {row,activeMs}=this.current;row.completed=completed;row.outcome=outcome;row.abandoned=outcome==='ABANDONED'||outcome==='RESTART';row.completionTimeMs=Math.round(activeMs);
     this.rows.push({...row});if(this.rows.length>1000)this.rows.shift();this.current=undefined;this.persist();
   }
   rateLast(rating:number):void{if(!Number.isInteger(rating)||rating<1||rating>5)throw new Error('Difficulty rating must be 1–5');const row=this.rows[this.rows.length-1];if(row){row.reportedDifficulty=rating;this.persist();}}

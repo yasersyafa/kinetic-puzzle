@@ -12,10 +12,13 @@ const { execFileSync } = require('child_process');
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
   const analyze = !!env?.analyze;
+  const stageSelection = path.resolve('generated/runs/stage-one/latest.json');
+  if (!env?.campaign && !env?.legacy) {
+    if (!fs.existsSync(stageSelection)) throw new Error('Stage 1 is not ready. Run bun run levels:stage:build first, or select --env legacy explicitly.');
+    env = { ...env, campaign: JSON.parse(fs.readFileSync(stageSelection, 'utf8')).campaignPath };
+  }
   if (env?.playtest && !env?.campaign) {
-    const selection = path.resolve('generated/runs/shared-exit-playtest/latest.json');
-    if (!fs.existsSync(selection)) throw new Error('Shared-exit playtest pack is not ready. Run bun run levels:playtest:build first.');
-    env = { ...env, campaign: JSON.parse(fs.readFileSync(selection, 'utf8')).campaignPath };
+    throw new Error('Stage 1 is not ready. Run bun run levels:stage:build first.');
   }
   let campaign = null;
   if (env?.campaign) {

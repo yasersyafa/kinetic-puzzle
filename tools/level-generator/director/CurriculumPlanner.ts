@@ -1,10 +1,11 @@
+import { validateStages, type CampaignStages } from '../../../src/core/campaign/Stage';
 import type { Candidate } from '../generation/CandidateGenerator';
 import type { EvaluationReport } from '../evaluation/Evaluators';
 import { MECHANICS, mechanicsOf } from './DesignContract';
 export interface AcceptedCandidate { candidate:Candidate; report:EvaluationReport }
 export const PREREQUISITES:Record<string,string[]>={sliding:[],constrained:['sliding'],dependent:['sliding'],obstacle:['sliding'],lock:['dependent'],ice:['obstacle']};
 export interface CampaignValidation { success:boolean; errors:string[]; warnings:string[]; difficultyCurve:{levelId:number;score:number;role:string}[] }
-export function validateCampaign(levels:AcceptedCandidate[],count:number,maxSpike=30):CampaignValidation {
+export function validateCampaign(levels:AcceptedCandidate[],count:number,maxSpike=30,stageConfig?:CampaignStages):CampaignValidation {
   const errors:string[]=[],warnings:string[]=[];const learned=new Set<string>();const ids=new Set<number>();
   if(levels.length!==count)errors.push(`Expected ${count} levels, received ${levels.length}`);
   const difficultyCurve=levels.map(({candidate,report},i)=>{
@@ -26,6 +27,10 @@ export function validateCampaign(levels:AcceptedCandidate[],count:number,maxSpik
     if(report.diversity&&report.diversity.similarity>contract.preferred.maxSimilarity)warnings.push(`L${level.id}: high structural similarity`);
     return {levelId:level.id,score,role:contract.progressionRole};
   });
-  if(count===80){for(const m of MECHANICS)if(!learned.has(m))errors.push(`Missing campaign mechanic ${m}`);if((levels.at(-1)?.candidate.contract.requiredEvidence?.length??0)<2)errors.push('Final mastery requires combined verified insights');if(levels.at(-1)?.candidate.contract.progressionRole!=='MASTERY')errors.push('Final level must be MASTERY');}
+  if(stageConfig){
+    errors.push(...validateStages(stageConfig,levels.map(a=>a.candidate.level)));
+    for(const stage of stageConfig.stages){const final=levels.find(a=>a.candidate.level.id===stage.firstLevel+stage.levelCount-1);if(final&&final.candidate.contract.progressionRole!=='MASTERY')errors.push(`Stage ${stage.number}: final level must be MASTERY`);}
+  }
+  if(count===80&&!stageConfig){for(const m of MECHANICS)if(!learned.has(m))errors.push(`Missing campaign mechanic ${m}`);if((levels.at(-1)?.candidate.contract.requiredEvidence?.length??0)<2)errors.push('Final mastery requires combined verified insights');if(levels.at(-1)?.candidate.contract.progressionRole!=='MASTERY')errors.push('Final level must be MASTERY');}
   return {success:errors.length===0,errors,warnings,difficultyCurve};
 }

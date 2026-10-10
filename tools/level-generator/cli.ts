@@ -38,7 +38,7 @@ async function main():Promise<void>{
   const log=(value:unknown)=>console.log(JSON.stringify(value));
   if(command==='report'){
     const dir=values.run??values.input;if(!dir)throw new Error('--run is required');
-    const file=join(dir,existsSync(join(dir,'checkpoint.json'))?'checkpoint.json':'analysis.json');const report=readJson<Record<string,unknown>>(file);
+    const file=join(dir,existsSync(join(dir,'report.json'))?'report.json':existsSync(join(dir,'checkpoint.json'))?'checkpoint.json':'analysis.json');const report=readJson<Record<string,unknown>>(file);
     const summary={status:report.status,candidateCount:report.candidateCount,accepted:Array.isArray(report.accepted)?report.accepted.length:undefined,summary:report.summary,reasons:report.reasons};
     log(summary);writeJson(join(output,'summary.json'),summary);
     const {writeHumanReport}=await import('./output/ReportWriter');writeHumanReport(join(output,'report.html'),report);return;

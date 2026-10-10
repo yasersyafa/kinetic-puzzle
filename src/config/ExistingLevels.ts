@@ -263,9 +263,3 @@ export const FIXTURE_IDS = LEVELS.filter((l) => l.id >= 73).map((l) => l.id);
 export function getPackOf(levelId: number): WorldPack | undefined {
   return PACKS.find((p) => p.levelIds.includes(levelId));
 }
-
-export function starsFor(parMoves: number, moves: number): 1 | 2 | 3 {
-  if (moves <= parMoves) return 3;
-  if (moves <= Math.ceil(parMoves * 1.4)) return 2;
-  return 1;
-}

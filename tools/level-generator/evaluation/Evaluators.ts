@@ -79,7 +79,7 @@ export function evaluate(level:LevelData,contract:LevelDesignContract,catalog:re
   report.gates.contract=!matches?'FAIL':r.optimalMoves===undefined?'UNKNOWN':r.optimalMoves>=contract.optimalMoves.min&&r.optimalMoves<=contract.optimalMoves.max?'PASS':'FAIL';
   report.evidence=[...(contract.schemaVersion==='2.0.0'?[]:contract.requiredMechanics.map(claim=>evaluateMechanic(level,r,claim as EvidenceClaim,remaining()))),...(contract.requiredEvidence??[]).map(spec=>verifyEvidence(level,r,spec,remaining()))];
   report.gates.evidence=report.evidence.some(e=>e.status==='NOT_VERIFIED')?'FAIL':report.evidence.some(e=>e.status==='UNKNOWN')?'UNKNOWN':'PASS';
-  report.diversity=evaluateDiversity(r.optimalMoves!==undefined?{...level,parMoves:r.optimalMoves}:level,catalog);
+  report.diversity=evaluateDiversity(r.optimalMoves!==undefined?{...level,parMoves:r.optimalMoves}:level,catalog,contract.diversityMode);
   if(r.solutionPath&&context.catalogPatterns.length){const pattern=solutionPattern(level,r.solutionPath);const ranked=context.catalogPatterns.map(p=>({levelId:p.levelId,score:solutionPatternSimilarity(pattern,p.pattern)})).sort((a,b)=>b.score-a.score||a.levelId-b.levelId);report.diversity.solutionSimilarity=ranked[0]?.score??0;report.diversity.solutionSimilarLevelId=ranked[0]?.levelId;report.diversity.reasons.push('Solution similarity covers the recorded optimal path only');}
   report.gates.uniqueness=report.diversity.exactDuplicate?'FAIL':'PASS';
   report.gates.similarity=contract.mandatoryMaxSimilarity!==undefined&&report.diversity.similarity>contract.mandatoryMaxSimilarity?'FAIL':'PASS';
@@ -89,7 +89,7 @@ export function evaluate(level:LevelData,contract:LevelDesignContract,catalog:re
   if(contract.mandatoryMaxDeadEndRatio!==undefined)report.gates.deadEndRisk=report.difficulty?.deadEndRiskVerified?(report.difficulty.deadEndRisk!<=contract.mandatoryMaxDeadEndRatio?'PASS':'FAIL'):'UNKNOWN';
   if(contract.mandatoryDifficultyScore)report.gates.difficulty=report.difficulty?(report.difficulty.score>=contract.mandatoryDifficultyScore.min&&report.difficulty.score<=contract.mandatoryDifficultyScore.max?'PASS':'FAIL'):'UNKNOWN';
   if(contract.mandatoryDecisionPoints!==undefined||contract.mandatoryPrematureExitTrap){
-    report.decisions=analyzeDecisions(level,remaining());
+    report.decisions=analyzeDecisions(level,remaining(),contract.prematureExitTrapScope);
     report.gates.decisions=report.decisions.status==='UNKNOWN'?'UNKNOWN':((report.decisions.decisionPoints??0)>=(contract.mandatoryDecisionPoints??0)&&(!contract.mandatoryPrematureExitTrap||(report.decisions.prematureExitTraps??0)>0))?'PASS':'FAIL';
   }
   report.softFindings=[];if(report.difficulty?.category!==contract.targetDifficulty)report.softFindings.push(`Predicted difficulty ${report.difficulty?.category??'unknown'} differs from ${contract.targetDifficulty}`);if(report.diversity.similarity>contract.preferred.maxSimilarity)report.softFindings.push('Structural similarity above preferred threshold');if((report.diversity.solutionSimilarity??0)>contract.preferred.maxSimilarity)report.softFindings.push('Recorded solution pattern similarity above preferred threshold');

@@ -1,7 +1,7 @@
 import { playerTelemetry } from '../systems/PlayerTelemetry';
-import { IS_GENERATED_CAMPAIGN, GENERATED_TUTORIALS } from '../config/Levels';
+import { IS_GENERATED_CAMPAIGN, GENERATED_TUTORIALS, STAGES, getMoveLimit, getStage } from '../config/Levels';
 import Phaser from "phaser";
-import { SCENE_KEYS, HUD_HEIGHT, COLORS } from "../config/Constants";
+import { SCENE_KEYS, COLORS } from "../config/Constants";
 import { useGameStore } from "../managers/GameStateManager";
 import {
   getLevel,
@@ -14,7 +14,7 @@ import { Grid } from "../entities/Grid";
 import { Block } from "../entities/Block";
 import { InputManager } from "../managers/InputManager";
 import { MovementSystem } from "../systems/MovementSystem";
-import { Direction, MoveHistoryEntry } from "../types/Game";
+import { Direction } from "../types/Game";
 import { AudioManager } from "../managers/AudioManager";
 import { Analytics } from "../managers/AnalyticsManager";
 import { SDKManager } from "../managers/SDKManager";
@@ -39,20 +39,21 @@ import {
 } from "../ui/Theme";
 import { LevelTutorial, LEVEL_TUTORIALS } from "../ui/LevelTutorial";
 import { paletteUI } from "../config/Palettes";
-import { showConfirm } from "../utils/Confirm";
+
+import { DialogueTutorial, dialogueSteps, DIALOGUE_VERSION } from '../ui/DialogueTutorial';
+import { resolveAttempt, type AttemptResult } from '../core/campaign/Stage';
+import { findHint, hintFromSolution } from '../core/puzzle/HintSearch';
+import { createState, type PuzzleState } from '../core/puzzle/GameRules';
 
 export class GameScene extends Phaser.Scene {
   private grid!: Grid;
   private blocks: Block[] = [];
   private input2!: InputManager;
   private movement!: MovementSystem;
-  private history: MoveHistoryEntry[] = [];
 
   private movesText!: Phaser.GameObjects.Text;
-  private undoBtn!: NeoButtonHandle;
-  private watchBtn!: NeoButtonHandle;
+  private hintBtn!: NeoButtonHandle;
   private restartBtn!: NeoButtonHandle;
-  private deadEndShown = false;
 
   private hovered: Block | null = null;
   private busy = false;
@@ -63,6 +64,13 @@ export class GameScene extends Phaser.Scene {
   private comboCount = 0;
   private prevLocked = new Map<string, boolean>();
   private tutorial?: LevelTutorial;
+  private dialogue?: DialogueTutorial;
+  private moveBudget?: number;
+  private ended = false;
+  private attemptIsAutoplay = false;
+  private hintSearching = false;
+  private hintMessage?: Phaser.GameObjects.Text;
+  private hintRing?: Phaser.GameObjects.Container;
 
   constructor() {
     super({ key: SCENE_KEYS.Game });
@@ -72,17 +80,23 @@ export class GameScene extends Phaser.Scene {
     fadeIn(this);
     const store = useGameStore.getState();
     store.resetMoves();
-    this.history = [];
-    this.deadEndShown = false;
     this.busy = false;
+    this.ended = false;
+    this.hintSearching = false;
+    this.hintMessage = undefined;
+    this.hintRing = undefined;
+    this.attemptIsAutoplay = !!this.registry.get("autoplaySolution");
+    this.moveBudget = getMoveLimit(store.currentLevel);
     this.watchPlaying = false;
     this.autoplayActive = false;
     this.comboCount = 0;
     this.lastRemovalAt = 0;
-    this.autoplayToken++;
+    const creationToken = ++this.autoplayToken;
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN, () => { this.autoplayToken++; });
     Analytics.log("level_started", { level: store.currentLevel });
 
     await AdManager.preLevelInterstitial();
+    if (creationToken !== this.autoplayToken || !this.scene.isActive()) return;
     SDKManager.gameplayStart();
     playerTelemetry.setPaused(false);
     const pauseTelemetry=()=>playerTelemetry.setPaused(true);
@@ -146,6 +160,8 @@ export class GameScene extends Phaser.Scene {
       this.input.off("pointerdown", this.onPointerDownHint, this);
       this.events.off("block:settled", this.refreshHover, this);
       this.events.off("tutorial:moved", this.dismissTutorial, this);
+      this.dialogue?.destroy();
+      this.dialogue = undefined;
       this.tutorial?.destroy();
       this.tutorial = undefined;
       this.hovered = null;
@@ -157,14 +173,21 @@ export class GameScene extends Phaser.Scene {
       this.registry.remove("autoplaySolution");
       this.time.delayedCall(400, () => this.runAutoplay());
     } else {
-      this.maybeShowTutorial();
+      this.maybeShowTutorial(!!this.registry.get("replayTutorial"));
+      this.registry.remove("replayTutorial");
     }
   }
 
-  private maybeShowTutorial(): void {
+  private maybeShowTutorial(force = false): void {
     const store = useGameStore.getState();
     const level = store.currentLevel;
     const generatedTutorial = GENERATED_TUTORIALS[level];
+    if (STAGES.length) {
+      if (!generatedTutorial || (!force && store.hasSeenTutorial(level, DIALOGUE_VERSION))) return;
+      this.dialogue?.destroy();
+      this.dialogue = new DialogueTutorial(this, dialogueSteps(getLevel(level), getSolution(level), generatedTutorial.body), this.blocks, this.grid, getLevel(level), () => store.markTutorialSeen(level, DIALOGUE_VERSION));
+      return;
+    }
     const cfg = IS_GENERATED_CAMPAIGN ? generatedTutorial && { title: generatedTutorial.title, message: generatedTutorial.body } : LEVEL_TUTORIALS[level];
     if (!cfg) return;
     if (store.hasSeenTutorial(level)) return;
@@ -223,7 +246,7 @@ export class GameScene extends Phaser.Scene {
     }
   }
 
-  private drawHintRing(target: Block): void {
+  private drawHintRing(target: Block): Phaser.GameObjects.Container {
     const cell = this.grid.cellSize;
     const halfW = (target.size[0] * cell - 14) / 2;
     const halfH = (target.size[1] * cell - 14) / 2;
@@ -268,6 +291,7 @@ export class GameScene extends Phaser.Scene {
       ease: "Sine.easeIn",
       onComplete: () => container.destroy(),
     });
+    return container;
   }
 
   private drawHud(): void {
@@ -286,7 +310,7 @@ export class GameScene extends Phaser.Scene {
     );
 
     this.movesText = this.add
-      .text(width / 2, headerY, `MOVES: 0`, {
+      .text(width / 2, headerY, this.movesLabel(), {
         fontFamily: FONT_NEO,
         fontSize: "32px",
         color: TOKENS.inkHex,
@@ -306,130 +330,80 @@ export class GameScene extends Phaser.Scene {
       { w: 100, h: 86, fill: TOKENS.white, textSize: 32 },
     );
 
+    const stage = getStage(store.currentLevel);
+    if (stage) this.add.text(240, 64, `STAGE ${stage.number} · ${this.moveBudget === undefined ? 'FREE MOVES' : 'MOVE LIMIT'}`, { fontFamily: FONT_NEO, fontSize: '18px', color: TOKENS.inkHex }).setOrigin(0, 0.5);
+    if (STAGES.length && GENERATED_TUTORIALS[store.currentLevel]) neoPill(this, 150, this.scale.height - 55, 'TUTORIAL', () => {
+      if (this.busy || this.ended || this.watchPlaying) return;
+      playerTelemetry.increment('restartCount'); playerTelemetry.finish(false, 'RESTART'); this.registry.set('replayTutorial', true); this.scene.restart();
+    }, { w: 240, h: 70, fill: TOKENS.white, textSize: 23 });
     const bottomY = this.scale.height - 55;
     const btnW = 240;
     const btnSpacing = 260;
-    this.undoBtn = neoButton(
+    this.hintBtn = neoButton(
       this,
-      width / 2 - btnSpacing,
+      width / 2 - btnSpacing / 2,
       bottomY,
       btnW,
       86,
-      "UNDO",
-      ui.accent,
-      () => this.undo(),
-      { textSize: 32 },
-    );
-    this.watchBtn = neoButton(
-      this,
-      width / 2,
-      bottomY,
-      btnW,
-      86,
-      "I'M STUCK",
+      "HINT",
       ui.primary,
-      () => this.requestWatch(),
+      () => this.requestHint(),
       { textSize: 30 },
     );
-    this.refreshWatchLabel();
+    this.refreshHintLabel();
     this.time.addEvent({
       delay: 1000,
       loop: true,
-      callback: () => this.refreshWatchLabel(),
+      callback: () => this.refreshHintLabel(),
     });
     this.restartBtn = neoButton(
       this,
-      width / 2 + btnSpacing,
+      width / 2 + btnSpacing / 2,
       bottomY,
       btnW,
       86,
       "RESTART",
       ui.danger,
       () => {
-        if (this.watchPlaying) return;
+        if (this.watchPlaying || this.busy || this.ended) return;
         playerTelemetry.increment("restartCount");
+        playerTelemetry.finish(false, "RESTART");
         this.scene.restart();
       },
       { textSize: 32 },
     );
   }
 
-  private refreshWatchLabel(): void {
-    const store = useGameStore.getState();
-    if (SDKManager.hasRewardedAds()) {
-      this.watchBtn.setLabel("I'M STUCK");
-      this.watchBtn.setEnabled(!this.watchPlaying);
-      return;
-    }
-    const sec = store.getWatchCooldownSecondsLeft();
-    if (sec <= 0) {
-      this.watchBtn.setLabel("I'M STUCK");
-      this.watchBtn.setEnabled(!this.watchPlaying);
-    } else {
-      const m = Math.floor(sec / 60);
-      const s = sec % 60;
-      this.watchBtn.setLabel(`${m}:${String(s).padStart(2, "0")}`);
-      this.watchBtn.setEnabled(false);
-      if (sec > 0 && sec <= 3) AudioManager.tick();
-    }
+  private refreshHintLabel(): void {
+    this.hintBtn.setLabel(this.hintSearching ? 'THINKING...' : 'HINT');
+    this.hintBtn.setEnabled(!this.watchPlaying && !this.ended && !this.hintSearching);
   }
 
-  private async requestWatch(): Promise<void> {
-    if (this.watchPlaying || this.busy) return;
-    AudioManager.uiTap();
-
-    if (SDKManager.hasRewardedAds()) {
-      showConfirm(this, {
-        title: "WATCH AD?",
-        body: "Watch a short ad to see the solution played out for this level.",
-        yesLabel: "WATCH AD",
-        noLabel: "CANCEL",
-        yesColor: TOKENS.mint,
-        onYes: () => {
-          void this.runRewardedFlow();
-        },
-        onNo: () => this.refreshWatchLabel(),
-      });
-      return;
-    }
-
-    const store = useGameStore.getState();
-    if (store.isWatchOnCooldown()) {
-      AudioManager.thud();
-      this.refreshWatchLabel();
-      return;
-    }
-    store.startWatchCooldown();
-
-    playerTelemetry.increment("hintCount");
-    Analytics.log("hint_used", { type: "watch_solution" });
-    this.refreshWatchLabel();
-
-    this.registry.set("autoplaySolution", true);
-    this.scene.restart();
+  private movesLabel(): string {
+    const moves = useGameStore.getState().movesThisLevel;
+    return this.moveBudget === undefined ? `MOVES: ${moves}` : `MOVES: ${moves} / ${this.moveBudget}`;
   }
 
-  private async runRewardedFlow(): Promise<void> {
-    this.watchBtn.setEnabled(false);
-    this.scene.pause();
-    let ok = false;
-    try {
-      ok = await AdManager.showRewarded("hint");
-    } finally {
-      this.scene.resume();
-    }
-    if (!ok) {
-      AudioManager.thud();
-      this.refreshWatchLabel();
-      return;
-    }
-
-    playerTelemetry.increment("hintCount");
-    Analytics.log("hint_used", { type: "watch_solution" });
-    this.refreshWatchLabel();
-
-    this.registry.set("autoplaySolution", true);
-    this.time.delayedCall(50, () => this.scene.restart());
+  private async requestHint(): Promise<void> {
+    if (this.watchPlaying || this.busy || this.ended || this.hintSearching) return;
+    const token = this.autoplayToken;
+    this.hintSearching = true;
+    this.refreshHintLabel();
+    playerTelemetry.increment('hintCount'); Analytics.log('hint_used', { type: 'next_action' });
+    const initial = createState(getLevel(useGameStore.getState().currentLevel));
+    const state: PuzzleState = { ...initial, exitCount: this.grid.getExitCount(), blocks: this.blocks.map(b => ({ blockId: b.blockId, gridPos: [...b.gridPos] as [number,number], size: b.size, type: b.type, direction: b.direction, dependsOn: b.dependsOn, unlockAt: b.unlockAt, removed: b.removed })) };
+    const moves = useGameStore.getState().movesThisLevel;
+    const remaining = this.moveBudget === undefined ? Infinity : this.moveBudget - moves;
+    const action = hintFromSolution(state, getLevel(useGameStore.getState().currentLevel), getSolution(useGameStore.getState().currentLevel), remaining) ?? await findHint(state, remaining, () => token !== this.autoplayToken);
+    if (token !== this.autoplayToken) return;
+    this.hintSearching = false;
+    this.refreshHintLabel();
+    if (moves !== useGameStore.getState().movesThisLevel || this.ended) return;
+    this.hintMessage?.destroy();
+    const block = action && this.blocks.find(b => b.blockId === action.blockId);
+    if (block && action) this.hintRing = this.drawHintRing(block);
+    this.hintMessage = this.add.text(260, 830, action ? `TRY ${action.blockId.toUpperCase()} ${action.dir}` : 'No hint found within the search budget.\nTry a different order or restart.', { fontFamily: FONT_NEO, fontSize: '22px', color: TOKENS.inkHex, wordWrap: { width: 450 }, align: 'center' }).setOrigin(0.5).setDepth(110);
+    const message = this.hintMessage; this.time.delayedCall(5000, () => message?.destroy());
   }
 
   private async runAutoplay(): Promise<void> {
@@ -438,14 +412,13 @@ export class GameScene extends Phaser.Scene {
     const moves: SolutionMove[] = getSolution(store.currentLevel);
     if (moves.length === 0) {
       this.watchPlaying = false;
-      this.refreshWatchLabel();
+      this.refreshHintLabel();
       return;
     }
     this.watchPlaying = true;
-    this.undoBtn.setEnabled(false);
-    this.watchBtn.setEnabled(false);
+    this.hintBtn.setEnabled(false);
     this.restartBtn.setEnabled(false);
-    this.refreshWatchLabel();
+    this.refreshHintLabel();
 
     for (const mv of moves) {
       // wait for any in-flight animation
@@ -471,9 +444,8 @@ export class GameScene extends Phaser.Scene {
     await this.waitUntilIdle();
     if (token !== this.autoplayToken) return;
     this.watchPlaying = false;
-    this.undoBtn.setEnabled(true);
     this.restartBtn.setEnabled(true);
-    this.refreshWatchLabel();
+    this.refreshHintLabel();
   }
 
   private waitUntilIdle(): Promise<void> {
@@ -524,38 +496,15 @@ export class GameScene extends Phaser.Scene {
     this.add.container(x, y, [g, txt]);
   }
 
-  private undo(): void {
-    if (this.busy) return;
-    while (this.history.length > 0) {
-      const entry = this.history.pop()!;
-      if (entry.removed) {
-        AudioManager.thud();
-        continue;
-      }
-      const block = this.blocks.find((b) => b.blockId === entry.blockId);
-      if (!block || block.removed) continue;
-
-      this.grid.clear(block);
-      block.gridPos = entry.prevPos;
-      this.grid.place(block);
-      block.moveToCell(this.grid, entry.prevPos[0], entry.prevPos[1], true, 1);
-      AudioManager.uiTap();
-      playerTelemetry.increment("undoCount");
-      Analytics.log("hint_used", { type: "undo" });
-      this.deadEndShown = false;
-      return;
-    }
-    AudioManager.thud();
-  }
-
   private handleSwipe(block: Block, dir: Direction): void {
-    if (this.busy) {
+    if (this.ended || this.busy) {
       AudioManager.bump();
       return;
     }
     if (this.watchPlaying && !this.autoplayActive) return;
     if (block.removed || block.type === "obstacle") return;
 
+    if (this.dialogue && !this.dialogue.permits({ blockId: block.blockId, dir })) { AudioManager.thud(); return; }
     const result = this.movement.slide(block, this.grid, dir, this.blocks);
 
     if (result.kind === "invalid") {
@@ -567,6 +516,8 @@ export class GameScene extends Phaser.Scene {
       return;
     }
 
+    this.hintMessage?.destroy(); this.hintMessage = undefined;
+    if (this.hintRing) { this.tweens.killTweensOf(this.hintRing); this.hintRing.destroy(true); this.hintRing = undefined; }
     const pan = this.computePan(block.gridPos[0]);
 
     Analytics.log("block_moved", {
@@ -577,14 +528,9 @@ export class GameScene extends Phaser.Scene {
     const store = useGameStore.getState();
     store.incMoves();
     playerTelemetry.increment("moveCount");
-    this.movesText.setText(`MOVES: ${useGameStore.getState().movesThisLevel}`);
+    this.movesText.setText(this.movesLabel());
 
     if (result.kind === "slide") {
-      this.history.push({
-        blockId: block.blockId,
-        prevPos: [...block.gridPos] as [number, number],
-        removed: false,
-      });
       this.grid.clear(block);
       block.gridPos = [result.toCol, result.toRow];
       this.grid.place(block);
@@ -604,17 +550,13 @@ export class GameScene extends Phaser.Scene {
         AudioManager.slideEnd(result.distance, this.computePan(result.toCol));
         this.busy = false;
         this.events.emit("tutorial:moved");
-        this.checkDeadEnd();
+        this.dialogue?.moved({ blockId: block.blockId, dir });
+        this.checkAttempt();
       });
       return;
     }
 
     // exit
-    this.history.push({
-      blockId: block.blockId,
-      prevPos: [...block.gridPos] as [number, number],
-      removed: true,
-    });
     this.grid.clear(block);
     const startCol = block.gridPos[0];
     const startRow = block.gridPos[1];
@@ -657,8 +599,9 @@ export class GameScene extends Phaser.Scene {
       () => {
         this.grid.registerExit();
         this.refreshDependents();
-        this.afterRemove();
         this.busy = false;
+        this.dialogue?.moved({ blockId: block.blockId, dir });
+        this.afterRemove();
       },
     );
     this.events.emit("tutorial:moved");
@@ -713,42 +656,29 @@ export class GameScene extends Phaser.Scene {
     });
   }
 
-  private afterRemove(): void {
-    const remaining = this.blocks.filter(
-      (b) => !b.removed && b.type !== "obstacle",
-    );
-    if (remaining.length === 0) {
-      this.endLevel("WIN");
+  private afterRemove(): void { this.checkAttempt(); }
+
+  private checkAttempt(): void {
+    if (this.ended) return;
+    const remaining = this.blocks.filter(b => !b.removed && b.type !== 'obstacle');
+    const result = resolveAttempt(remaining.length === 0, useGameStore.getState().movesThisLevel, this.moveBudget, this.movement.anyValidMove(this.blocks, this.grid));
+    if (result === 'STUCK') { playerTelemetry.increment('deadEndCount'); AudioManager.deadEnd(); deadEndPulse(this); remaining.forEach(b => b.pulseRed()); }
+    if (result) this.endLevel(result);
+  }
+
+  private endLevel(result: AttemptResult): void {
+    if (this.ended) return;
+    this.ended = true;
+    if (this.attemptIsAutoplay) {
+      playerTelemetry.finish(result === 'WIN', result);
+      this.time.delayedCall(800, () => this.scene.restart());
       return;
     }
-    this.checkDeadEnd();
-  }
-
-  private checkDeadEnd(): void {
-    if (this.deadEndShown) return;
-    const remaining = this.blocks.filter(
-      (b) => !b.removed && b.type !== "obstacle",
-    );
-    if (remaining.length === 0) return;
-    if (!this.movement.anyValidMove(this.blocks, this.grid)) {
-      this.deadEndShown = true;
-      playerTelemetry.increment("deadEndCount");
-      Analytics.log("level_failed", {
-        reason: "dead_end",
-        moves: useGameStore.getState().movesThisLevel,
-      });
-      AudioManager.deadEnd();
-      deadEndPulse(this);
-      remaining.forEach((b) => b.pulseRed());
-      this.time.delayedCall(900, () => this.endLevel("STUCK"));
-    }
-  }
-
-  private endLevel(result: "WIN" | "STUCK"): void {
-    playerTelemetry.finish(result === "WIN");
+    playerTelemetry.finish(result === "WIN", result);
     const store = useGameStore.getState();
     if (result === "WIN") {
       AudioManager.win();
+      store.recordCompletion(store.currentLevel);
       store.unlockNext();
       SDKManager.happytime();
       Analytics.log("level_completed", {
@@ -756,6 +686,7 @@ export class GameScene extends Phaser.Scene {
         moves: store.movesThisLevel,
       });
     } else {
+      Analytics.log("level_failed", { reason: result === "MOVE_LIMIT" ? "move_limit" : "dead_end", moves: store.movesThisLevel });
       AudioManager.levelFail();
     }
     AudioManager.stopAmbient();

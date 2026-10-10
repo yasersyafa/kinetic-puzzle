@@ -5,7 +5,7 @@ import { AudioManager } from '../managers/AudioManager';
 import { AdManager } from '../managers/AdManager';
 import { SDKManager } from '../managers/SDKManager';
 import { fadeIn, fadeOutAndStart } from '../utils/Effects';
-import { PACKS, getPackOf } from '../config/Levels';
+import { PACKS, getPackOf, STAGES } from '../config/Levels';
 import {
   TOKENS,
   FONT_NEO,
@@ -54,7 +54,7 @@ export class LevelSelectScene extends Phaser.Scene {
     const activePack = PACKS.find((p) => p.id === this.activePackId);
     const packLastId = activePack ? activePack.levelIds[activePack.levelIds.length - 1] : 0;
     const packAlreadyUnlocked = useGameStore.getState().unlockedLevel >= packLastId;
-    if (activePack && !packAlreadyUnlocked && SDKManager.hasRewardedAds()) {
+    if (!STAGES.length && activePack && !packAlreadyUnlocked && SDKManager.hasRewardedAds()) {
       const unlockBtn = neoButton(
         this,
         width - 260,
@@ -106,14 +106,18 @@ export class LevelSelectScene extends Phaser.Scene {
     const gap = 20;
     const store = useGameStore.getState();
 
-    PACKS.forEach((pack, i) => {
+    const activeIndex = Math.max(0, PACKS.findIndex(p => p.id === this.activePackId));
+    const first = Math.floor(activeIndex / 4) * 4;
+    if (first > 0) neoPill(this, x - 90, this.scale.height - 140, '<', () => this.scene.start(SCENE_KEYS.LevelSelect, { activePackId: PACKS[first - 1].id }), { w: 130, h: 70, textSize: 30 });
+    if (first + 4 < PACKS.length) neoPill(this, x + 90, this.scale.height - 140, '>', () => this.scene.start(SCENE_KEYS.LevelSelect, { activePackId: PACKS[first + 4].id }), { w: 130, h: 70, textSize: 30 });
+    PACKS.slice(first, first + 4).forEach((pack, i) => {
       const y = startY + i * (tabH + gap) + tabH / 2;
-      const packUnlocked = store.unlockedLevel >= pack.unlockAfter + 1;
+      const published = pack.levelIds.length > 0;
+      const packUnlocked = published && store.canPlay(pack.levelIds[0]);
       const active = pack.id === this.activePackId;
       const fill = !packUnlocked ? TOKENS.lockGray : active ? TOKENS.sky : TOKENS.white;
-      const stars = pack.levelIds.reduce((sum, id) => sum + store.starsFor(id), 0);
-      const maxStars = pack.levelIds.length * 3;
-      const label = `${pack.name.toUpperCase()}\n${stars}/${maxStars}★`;
+      const cleared = pack.levelIds.filter(id => store.isCompleted(id)).length;
+      const label = `${pack.name.toUpperCase()}\n${published ? `${cleared}/${pack.levelIds.length} COMPLETED` : "COMING SOON"}`;
 
       const btn = neoButton(
         this,
@@ -138,17 +142,21 @@ export class LevelSelectScene extends Phaser.Scene {
   private renderPackGrid(packId: string, width: number, height: number, _leftBound: number): void {
     const pack = PACKS.find((p) => p.id === packId);
     if (!pack) return;
+    if (!pack.levelIds.length) {
+      this.add.text((width + _leftBound) / 2, height / 2, 'COMING SOON', { fontFamily: FONT_NEO, fontSize: '48px', color: TOKENS.inkHex }).setOrigin(0.5);
+      return;
+    }
     const store = useGameStore.getState();
 
-    const cols = 6;
+    const cols = 5;
     const levelIds = pack.levelIds;
     const rows = Math.ceil(levelIds.length / cols);
-    const tile = 110;
+    const tile = 140;
     const gapX = 30;
     const gapY = 32;
     const gridW = cols * tile + (cols - 1) * gapX;
     const gridH = rows * tile + (rows - 1) * gapY;
-    const startX = (width - gridW) / 2 + tile / 2;
+    const startX = _leftBound + (width - _leftBound - gridW) / 2 + tile / 2;
     const startY = 250 + tile / 2;
     const usableY = height - 120;
     const adjStartY = startY + gridH > usableY ? usableY - gridH + tile / 2 : startY;
@@ -158,7 +166,7 @@ export class LevelSelectScene extends Phaser.Scene {
       const row = Math.floor(i / cols);
       const x = startX + col * (tile + gapX);
       const y = adjStartY + row * (tile + gapY);
-      const locked = lvl > store.unlockedLevel;
+      const locked = !store.canPlay(lvl);
       const isCurrent = lvl === store.currentLevel;
 
       const fill = locked ? TOKENS.lockGray : isCurrent ? TOKENS.sky : TOKENS.mint;
@@ -196,11 +204,9 @@ export class LevelSelectScene extends Phaser.Scene {
         const lock = drawLockIcon(this, 0, 0, 22, 0x9a9a9a);
         btn.container.add(lock);
       } else {
-        const stars = store.starsFor(lvl);
-        if (stars > 0) {
-          const pips = this.makeStarPips(stars);
-          pips.setPosition(0, tile / 2 - 14);
-          btn.container.add(pips);
+        if (store.isCompleted(lvl)) {
+          const check = this.add.text(0, tile / 2 - 18, '✓', { fontFamily: FONT_NEO, fontSize: '26px', color: TOKENS.inkHex }).setOrigin(0.5);
+          btn.container.add(check);
         }
         // Hover wobble — tilt left then right then settle.
         btn.container.on('pointerover', () => {
@@ -233,23 +239,6 @@ export class LevelSelectScene extends Phaser.Scene {
         });
       }
     });
-  }
-
-  private makeStarPips(earned: number): Phaser.GameObjects.Container {
-    const c = this.add.container(0, 0);
-    const r = 6;
-    const gap = 14;
-    for (let i = 0; i < 3; i++) {
-      const x = -gap + i * gap;
-      const filled = i < earned;
-      const dot = this.add.graphics();
-      dot.fillStyle(filled ? 0xFFD23F : 0xCCCCCC, 1);
-      dot.lineStyle(2, 0x222222, 1);
-      dot.fillCircle(x, 0, r);
-      dot.strokeCircle(x, 0, r);
-      c.add(dot);
-    }
-    return c;
   }
 
   private spawnAmbientDecor(): void {

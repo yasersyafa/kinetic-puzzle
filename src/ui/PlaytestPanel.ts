@@ -1,5 +1,5 @@
 import type Phaser from 'phaser';
-import { LEVELS, CAMPAIGN_VERSION } from '../config/Levels';
+import { LEVELS, CAMPAIGN_VERSION, STAGES } from '../config/Levels';
 import { SCENE_KEYS } from '../config/Constants';
 import { useGameStore } from '../managers/GameStateManager';
 import { playerTelemetry } from '../systems/PlayerTelemetry';
@@ -16,7 +16,7 @@ export function installPlaytestPanel(game: Phaser.Game):void {
   const action=(label:string,fn:()=>void)=>{const b=document.createElement('button');b.textContent=label;b.onclick=()=>{fn();refresh();};actions.append(b);};
   const refresh=()=>{status.textContent=`Collection ${playerTelemetry.enabled?'enabled':'disabled'} · ${playerTelemetry.count} attempts`;};
   const selected=document.createElement('select');selected.setAttribute('aria-label','Playtest level');
-  const sampleIds=(LEVELS.length<=12?LEVELS.map(l=>l.id):[1,12,25,41,55,64,72,80]).filter(id=>LEVELS.some(level=>level.id===id));
+  const sampleIds=(STAGES.length||LEVELS.length<=20?LEVELS.map(l=>l.id):[1,12,25,41,55,64,72,80]).filter(id=>LEVELS.some(level=>level.id===id));
   for(const id of sampleIds){const option=document.createElement('option');option.value=String(id);option.textContent=`Level ${id}`;selected.append(option);}
   const openLevel=(id:number)=>{
     dialog.close();

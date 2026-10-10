@@ -2,10 +2,11 @@ import { levelContentVersion } from '../core/puzzle/LevelVersion';
 import * as existing from './ExistingLevels';
 import type { LevelData, Direction } from '../types/Game';
 export type { WorldPack } from './ExistingLevels';
-export { starsFor } from './ExistingLevels';
+import { stageOf, moveLimit, type CampaignStages } from '../core/campaign/Stage';
 export interface SolutionMove { blockId: string; dir: Direction }
 export interface CampaignData {
   schemaVersion: string; campaignId: string; campaignVersion: string; contentHash: string; rulesVersion: string;
+  stageConfig?: CampaignStages;
   levels: LevelData[]; solutions: Record<number, SolutionMove[]>;
   tutorials: Record<number, { title: string; body: string }>; roles: Record<number,string>;
 }
@@ -20,13 +21,17 @@ export const GENERATED_TUTORIALS = generated?.tutorials ?? {};
 export const MAX_LEVEL_COLS = Math.max(...LEVELS.map(l => l.cols));
 export const MAX_LEVEL_ROWS = Math.max(...LEVELS.map(l => l.rows));
 export const FIXTURE_IDS = generated ? [] : existing.FIXTURE_IDS;
-export const PACKS = generated
-  ? [...new Set(LEVELS.map(l => l.pack ?? 'generated'))].map((id, i, all) => ({
-    id, name: id === 'generated' ? 'Generated Campaign' : id.charAt(0).toUpperCase() + id.slice(1), theme: 'mixed',
-    levelIds: LEVELS.filter(l => (l.pack ?? 'generated') === id).map(l => l.id),
-    unlockAfter: i === 0 ? 0 : Math.max(...LEVELS.filter(l => (l.pack ?? 'generated') === all[i - 1]).map(l => l.id)),
-  })) : existing.PACKS;
+export const STAGE_CONFIG = generated?.stageConfig;
+export const STAGES = STAGE_CONFIG?.stages ?? [];
+export const PACKS = STAGE_CONFIG
+  ? STAGES.map(s => ({ id: s.id, name: `Stage ${s.number}: ${s.name}`, theme: 'mixed', levelIds: LEVELS.filter(l => l.id >= s.firstLevel && l.id < s.firstLevel + s.levelCount).map(l => l.id), unlockAfter: s.firstLevel - 1 }))
+  : generated
+    ? [...new Set(LEVELS.map(l => l.pack ?? 'generated'))].map((id, i, all) => ({ id, name: id.charAt(0).toUpperCase() + id.slice(1), theme: 'mixed', levelIds: LEVELS.filter(l => (l.pack ?? 'generated') === id).map(l => l.id), unlockAfter: i === 0 ? 0 : Math.max(...LEVELS.filter(l => (l.pack ?? 'generated') === all[i - 1]).map(l => l.id)) }))
+    : existing.PACKS;
 export function getSolution(id: number): SolutionMove[] { return SOLUTIONS[id] ?? []; }
 export function getLevel(id: number): LevelData { return LEVELS[Math.max(0, Math.min(LEVELS.length - 1, id - 1))]; }
 export function getPackOf(id: number) { return PACKS.find(p => p.levelIds.includes(id)); }
 export function levelVersion(id:number):string{return levelContentVersion(getLevel(id));}
+
+export function getStage(id: number) { return stageOf(STAGES, id); }
+export function getMoveLimit(id: number) { return moveLimit(getStage(id), getLevel(id).parMoves); }

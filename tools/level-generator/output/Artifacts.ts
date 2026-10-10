@@ -10,6 +10,7 @@ import { replaySolution } from '../../../src/core/puzzle/SolutionReplay';
 import { validateCampaign, type AcceptedCandidate } from '../director/CurriculumPlanner';
 import { evaluateBounded } from '../evaluation/BoundedEvaluation';
 import { validateApprovalContext } from '../evaluation/ApprovalContext';
+import { validateStages, type CampaignStages } from '../../../src/core/campaign/Stage';
 import { validateContext } from '../evaluation/EvaluationContext';
 
 export const EXPORTER_VERSION='2.2.0';
@@ -31,6 +32,7 @@ export function writeJson(path:string,value:unknown,pretty=true):void {
 export function readJson<T>(path:string):T{return JSON.parse(readFileSync(path,'utf8')) as T;}
 export interface RuntimeCampaign {
   schemaVersion:string; campaignId:string; campaignVersion:string; contentHash:string;rulesVersion:string;
+  stageConfig?:CampaignStages;
   levels:import('../../../src/types/Game').LevelData[];
   auditHash?:string;auditVersion?:string;
   solutions:Record<number,import('../../../src/core/puzzle/GameRules').Action[]>;
@@ -38,11 +40,12 @@ export interface RuntimeCampaign {
   tutorials:Record<number,{title:string;body:string}>;
 }
 export function runtimeHash(campaign:RuntimeCampaign):string {
-  return campaign.schemaVersion==='2.0.0'?hash({levels:campaign.levels,solutions:campaign.solutions,roles:campaign.roles,tutorials:campaign.tutorials,rulesVersion:campaign.rulesVersion}):legacyHash({levels:campaign.levels,solutions:campaign.solutions});
+  return ['2.0.0','2.1.0'].includes(campaign.schemaVersion)?hash({levels:campaign.levels,solutions:campaign.solutions,roles:campaign.roles,tutorials:campaign.tutorials,rulesVersion:campaign.rulesVersion,...(campaign.stageConfig?{stageConfig:campaign.stageConfig}:{})}):legacyHash({levels:campaign.levels,solutions:campaign.solutions});
 }
-export async function exportCampaign(accepted:AcceptedCandidate[],count:number,output:string,campaignId:string,signal?:AbortSignal,deadline=Infinity,generation:unknown={}):Promise<RuntimeCampaign> {
+export async function exportCampaign(accepted:AcceptedCandidate[],count:number,output:string,campaignId:string,signal?:AbortSignal,deadline=Infinity,generation:unknown={},stageConfig?:CampaignStages):Promise<RuntimeCampaign> {
   if(accepted.some(a=>a.candidate.contract.schemaVersion!=='2.0.0'))throw new Error('Legacy contracts require v2 reapproval before export');
   if(!/^[a-z0-9-]+$/.test(campaignId))throw new Error('Invalid campaign ID');
+  if(stageConfig){const stageErrors=validateStages(stageConfig,accepted.map(a=>a.candidate.level));if(stageErrors.length)throw new Error(stageErrors.join('\n'));}
   const errors=validateCatalog(accepted.map(a=>a.candidate.level));if(errors.length)throw new Error('Final schema validation failed');
   const checkDeadline=()=>{if(signal?.aborted||Date.now()>=deadline)throw new Error('Export interrupted or deadline exceeded');};checkDeadline();
   const verified:AcceptedCandidate[]=[];const base=accepted[0]?.report.context;if(!base)throw new Error('Missing approval context');
@@ -56,16 +59,16 @@ export async function exportCampaign(accepted:AcceptedCandidate[],count:number,o
     if(!replaySolution(entry.candidate.level,proof.solver!.solutionPath!).success)throw new Error('Final replay failed');
     verified.push({...entry,report:proof});
   }
-  const validation=validateCampaign(verified,count);if(!validation.success)throw new Error(validation.errors.join('\n'));
+  const validation=validateCampaign(verified,count,30,stageConfig);if(!validation.success)throw new Error(validation.errors.join('\n'));
   const levels=verified.map(a=>a.candidate.level),solutions=Object.fromEntries(verified.map(a=>[a.candidate.level.id,a.report.solver!.solutionPath!]));
   const roles=Object.fromEntries(verified.map(a=>[a.candidate.level.id,a.candidate.contract.progressionRole]));
   const tutorials=Object.fromEntries(verified.filter(a=>a.candidate.contract.progressionRole==='TEACH').map(a=>[a.candidate.level.id,{title:a.candidate.contract.primaryInsight,body:a.candidate.contract.learningObjective}]));
   const contracts=verified.map(a=>a.candidate.contract),reports=verified.map(a=>a.report),contexts=reports.map(r=>r.context!);
-  const contentHash=hash({levels,solutions,roles,tutorials,rulesVersion:RULES_VERSION});
+  const contentHash=hash({levels,solutions,roles,tutorials,rulesVersion:RULES_VERSION,...(stageConfig?{stageConfig}:{})});
   const provenance=verified.map(a=>a.candidate.provenance);
   const auditHash=hash({exporterVersion:EXPORTER_VERSION,contentHash,contracts,reports:stableProof(reports),validation,provenance,generation:stableProof(generation)});
   const version=contentHash.slice(0,12),auditVersion=auditHash.slice(0,12);
-  const campaign:RuntimeCampaign={schemaVersion:'2.0.0',campaignId,campaignVersion:version,contentHash,auditHash,auditVersion,rulesVersion:RULES_VERSION,levels,solutions,roles,tutorials};
+  const campaign:RuntimeCampaign={schemaVersion:stageConfig?'2.1.0':'2.0.0',...(stageConfig?{stageConfig}:{}),campaignId,campaignVersion:version,contentHash,auditHash,auditVersion,rulesVersion:RULES_VERSION,levels,solutions,roles,tutorials};
   const target=safeOutput(join(output,`${campaignId}-${version}-${auditVersion}`));
   const predictions=verified.map(a=>({campaignId,campaignVersion:version,levelId:a.candidate.level.id,levelVersion:levelContentVersion(a.candidate.level),score:a.report.difficulty!.score,modelVersion:a.report.difficulty!.modelVersion,features:a.report.difficulty!.features}));
   const files:Record<string,unknown>={'campaign.json':campaign,'contracts.json':contracts,'reports.json':reports,'contexts.json':contexts,'campaign-validation.json':validation,'predictions.json':predictions,'generation.json':generation};

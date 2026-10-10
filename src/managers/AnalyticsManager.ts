@@ -13,7 +13,6 @@ export type EventName =
   | 'daily_started'
   | 'daily_completed'
   | 'streak_milestone'
-  | 'star_earned'
   | 'pack_cleared'
   | 'skin_unlocked'
   | 'skin_equipped';

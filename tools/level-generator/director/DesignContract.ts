@@ -1,4 +1,4 @@
-export const CONTRACT_VERSION = '2.1.0';
+export const CONTRACT_VERSION = '2.2.0';
 export const MECHANICS = ['sliding','constrained','dependent','obstacle','lock','ice'] as const;
 export type Mechanic = typeof MECHANICS[number];
 export type EvidenceClaim = 'ice-push' | 'block-as-stopper' | 'dependency-planning' | 'lock-planning';
@@ -8,9 +8,11 @@ export interface EvidenceSpec {
   blockIds?:string[];position?:[number,number];minSteps?:number;
 }
 export interface LevelDesignContract {
+  diversityMode?:'LAYOUT_AND_STRUCTURE';
   productPolicy?:'single-exit-semantic-1.0.0';
   mandatoryDecisionPoints?:number;
   mandatoryPrematureExitTrap?:boolean;
+  prematureExitTrapScope?:'REACHABLE_WINNING_STATES';
   schemaVersion?:'2.0.0';
   requiredEvidence?:EvidenceSpec[];primaryEvidenceId?:string;
   contractId: string;
@@ -45,8 +47,10 @@ export function validateContract(value: unknown): string[] {
   if(c.mandatoryMaxDeadEndRatio!==undefined&&(!Number.isFinite(c.mandatoryMaxDeadEndRatio)||c.mandatoryMaxDeadEndRatio<0||c.mandatoryMaxDeadEndRatio>1))errors.push('mandatoryMaxDeadEndRatio');
   if(c.mandatoryDifficultyScore&&(!Number.isFinite(c.mandatoryDifficultyScore.min)||!Number.isFinite(c.mandatoryDifficultyScore.max)||c.mandatoryDifficultyScore.min<0||c.mandatoryDifficultyScore.max>100||c.mandatoryDifficultyScore.min>c.mandatoryDifficultyScore.max))errors.push('mandatoryDifficultyScore');
   if (c.mandatoryMaxSimilarity !== undefined && (!Number.isFinite(c.mandatoryMaxSimilarity) || c.mandatoryMaxSimilarity<0 || c.mandatoryMaxSimilarity>1)) errors.push('mandatoryMaxSimilarity');
+  if(c.diversityMode!==undefined&&c.diversityMode!=='LAYOUT_AND_STRUCTURE')errors.push('diversityMode');
   if(c.productPolicy!==undefined&&c.productPolicy!=='single-exit-semantic-1.0.0')errors.push('productPolicy');
   if(c.mandatoryDecisionPoints!==undefined&&(!Number.isInteger(c.mandatoryDecisionPoints)||c.mandatoryDecisionPoints<1))errors.push('mandatoryDecisionPoints');
+  if(c.prematureExitTrapScope!==undefined&&c.prematureExitTrapScope!=='REACHABLE_WINNING_STATES')errors.push('prematureExitTrapScope');
   if(c.mandatoryPrematureExitTrap!==undefined&&typeof c.mandatoryPrematureExitTrap!=='boolean')errors.push('mandatoryPrematureExitTrap');
   if(c.schemaVersion!==undefined&&c.schemaVersion!=='2.0.0')errors.push('schemaVersion');
   if(c.requiredEvidence!==undefined){
