@@ -1,0 +1,1497 @@
+[
+  {
+    "level": {
+      "id": 1,
+      "cols": 3,
+      "rows": 3,
+      "blocks": [
+        {
+          "id": "m1",
+          "color": "blue",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "simple"
+        },
+        {
+          "id": "m2",
+          "color": "purple",
+          "position": [
+            0,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "simple"
+        }
+      ],
+      "exits": [
+        {
+          "side": "RIGHT",
+          "index": 0
+        },
+        {
+          "side": "RIGHT",
+          "index": 1
+        }
+      ],
+      "parMoves": 3,
+      "pack": "tutorial"
+    },
+    "contract": {
+      "schemaVersion": "2.0.0",
+      "requiredEvidence": [
+        {
+          "id": "sliding",
+          "claim": "sliding-required",
+          "scope": "ALL_WINNING_PATHS"
+        }
+      ],
+      "primaryEvidenceId": "sliding",
+      "contractId": "slot-001",
+      "targetDifficulty": "TUTORIAL",
+      "grid": {
+        "minCols": 3,
+        "maxCols": 5,
+        "minRows": 3,
+        "maxRows": 5
+      },
+      "optimalMoves": {
+        "min": 2,
+        "max": 8
+      },
+      "allowedMechanics": [
+        "sliding"
+      ],
+      "requiredMechanics": [
+        "sliding"
+      ],
+      "primaryInsight": "Sliding and exit alignment",
+      "secondaryInsights": [],
+      "learningObjective": "Apply sliding within previously learned rules",
+      "progressionRole": "TEACH",
+      "introducedMechanic": "sliding",
+      "preferred": {
+        "difficultyScore": 5,
+        "maxSimilarity": 0.9
+      }
+    },
+    "optimalMoves": 3
+  },
+  {
+    "level": {
+      "id": 15,
+      "cols": 5,
+      "rows": 4,
+      "blocks": [
+        {
+          "id": "m1",
+          "color": "red",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "simple"
+        },
+        {
+          "id": "m2",
+          "color": "blue",
+          "position": [
+            1,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "simple"
+        },
+        {
+          "id": "m3",
+          "color": "green",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "constrained",
+          "direction": "RIGHT"
+        }
+      ],
+      "exits": [
+        {
+          "side": "RIGHT",
+          "index": 3
+        }
+      ],
+      "parMoves": 5,
+      "pack": "easy"
+    },
+    "contract": {
+      "schemaVersion": "2.0.0",
+      "requiredEvidence": [
+        {
+          "id": "sliding",
+          "claim": "sliding-required",
+          "scope": "ALL_WINNING_PATHS"
+        },
+        {
+          "id": "teaching",
+          "claim": "direction-interaction",
+          "scope": "COUNTERFACTUAL_EFFECT"
+        }
+      ],
+      "primaryEvidenceId": "teaching",
+      "contractId": "slot-015",
+      "targetDifficulty": "EASY",
+      "grid": {
+        "minCols": 3,
+        "maxCols": 6,
+        "minRows": 3,
+        "maxRows": 6
+      },
+      "optimalMoves": {
+        "min": 3,
+        "max": 14
+      },
+      "allowedMechanics": [
+        "sliding",
+        "constrained"
+      ],
+      "requiredMechanics": [
+        "constrained"
+      ],
+      "primaryInsight": "Combining sliding, constrained",
+      "secondaryInsights": [],
+      "learningObjective": "Apply constrained within previously learned rules",
+      "progressionRole": "TEACH",
+      "introducedMechanic": "constrained",
+      "preferred": {
+        "difficultyScore": 20,
+        "maxSimilarity": 0.9
+      }
+    },
+    "optimalMoves": 5
+  },
+  {
+    "level": {
+      "id": 28,
+      "cols": 7,
+      "rows": 6,
+      "blocks": [
+        {
+          "id": "m1",
+          "color": "green",
+          "position": [
+            6,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "constrained",
+          "direction": "RIGHT"
+        },
+        {
+          "id": "m2",
+          "color": "green",
+          "position": [
+            3,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "dependent",
+          "dependsOn": "m1"
+        },
+        {
+          "id": "m3",
+          "color": "purple",
+          "position": [
+            4,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "constrained",
+          "direction": "RIGHT"
+        },
+        {
+          "id": "m4",
+          "color": "yellow",
+          "position": [
+            1,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "constrained",
+          "direction": "RIGHT"
+        },
+        {
+          "id": "m5",
+          "color": "red",
+          "position": [
+            4,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "constrained",
+          "direction": "RIGHT"
+        },
+        {
+          "id": "m6",
+          "color": "green",
+          "position": [
+            4,
+            5
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "constrained",
+          "direction": "RIGHT"
+        }
+      ],
+      "exits": [
+        {
+          "side": "RIGHT",
+          "index": 0
+        },
+        {
+          "side": "RIGHT",
+          "index": 2
+        },
+        {
+          "side": "RIGHT",
+          "index": 4
+        },
+        {
+          "side": "RIGHT",
+          "index": 3
+        },
+        {
+          "side": "RIGHT",
+          "index": 1
+        },
+        {
+          "side": "RIGHT",
+          "index": 5
+        }
+      ],
+      "parMoves": 6,
+      "pack": "medium"
+    },
+    "contract": {
+      "schemaVersion": "2.0.0",
+      "requiredEvidence": [
+        {
+          "id": "sliding",
+          "claim": "sliding-required",
+          "scope": "ALL_WINNING_PATHS"
+        },
+        {
+          "id": "teaching",
+          "claim": "dependency-planning",
+          "scope": "COUNTERFACTUAL_EFFECT"
+        }
+      ],
+      "primaryEvidenceId": "teaching",
+      "contractId": "slot-028",
+      "targetDifficulty": "MEDIUM",
+      "grid": {
+        "minCols": 3,
+        "maxCols": 7,
+        "minRows": 3,
+        "maxRows": 7
+      },
+      "optimalMoves": {
+        "min": 4,
+        "max": 20
+      },
+      "allowedMechanics": [
+        "sliding",
+        "constrained",
+        "dependent"
+      ],
+      "requiredMechanics": [
+        "dependent"
+      ],
+      "primaryInsight": "Combining sliding, constrained, dependent",
+      "secondaryInsights": [],
+      "learningObjective": "Apply dependent within previously learned rules",
+      "progressionRole": "TEACH",
+      "introducedMechanic": "dependent",
+      "preferred": {
+        "difficultyScore": 35,
+        "maxSimilarity": 0.9
+      }
+    },
+    "optimalMoves": 6
+  },
+  {
+    "level": {
+      "id": 41,
+      "cols": 3,
+      "rows": 4,
+      "blocks": [
+        {
+          "id": "m1",
+          "color": "red",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "simple"
+        },
+        {
+          "id": "m2",
+          "color": "blue",
+          "position": [
+            0,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "dependent",
+          "dependsOn": "m1"
+        },
+        {
+          "id": "m3",
+          "color": "green",
+          "position": [
+            2,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "simple"
+        },
+        {
+          "id": "m4",
+          "color": "yellow",
+          "position": [
+            0,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "simple"
+        },
+        {
+          "id": "o1",
+          "color": "red",
+          "position": [
+            2,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        }
+      ],
+      "exits": [
+        {
+          "side": "LEFT",
+          "index": 1
+        }
+      ],
+      "parMoves": 11,
+      "pack": "hard"
+    },
+    "contract": {
+      "schemaVersion": "2.0.0",
+      "requiredEvidence": [
+        {
+          "id": "sliding",
+          "claim": "sliding-required",
+          "scope": "ALL_WINNING_PATHS"
+        },
+        {
+          "id": "teaching",
+          "claim": "obstacle-interaction",
+          "scope": "ALL_WINNING_PATHS"
+        }
+      ],
+      "primaryEvidenceId": "teaching",
+      "contractId": "slot-041",
+      "targetDifficulty": "HARD",
+      "grid": {
+        "minCols": 3,
+        "maxCols": 8,
+        "minRows": 3,
+        "maxRows": 8
+      },
+      "optimalMoves": {
+        "min": 5,
+        "max": 26
+      },
+      "allowedMechanics": [
+        "sliding",
+        "constrained",
+        "dependent",
+        "obstacle"
+      ],
+      "requiredMechanics": [
+        "obstacle"
+      ],
+      "primaryInsight": "Combining sliding, constrained, dependent, obstacle",
+      "secondaryInsights": [],
+      "learningObjective": "Apply obstacle within previously learned rules",
+      "progressionRole": "TEACH",
+      "introducedMechanic": "obstacle",
+      "preferred": {
+        "difficultyScore": 50,
+        "maxSimilarity": 0.9
+      }
+    },
+    "optimalMoves": 11
+  },
+  {
+    "level": {
+      "id": 55,
+      "cols": 5,
+      "rows": 8,
+      "blocks": [
+        {
+          "id": "m1",
+          "color": "purple",
+          "position": [
+            2,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "constrained",
+          "direction": "RIGHT"
+        },
+        {
+          "id": "m2",
+          "color": "yellow",
+          "position": [
+            3,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "dependent",
+          "dependsOn": "m1"
+        },
+        {
+          "id": "m3",
+          "color": "orange",
+          "position": [
+            4,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "constrained",
+          "direction": "RIGHT"
+        },
+        {
+          "id": "m4",
+          "color": "orange",
+          "position": [
+            2,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "constrained",
+          "direction": "RIGHT"
+        },
+        {
+          "id": "m5",
+          "color": "purple",
+          "position": [
+            3,
+            5
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "constrained",
+          "direction": "RIGHT"
+        },
+        {
+          "id": "m6",
+          "color": "red",
+          "position": [
+            1,
+            7
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "constrained",
+          "direction": "RIGHT"
+        },
+        {
+          "id": "m7",
+          "color": "orange",
+          "position": [
+            3,
+            6
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "constrained",
+          "direction": "RIGHT"
+        },
+        {
+          "id": "m8",
+          "color": "blue",
+          "position": [
+            4,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "lock",
+          "unlockAt": 2
+        }
+      ],
+      "exits": [
+        {
+          "side": "RIGHT",
+          "index": 3
+        },
+        {
+          "side": "RIGHT",
+          "index": 2
+        },
+        {
+          "side": "RIGHT",
+          "index": 1
+        },
+        {
+          "side": "RIGHT",
+          "index": 4
+        },
+        {
+          "side": "RIGHT",
+          "index": 5
+        },
+        {
+          "side": "RIGHT",
+          "index": 7
+        },
+        {
+          "side": "RIGHT",
+          "index": 6
+        },
+        {
+          "side": "RIGHT",
+          "index": 0
+        }
+      ],
+      "parMoves": 1,
+      "pack": "expert"
+    },
+    "contract": {
+      "schemaVersion": "2.0.0",
+      "requiredEvidence": [
+        {
+          "id": "sliding",
+          "claim": "sliding-required",
+          "scope": "ALL_WINNING_PATHS"
+        },
+        {
+          "id": "teaching",
+          "claim": "lock-planning",
+          "scope": "COUNTERFACTUAL_EFFECT"
+        }
+      ],
+      "primaryEvidenceId": "teaching",
+      "contractId": "slot-055",
+      "targetDifficulty": "EXPERT",
+      "grid": {
+        "minCols": 3,
+        "maxCols": 9,
+        "minRows": 3,
+        "maxRows": 9
+      },
+      "optimalMoves": {
+        "min": 6,
+        "max": 32
+      },
+      "allowedMechanics": [
+        "sliding",
+        "constrained",
+        "dependent",
+        "obstacle",
+        "lock"
+      ],
+      "requiredMechanics": [
+        "lock"
+      ],
+      "primaryInsight": "Combining sliding, constrained, dependent, obstacle, lock",
+      "secondaryInsights": [],
+      "learningObjective": "Apply lock within previously learned rules",
+      "progressionRole": "TEACH",
+      "introducedMechanic": "lock",
+      "preferred": {
+        "difficultyScore": 65,
+        "maxSimilarity": 0.9
+      }
+    },
+    "optimalMoves": 8
+  },
+  {
+    "level": {
+      "id": 68,
+      "cols": 9,
+      "rows": 9,
+      "blocks": [
+        {
+          "id": "o1",
+          "color": "red",
+          "position": [
+            0,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o2",
+          "color": "red",
+          "position": [
+            1,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o3",
+          "color": "red",
+          "position": [
+            2,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o4",
+          "color": "red",
+          "position": [
+            3,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o5",
+          "color": "red",
+          "position": [
+            4,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o6",
+          "color": "red",
+          "position": [
+            5,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o7",
+          "color": "red",
+          "position": [
+            6,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o8",
+          "color": "red",
+          "position": [
+            7,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o9",
+          "color": "red",
+          "position": [
+            8,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o10",
+          "color": "red",
+          "position": [
+            0,
+            6
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o11",
+          "color": "red",
+          "position": [
+            1,
+            6
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o12",
+          "color": "red",
+          "position": [
+            2,
+            6
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o13",
+          "color": "red",
+          "position": [
+            3,
+            6
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o14",
+          "color": "red",
+          "position": [
+            4,
+            6
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o15",
+          "color": "red",
+          "position": [
+            5,
+            6
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o16",
+          "color": "red",
+          "position": [
+            6,
+            6
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o17",
+          "color": "red",
+          "position": [
+            7,
+            6
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o18",
+          "color": "red",
+          "position": [
+            8,
+            6
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o19",
+          "color": "red",
+          "position": [
+            6,
+            5
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "m1",
+          "color": "green",
+          "position": [
+            3,
+            5
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "constrained",
+          "direction": "RIGHT"
+        },
+        {
+          "id": "m2",
+          "color": "orange",
+          "position": [
+            2,
+            5
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "dependent",
+          "dependsOn": "m1"
+        },
+        {
+          "id": "m3",
+          "color": "orange",
+          "position": [
+            1,
+            5
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "lock",
+          "unlockAt": 2
+        },
+        {
+          "id": "m4",
+          "color": "purple",
+          "position": [
+            0,
+            5
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "dependent",
+          "dependsOn": "m3"
+        }
+      ],
+      "exits": [
+        {
+          "side": "RIGHT",
+          "index": 5
+        }
+      ],
+      "parMoves": 1,
+      "pack": "expert",
+      "iceCells": [
+        [
+          5,
+          5
+        ]
+      ]
+    },
+    "contract": {
+      "schemaVersion": "2.0.0",
+      "requiredEvidence": [
+        {
+          "id": "sliding",
+          "claim": "sliding-required",
+          "scope": "ALL_WINNING_PATHS"
+        },
+        {
+          "id": "teaching",
+          "claim": "ice-push",
+          "scope": "ALL_WINNING_PATHS"
+        }
+      ],
+      "primaryEvidenceId": "teaching",
+      "contractId": "slot-068",
+      "targetDifficulty": "EXPERT",
+      "grid": {
+        "minCols": 3,
+        "maxCols": 10,
+        "minRows": 3,
+        "maxRows": 10
+      },
+      "optimalMoves": {
+        "min": 7,
+        "max": 38
+      },
+      "allowedMechanics": [
+        "sliding",
+        "constrained",
+        "dependent",
+        "obstacle",
+        "lock",
+        "ice"
+      ],
+      "requiredMechanics": [
+        "ice"
+      ],
+      "primaryInsight": "Combining sliding, constrained, dependent, obstacle, lock, ice",
+      "secondaryInsights": [],
+      "learningObjective": "Apply ice within previously learned rules",
+      "progressionRole": "TEACH",
+      "introducedMechanic": "ice",
+      "preferred": {
+        "difficultyScore": 80,
+        "maxSimilarity": 0.9
+      }
+    },
+    "optimalMoves": 8
+  },
+  {
+    "level": {
+      "id": 80,
+      "cols": 10,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "o1",
+          "color": "red",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o2",
+          "color": "red",
+          "position": [
+            1,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o3",
+          "color": "red",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o4",
+          "color": "red",
+          "position": [
+            3,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o5",
+          "color": "red",
+          "position": [
+            4,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o6",
+          "color": "red",
+          "position": [
+            5,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o7",
+          "color": "red",
+          "position": [
+            6,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o8",
+          "color": "red",
+          "position": [
+            7,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o9",
+          "color": "red",
+          "position": [
+            8,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o10",
+          "color": "red",
+          "position": [
+            9,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o11",
+          "color": "red",
+          "position": [
+            0,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o12",
+          "color": "red",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o13",
+          "color": "red",
+          "position": [
+            2,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o14",
+          "color": "red",
+          "position": [
+            3,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o15",
+          "color": "red",
+          "position": [
+            4,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o16",
+          "color": "red",
+          "position": [
+            5,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o17",
+          "color": "red",
+          "position": [
+            6,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o18",
+          "color": "red",
+          "position": [
+            7,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o19",
+          "color": "red",
+          "position": [
+            8,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o20",
+          "color": "red",
+          "position": [
+            9,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "o21",
+          "color": "red",
+          "position": [
+            7,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "obstacle"
+        },
+        {
+          "id": "m1",
+          "color": "blue",
+          "position": [
+            5,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "constrained",
+          "direction": "RIGHT"
+        },
+        {
+          "id": "m2",
+          "color": "yellow",
+          "position": [
+            3,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "dependent",
+          "dependsOn": "m1"
+        },
+        {
+          "id": "m3",
+          "color": "green",
+          "position": [
+            1,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "lock",
+          "unlockAt": 2
+        },
+        {
+          "id": "m4",
+          "color": "yellow",
+          "position": [
+            0,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "type": "dependent",
+          "dependsOn": "m3"
+        }
+      ],
+      "exits": [
+        {
+          "side": "RIGHT",
+          "index": 1
+        }
+      ],
+      "parMoves": 1,
+      "pack": "expert",
+      "iceCells": [
+        [
+          6,
+          1
+        ]
+      ]
+    },
+    "contract": {
+      "schemaVersion": "2.0.0",
+      "requiredEvidence": [
+        {
+          "id": "sliding",
+          "claim": "sliding-required",
+          "scope": "ALL_WINNING_PATHS"
+        },
+        {
+          "id": "teaching",
+          "claim": "ice-push",
+          "scope": "ALL_WINNING_PATHS"
+        },
+        {
+          "id": "finale-ice",
+          "claim": "ice-push",
+          "scope": "ALL_WINNING_PATHS"
+        },
+        {
+          "id": "finale-sequencing",
+          "claim": "dependency-planning",
+          "scope": "COUNTERFACTUAL_EFFECT"
+        },
+        {
+          "id": "finale-direction",
+          "claim": "direction-interaction",
+          "scope": "COUNTERFACTUAL_EFFECT"
+        },
+        {
+          "id": "finale-lock",
+          "claim": "lock-planning",
+          "scope": "COUNTERFACTUAL_EFFECT"
+        },
+        {
+          "id": "finale-obstacle",
+          "claim": "obstacle-interaction",
+          "scope": "ALL_WINNING_PATHS"
+        }
+      ],
+      "primaryEvidenceId": "teaching",
+      "contractId": "slot-080",
+      "targetDifficulty": "EXPERT",
+      "grid": {
+        "minCols": 3,
+        "maxCols": 10,
+        "minRows": 3,
+        "maxRows": 10
+      },
+      "optimalMoves": {
+        "min": 7,
+        "max": 38
+      },
+      "allowedMechanics": [
+        "sliding",
+        "constrained",
+        "dependent",
+        "obstacle",
+        "lock",
+        "ice"
+      ],
+      "requiredMechanics": [
+        "sliding",
+        "constrained",
+        "dependent",
+        "obstacle",
+        "lock",
+        "ice"
+      ],
+      "primaryInsight": "Combining sliding, constrained, dependent, obstacle, lock, ice",
+      "secondaryInsights": [],
+      "learningObjective": "Apply ice within previously learned rules",
+      "progressionRole": "MASTERY",
+      "preferred": {
+        "difficultyScore": 80,
+        "maxSimilarity": 0.9
+      }
+    },
+    "optimalMoves": 8
+  }
+]

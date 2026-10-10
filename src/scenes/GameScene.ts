@@ -1,3 +1,5 @@
+import { playerTelemetry } from '../systems/PlayerTelemetry';
+import { IS_GENERATED_CAMPAIGN, GENERATED_TUTORIALS } from '../config/Levels';
 import Phaser from "phaser";
 import { SCENE_KEYS, HUD_HEIGHT, COLORS } from "../config/Constants";
 import { useGameStore } from "../managers/GameStateManager";
@@ -82,6 +84,17 @@ export class GameScene extends Phaser.Scene {
 
     await AdManager.preLevelInterstitial();
     SDKManager.gameplayStart();
+    playerTelemetry.setPaused(false);
+    const pauseTelemetry=()=>playerTelemetry.setPaused(true);
+    const resumeTelemetry=()=>playerTelemetry.setPaused(false);
+    this.events.on(Phaser.Scenes.Events.PAUSE,pauseTelemetry);
+    this.events.on(Phaser.Scenes.Events.RESUME,resumeTelemetry);
+    playerTelemetry.start(store.currentLevel, !!this.registry.get("autoplaySolution"));
+    this.events.once(Phaser.Scenes.Events.SHUTDOWN,()=>{
+      playerTelemetry.finish(false);
+      this.events.off(Phaser.Scenes.Events.PAUSE,pauseTelemetry);
+      this.events.off(Phaser.Scenes.Events.RESUME,resumeTelemetry);
+    });
 
     dottedBackground(this);
     this.input.topOnly = true;
@@ -151,7 +164,8 @@ export class GameScene extends Phaser.Scene {
   private maybeShowTutorial(): void {
     const store = useGameStore.getState();
     const level = store.currentLevel;
-    const cfg = LEVEL_TUTORIALS[level];
+    const generatedTutorial = GENERATED_TUTORIALS[level];
+    const cfg = IS_GENERATED_CAMPAIGN ? generatedTutorial && { title: generatedTutorial.title, message: generatedTutorial.body } : LEVEL_TUTORIALS[level];
     if (!cfg) return;
     if (store.hasSeenTutorial(level)) return;
     this.tutorial = new LevelTutorial(this);
@@ -333,6 +347,7 @@ export class GameScene extends Phaser.Scene {
       ui.danger,
       () => {
         if (this.watchPlaying) return;
+        playerTelemetry.increment("restartCount");
         this.scene.restart();
       },
       { textSize: 32 },
@@ -386,6 +401,7 @@ export class GameScene extends Phaser.Scene {
     }
     store.startWatchCooldown();
 
+    playerTelemetry.increment("hintCount");
     Analytics.log("hint_used", { type: "watch_solution" });
     this.refreshWatchLabel();
 
@@ -408,6 +424,7 @@ export class GameScene extends Phaser.Scene {
       return;
     }
 
+    playerTelemetry.increment("hintCount");
     Analytics.log("hint_used", { type: "watch_solution" });
     this.refreshWatchLabel();
 
@@ -435,7 +452,14 @@ export class GameScene extends Phaser.Scene {
       await this.waitUntilIdle();
       if (token !== this.autoplayToken) return;
       const block = this.blocks.find((b) => b.blockId === mv.blockId);
-      if (!block || block.removed) continue;
+      if (!block || block.removed) {
+        console.error('Solution replay failed: missing/removed block', mv.blockId);
+        break;
+      }
+      if (this.movement.slide(block, this.grid, mv.dir, this.blocks).kind === 'invalid') {
+        console.error('Solution replay failed: invalid action', mv);
+        break;
+      }
       this.autoplayActive = true;
       AudioManager.aiStep();
       this.handleSwipe(block, mv.dir);
@@ -516,6 +540,7 @@ export class GameScene extends Phaser.Scene {
       this.grid.place(block);
       block.moveToCell(this.grid, entry.prevPos[0], entry.prevPos[1], true, 1);
       AudioManager.uiTap();
+      playerTelemetry.increment("undoCount");
       Analytics.log("hint_used", { type: "undo" });
       this.deadEndShown = false;
       return;
@@ -551,6 +576,7 @@ export class GameScene extends Phaser.Scene {
     });
     const store = useGameStore.getState();
     store.incMoves();
+    playerTelemetry.increment("moveCount");
     this.movesText.setText(`MOVES: ${useGameStore.getState().movesThisLevel}`);
 
     if (result.kind === "slide") {
@@ -706,6 +732,7 @@ export class GameScene extends Phaser.Scene {
     if (remaining.length === 0) return;
     if (!this.movement.anyValidMove(this.blocks, this.grid)) {
       this.deadEndShown = true;
+      playerTelemetry.increment("deadEndCount");
       Analytics.log("level_failed", {
         reason: "dead_end",
         moves: useGameStore.getState().movesThisLevel,
@@ -718,6 +745,7 @@ export class GameScene extends Phaser.Scene {
   }
 
   private endLevel(result: "WIN" | "STUCK"): void {
+    playerTelemetry.finish(result === "WIN");
     const store = useGameStore.getState();
     if (result === "WIN") {
       AudioManager.win();

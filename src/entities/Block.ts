@@ -3,7 +3,7 @@ import { BlockData, Color, BlockType, ExitSide, Direction } from '../types/Game'
 import { TOKENS } from '../ui/Theme';
 import { Grid } from './Grid';
 import { AudioManager } from '../managers/AudioManager';
-import { getEquippedPalette } from '../config/Palettes';
+import { blockColor, BLOCK_FILLS } from '../config/BlockColors';
 
 export class Block extends Phaser.GameObjects.Container {
   public readonly blockId: string;
@@ -35,7 +35,7 @@ export class Block extends Phaser.GameObjects.Container {
     super(scene, px, py);
 
     this.blockId = data.id;
-    this.color = data.color;
+    this.color = blockColor(data.type);
     this.gridPos = [c, r];
     this.size = [w, h];
     this.type = data.type ?? 'simple';
@@ -75,11 +75,8 @@ export class Block extends Phaser.GameObjects.Container {
   }
 
   private fillColor(): number {
-    const p = getEquippedPalette();
     if (this.type === 'obstacle') return TOKENS.obstacleGray;
-    if (this.type === 'constrained') return p.ui.accent;
-    if (this.type === 'dependent') return p.ui.secondary;
-    return p.colors[this.color];
+    return BLOCK_FILLS[this.color];
   }
 
   public refreshLock(grid: Grid): void {

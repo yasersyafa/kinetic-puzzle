@@ -1321,7 +1321,8 @@ function runBake(repoRoot: string): void {
 
   const sortedEntries = [...store.values()].sort((a, b) => a.id - b.id);
   const out = emitLevelsTs(sortedEntries);
-  const outPath = resolve(repoRoot, 'src', 'config', 'Levels.ts');
+  const outPath = resolve(repoRoot, 'generated', 'legacy', 'ConstructiveLevels.ts');
+  mkdirSync(dirname(outPath), { recursive: true });
   writeFileSync(outPath, out, 'utf8');
   console.log(`[constructive] Wrote ${outPath}`);
 }

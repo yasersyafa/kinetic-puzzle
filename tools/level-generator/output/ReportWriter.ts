@@ -1,0 +1,16 @@
+import { writeFileSync } from 'node:fs';
+import { safeOutput } from './Artifacts';
+import type { RunCheckpoint } from '../Pipeline';
+const escape=(value:unknown)=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]!));
+export function writeHumanReport(path:string,run:Partial<RunCheckpoint>):void {
+  const accepted=run.accepted??[];
+  const point=(value:number,i:number)=>`${50+i*850/Math.max(1,accepted.length-1)},${250-value*2}`;
+  const actual=accepted.map((a,i)=>point(a.report.difficulty?.score??0,i)).join(' ');
+  const targets=accepted.map((a,i)=>point(a.candidate.contract.preferred.difficultyScore,i)).join(' ');
+  const models=[...new Set(accepted.map(a=>a.report.difficulty?.modelVersion??'unknown'))];
+  const rows=accepted.map(a=>`<tr><td>${a.candidate.level.id}</td><td>${escape(a.candidate.contract.progressionRole)}</td><td>${a.report.solver?.optimalMoves??'?'}</td><td>${a.report.difficulty?.score.toFixed(1)??'?'} / ${a.candidate.contract.preferred.difficultyScore}</td><td>${escape(a.report.difficulty?.category??'?')} / ${escape(a.candidate.contract.targetDifficulty)}</td><td>${a.report.evidence.filter(e=>e.status==='VERIFIED').length}/${a.report.evidence.length}</td><td>${escape(a.report.decision)}</td></tr>`).join('');
+  const softFindings=accepted.flatMap(a=>(a.report.softFindings??[]).map(f=>({levelId:a.candidate.level.id,finding:f})));
+  const partialCoverage=accepted.filter(a=>!a.report.difficulty?.deadEndRiskVerified).map(a=>a.candidate.level.id);
+  const html=`<!doctype html><html lang="en"><meta charset="utf-8"><title>Level generation report</title><style>body{font:16px system-ui;max-width:1100px;margin:40px auto;padding:20px;color:#17212b}table{border-collapse:collapse;width:100%}td,th{padding:8px;border-bottom:1px solid #ddd;text-align:left}svg{width:100%;height:auto}pre{white-space:pre-wrap}</style><h1>Level generation report</h1><p>Status: ${escape(run.status??'AUDIT')} · Candidates: ${run.candidateCount??0} · Eligible levels: ${accepted.length}</p><h2>Difficulty prediction and curriculum target</h2><p>Models: ${escape(models.join(', '))}. Blue: predicted; dashed gray: preferred target. Scores are estimates; human validation is recorded separately in calibration reports.</p><svg viewBox="0 0 950 300" role="img" aria-label="Predicted and target difficulty by level"><path d="M50 50V250H900" fill="none" stroke="#777"/><text x="15" y="55">100</text><text x="30" y="250">0</text><text x="420" y="290">Campaign position</text><polyline points="${targets}" fill="none" stroke="#777" stroke-width="2" stroke-dasharray="6 5"/><polyline points="${actual}" fill="none" stroke="#245fc6" stroke-width="3"/></svg><table><thead><tr><th>Level</th><th>Role</th><th>Optimal moves</th><th>Score / target</th><th>Category / target</th><th>Verified evidence</th><th>Gate</th></tr></thead><tbody>${rows}</tbody></table><h2>Soft target findings and incomplete metric coverage</h2><pre>${escape(JSON.stringify({softFindings,partialDeadEndCoverage:partialCoverage},null,2))}</pre><h2>Unresolved and rejection reasons</h2><pre>${escape(JSON.stringify({reasons:run.reasons,rejections:run.rejections},null,2))}</pre></html>`;
+  writeFileSync(safeOutput(path),html,'utf8');
+}

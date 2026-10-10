@@ -1,0 +1,279 @@
+[
+  {
+    "schemaVersion": "2.0.0",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "shared-exit-1",
+    "targetDifficulty": "TUTORIAL",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 2,
+      "max": 35
+    },
+    "allowedMechanics": [
+      "sliding"
+    ],
+    "requiredMechanics": [
+      "sliding"
+    ],
+    "primaryInsight": "One shared exit",
+    "secondaryInsights": [],
+    "learningObjective": "Move every block through the same exit.",
+    "progressionRole": "TEACH",
+    "introducedMechanic": "sliding",
+    "preferred": {
+      "difficultyScore": 7,
+      "maxSimilarity": 0.95
+    },
+    "requiredEvidence": [
+      {
+        "id": "mechanic",
+        "claim": "sliding-required",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "mechanic"
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "shared-exit-2",
+    "targetDifficulty": "MEDIUM",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 8,
+      "max": 35
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle"
+    ],
+    "requiredMechanics": [
+      "obstacle"
+    ],
+    "primaryInsight": "Plan which block must remain before using the shared exit",
+    "secondaryInsights": [],
+    "learningObjective": "All blocks share one exit. A block can be needed as a stopper before it leaves.",
+    "progressionRole": "TEACH",
+    "introducedMechanic": "obstacle",
+    "preferred": {
+      "difficultyScore": 14,
+      "maxSimilarity": 0.95
+    },
+    "mandatoryDecisionPoints": 3,
+    "requiredEvidence": [
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "mechanic",
+        "claim": "obstacle-interaction",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "mechanic"
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "shared-exit-3",
+    "targetDifficulty": "MEDIUM",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 10,
+      "max": 35
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "constrained"
+    ],
+    "primaryInsight": "Plan which block must remain before using the shared exit",
+    "secondaryInsights": [],
+    "learningObjective": "All blocks share one exit. A block can be needed as a stopper before it leaves.",
+    "progressionRole": "TEACH",
+    "introducedMechanic": "constrained",
+    "preferred": {
+      "difficultyScore": 21,
+      "maxSimilarity": 0.95
+    },
+    "mandatoryDecisionPoints": 3,
+    "requiredEvidence": [
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "mechanic",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      }
+    ],
+    "primaryEvidenceId": "mechanic"
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "shared-exit-4",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 12,
+      "max": 35
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained",
+      "dependent"
+    ],
+    "requiredMechanics": [
+      "dependent"
+    ],
+    "primaryInsight": "Plan which block must remain before using the shared exit",
+    "secondaryInsights": [],
+    "learningObjective": "All blocks share one exit. A block can be needed as a stopper before it leaves.",
+    "progressionRole": "TEACH",
+    "introducedMechanic": "dependent",
+    "preferred": {
+      "difficultyScore": 28,
+      "maxSimilarity": 0.95
+    },
+    "mandatoryDecisionPoints": 3,
+    "requiredEvidence": [
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "mechanic",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      }
+    ],
+    "primaryEvidenceId": "mechanic"
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "shared-exit-5",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 14,
+      "max": 35
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained",
+      "dependent",
+      "lock"
+    ],
+    "requiredMechanics": [
+      "lock"
+    ],
+    "primaryInsight": "Plan which block must remain before using the shared exit",
+    "secondaryInsights": [],
+    "learningObjective": "All blocks share one exit. A block can be needed as a stopper before it leaves.",
+    "progressionRole": "TEACH",
+    "introducedMechanic": "lock",
+    "preferred": {
+      "difficultyScore": 35,
+      "maxSimilarity": 0.95
+    },
+    "mandatoryDecisionPoints": 3,
+    "requiredEvidence": [
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "mechanic",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      }
+    ],
+    "primaryEvidenceId": "mechanic"
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "shared-exit-6",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 16,
+      "max": 35
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained",
+      "dependent",
+      "lock"
+    ],
+    "requiredMechanics": [
+      "lock"
+    ],
+    "primaryInsight": "Plan which block must remain before using the shared exit",
+    "secondaryInsights": [],
+    "learningObjective": "All blocks share one exit. A block can be needed as a stopper before it leaves.",
+    "progressionRole": "MASTERY",
+    "preferred": {
+      "difficultyScore": 42,
+      "maxSimilarity": 0.95
+    },
+    "mandatoryDecisionPoints": 3,
+    "requiredEvidence": [
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "mechanic",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      }
+    ],
+    "primaryEvidenceId": "mechanic"
+  }
+]

@@ -13,8 +13,10 @@ const dpr =
     ? Math.min(3, Math.max(1, window.devicePixelRatio || 1))
     : 1;
 
+declare const __TEST_HEADLESS__: boolean;
+
 export const gameConfig: Phaser.Types.Core.GameConfig = {
-  type: Phaser.AUTO,
+  type: typeof __TEST_HEADLESS__ !== 'undefined' && __TEST_HEADLESS__ ? Phaser.HEADLESS : Phaser.AUTO,
   parent: "game",
   backgroundColor: "#fbf3d5",
   title: "Static Puzzle",

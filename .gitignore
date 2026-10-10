@@ -12,3 +12,8 @@ marketing/*.png
 .vscode/
 .idea/
 *.tsbuildinfo
+
+# Local level-generation runs, cache, and browser test output
+generated/
+test-results/
+playwright-report/

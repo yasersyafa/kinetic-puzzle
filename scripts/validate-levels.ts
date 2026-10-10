@@ -1,7 +1,10 @@
+import { validateCatalog } from '../src/core/puzzle/LevelValidator';
 import { LEVELS, PACKS } from '../src/config/Levels.ts';
 import { BlockData } from '../src/types/Game.ts';
 
-let errors = 0;
+const schemaErrors=validateCatalog(LEVELS,{packIds:PACKS.map(p=>p.id)});
+for(const issue of schemaErrors)console.error(`L${issue.levelId ?? '?'} ${issue.path}: ${issue.message}`);
+let errors = schemaErrors.length;
 
 function err(levelId: number, msg: string): void {
   console.error(`L${levelId}: ${msg}`);

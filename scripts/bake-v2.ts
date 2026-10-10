@@ -1003,6 +1003,8 @@ if (missing.length > 0) {
 // Emit Levels.ts from store (sorted by id)
 const sortedEntries = [...store.values()].sort((a, b) => a.id - b.id);
 const out = emitLevelsTs(sortedEntries);
-const outPath = resolve(REPO_ROOT, 'src', 'config', 'Levels.ts');
+// Legacy output is an unverified archive and cannot replace the runtime facade.
+const outPath = resolve(REPO_ROOT, 'generated', 'legacy', 'Levels.ts');
+mkdirSync(dirname(outPath), { recursive: true });
 writeFileSync(outPath, out, 'utf8');
 console.log(`Wrote ${outPath}`);

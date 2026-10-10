@@ -18,7 +18,7 @@ export const COLORS: Record<Color, number> = {
 };
 
 export const DRAG_THRESHOLD = 5;
-export const TOTAL_LEVELS = 80;
+export { TOTAL_LEVELS } from './CampaignSize';
 
 export const SCENE_KEYS = {
   Boot: "BootScene",

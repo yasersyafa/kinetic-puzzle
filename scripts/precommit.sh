@@ -7,9 +7,11 @@ ROOT="$(git rev-parse --show-toplevel)"
 cd "$ROOT"
 
 echo "[precommit] tsc --noEmit"
-npx tsc --noEmit
+npm run --silent typecheck
 
 echo "[precommit] npm run validate-levels"
 npm run --silent validate-levels
+
+npm test
 
 echo "[precommit] OK"

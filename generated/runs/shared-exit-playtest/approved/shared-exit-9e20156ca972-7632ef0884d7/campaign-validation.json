@@ -1,0 +1,37 @@
+{
+  "success": true,
+  "errors": [],
+  "warnings": [],
+  "difficultyCurve": [
+    {
+      "levelId": 1,
+      "score": 19.433333333333334,
+      "role": "TEACH"
+    },
+    {
+      "levelId": 2,
+      "score": 37.300000000000004,
+      "role": "TEACH"
+    },
+    {
+      "levelId": 3,
+      "score": 44.800000000000004,
+      "role": "TEACH"
+    },
+    {
+      "levelId": 4,
+      "score": 45.94166666666667,
+      "role": "TEACH"
+    },
+    {
+      "levelId": 5,
+      "score": 51.59479458450046,
+      "role": "TEACH"
+    },
+    {
+      "levelId": 6,
+      "score": 44.252941176470586,
+      "role": "MASTERY"
+    }
+  ]
+}

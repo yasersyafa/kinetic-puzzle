@@ -1,3 +1,6 @@
+import { LEVELS, SOLUTIONS } from './config/Levels';
+import { installPlaytestPanel } from './ui/PlaytestPanel';
+import { playerTelemetry } from './systems/PlayerTelemetry';
 import Phaser from 'phaser';
 import { gameConfig } from './config/GameConfig';
 import { SDKManager } from './managers/SDKManager';
@@ -7,6 +10,7 @@ import { useGameStore, PERSIST_KEY, persistedSlice, mergeCloudSnapshot } from '.
 
 declare const __BUILD_TARGET__: string;
 declare const __DEV__: boolean;
+declare const __TEST_HOOKS__: boolean;
 
 async function waitForFonts(): Promise<void> {
   if (!('fonts' in document)) return;
@@ -59,6 +63,8 @@ function emitReady(): void {
 }
 
 function installFullscreenAutoTrigger(game: Phaser.Game): void {
+  // Browser fullscreen hides the local playtest controls outside the canvas.
+  if (new URLSearchParams(location.search).get('playtest') === '1') return;
   if (typeof __BUILD_TARGET__ === 'undefined' || __BUILD_TARGET__ !== 'itch') return;
   if (!game.device.fullscreen.available) return;
 
@@ -127,6 +133,8 @@ window.addEventListener('load', async () => {
   emitProgress(20, 'Initializing...');
   patchTextResolution();
   installAudioUnlock();
+  document.addEventListener('visibilitychange',()=>playerTelemetry.setPaused(document.hidden,'visibility'));
+  window.addEventListener('pagehide',()=>playerTelemetry.finish(false));
 
   if (typeof __DEV__ !== 'undefined' && __DEV__) {
     // Dev cheats: unlock all levels + zero watch cooldown.
@@ -154,6 +162,10 @@ window.addEventListener('load', async () => {
   emitProgress(90, 'Starting game...');
   Analytics.log('session_start', { platform: SDKManager.getPlatform() });
   const game = new Phaser.Game(gameConfig);
+  installPlaytestPanel(game);
+  if (typeof __TEST_HOOKS__ !== 'undefined' && __TEST_HOOKS__) {
+    Object.assign(window, { kineticTest: { game, store: useGameStore, levels: LEVELS, solutions: SOLUTIONS } });
+  }
   installFullscreenAutoTrigger(game);
   installPlaygamaListeners(game);
 
@@ -161,3 +173,6 @@ window.addEventListener('load', async () => {
   // Fallback: emit ready when first scene becomes active.
   game.events.once(Phaser.Core.Events.STEP, () => emitReady());
 });
+
+// Explicit tester consent; local data is exported only by the tester.
+Object.assign(window, { kineticPlaytest: playerTelemetry });

@@ -1,0 +1,37 @@
+name: Level verification
+on: [push, pull_request]
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run typecheck
+      - run: npm test
+      - run: npm run levels:regression
+      - run: npm run validate-levels
+      - run: npm run build
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:browser
+      - name: Build and replay a verified generated campaign
+        run: |
+          npm run levels:build -- --count 10 --seed 42 --pool-size 2 --max-states 10000 --timeout-ms 30000 --max-run-ms 600000 --output generated/runs/ci-generated
+          campaign_file=$(rg --files generated/runs/ci-generated/approved | rg '/campaign.json$')
+          test -n "$campaign_file"
+          npm run build -- --env "campaign=$campaign_file"
+          LEVEL_TEST_CAMPAIGN="$campaign_file" LEVEL_TEST_HEADLESS=1 npm run test:browser
+      - name: Audit existing levels (unresolved statuses remain in report)
+        run: npm run levels:evaluate -- --output generated/runs/ci-audit --timeout-ms 5000 || test "$?" -eq 1
+      - name: Block unsolvable, error and replay regressions
+        run: npx tsx tools/level-generator/check-audit.ts generated/runs/ci-audit/analysis.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: level-audit
+          path: |
+            generated/runs/ci-audit
+            generated/runs/ci-generated

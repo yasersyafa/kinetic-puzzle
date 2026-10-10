@@ -6,10 +6,31 @@ const CompressionPlugin = require('compression-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const zlib = require('zlib');
+const fs = require('fs');
+const { execFileSync } = require('child_process');
 
 module.exports = (env, argv) => {
   const isProduction = argv.mode === 'production';
   const analyze = !!env?.analyze;
+  if (env?.playtest && !env?.campaign) {
+    const selection = path.resolve('generated/runs/shared-exit-playtest/latest.json');
+    if (!fs.existsSync(selection)) throw new Error('Shared-exit playtest pack is not ready. Run bun run levels:playtest:build first.');
+    env = { ...env, campaign: JSON.parse(fs.readFileSync(selection, 'utf8')).campaignPath };
+  }
+  let campaign = null;
+  if (env?.campaign) {
+    const campaignPath = path.resolve(env.campaign);
+    const generatedRoot = path.resolve('generated');
+    const realCampaign = fs.realpathSync(campaignPath);
+    if (!realCampaign.startsWith(fs.realpathSync(generatedRoot) + path.sep)) throw new Error('Campaign must be inside generated/');
+    // Embed the exact snapshot proven by the verifier, including v2 audit integrity.
+    const verified = JSON.parse(execFileSync(process.execPath,
+      ['--import', 'tsx', path.resolve('tools/level-generator/verify-export.ts'), campaignPath],
+      { encoding: 'utf8', stdio: ['ignore', 'pipe', 'inherit'], timeout: 600000, maxBuffer: 32 * 1024 * 1024 }));
+    campaign = verified.campaign;
+    if (!campaign || verified.verified !== campaign.levels.length) throw new Error('Campaign verification did not return a complete snapshot');
+    if (campaign.levels.some(level => level.exits.length !== 1 || level.blocks.some(block => block.color !== ({ simple: 'red', constrained: 'yellow', dependent: 'blue', lock: 'purple', obstacle: 'red' }[block.type || 'simple'])))) throw new Error('Generated campaigns require one shared exit and semantic block colors on every level; regenerate historical multi-exit campaigns.');
+  }
   const VALID_TARGETS = ['itch', 'poki', 'crazygames', 'gamedistribution', 'playgama', 'discord'];
   const requested = env?.target;
   // Dev mode: default to 'itch' (no SDK script loaded, no Poki/CG init) for clean localhost.
@@ -36,6 +57,9 @@ module.exports = (env, argv) => {
     new webpack.DefinePlugin({
       __BUILD_TARGET__: JSON.stringify(buildTarget),
       __DEV__: JSON.stringify(!isProduction),
+      __GENERATED_CAMPAIGN__: JSON.stringify(campaign),
+      __TEST_HOOKS__: JSON.stringify(!!env?.testhooks),
+      __TEST_HEADLESS__: JSON.stringify(!!env?.testhooks && !!env?.headless),
       'process.env.VITE_DISCORD_CLIENT_ID': JSON.stringify(
         process.env.VITE_DISCORD_CLIENT_ID || ''
       ),
@@ -159,7 +183,7 @@ module.exports = (env, argv) => {
       port: 3000,
       hot: true,
       compress: true,
-      open: false,
+      open: env?.playtest ? { target: '/?playtest=1' } : false,
       host: '0.0.0.0',
     },
     devtool: isProduction ? false : 'source-map',

@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "2.0.0",
+  "exporterVersion": "2.2.0",
+  "campaignId": "shared-exit",
+  "campaignVersion": "9e20156ca972",
+  "auditVersion": "7632ef0884d7",
+  "contentHash": "9e20156ca972559cc05f309f07dccb70b27da0c855b29bfa1008dd5e78e48a27",
+  "auditHash": "7632ef0884d70e02b8522f37caade88ab983ce3d67ebab1321055b6aca440612",
+  "provenance": [
+    {
+      "seed": 20261010,
+      "attempt": 2,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261010,
+      "attempt": 77,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261010,
+      "attempt": 60,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261010,
+      "attempt": 24,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261010,
+      "attempt": 129,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261010,
+      "attempt": 61,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    }
+  ],
+  "files": {
+    "campaign.json": "9041e00e85a17c2eb2e3cbaf117cf47b561422026585dd94a8ca5c739db995af",
+    "contracts.json": "4f23c826d0dfb7d582d9076c1d23c8c0ef6674d5c55a8aea5f3eeb57a036bf41",
+    "reports.json": "bded8fec3be678eb6dc58b972c314433628073ad49cefa4cd584e6f9141a47a3",
+    "contexts.json": "de79c09f53029c6ff078ebd1fae69cd1dce2d80a2aed1b0bbbc0b5e69379ca92",
+    "campaign-validation.json": "a1c9c183c9c6415df045275afa5542ef07afa25d91e2b87d7e0a06dccf6a5687",
+    "predictions.json": "cb1b3a2f853d4fa46523fede060dd9c48ce2c38d0d017dea5a3c04d9b48d27ae",
+    "generation.json": "d0ae8bbb69354a14b2043389a0185932288d0446c61082d4165479b40e5e04c6"
+  }
+}

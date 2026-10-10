@@ -1,0 +1,110 @@
+[
+  {
+    "campaignId": "shared-exit",
+    "campaignVersion": "9e20156ca972",
+    "levelId": 1,
+    "levelVersion": "ddd6718f",
+    "score": 19.433333333333334,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 3,
+      "branching": 6.333333333333333,
+      "dependency": 0,
+      "repositioning": 0,
+      "deadEnds": 0,
+      "mechanics": 0,
+      "novelty": 1,
+      "pathComplexity": 0.6666666666666666
+    }
+  },
+  {
+    "campaignId": "shared-exit",
+    "campaignVersion": "9e20156ca972",
+    "levelId": 2,
+    "levelVersion": "4fda7308",
+    "score": 37.300000000000004,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 10,
+      "branching": 4.9,
+      "dependency": 0,
+      "repositioning": 5,
+      "deadEnds": 0,
+      "mechanics": 1,
+      "novelty": 0.75,
+      "pathComplexity": 0.6
+    }
+  },
+  {
+    "campaignId": "shared-exit",
+    "campaignVersion": "9e20156ca972",
+    "levelId": 3,
+    "levelVersion": "fc4fceba",
+    "score": 44.800000000000004,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 15,
+      "branching": 5.933333333333334,
+      "dependency": 0,
+      "repositioning": 9,
+      "deadEnds": 0,
+      "mechanics": 2,
+      "novelty": 0.16666666666666666,
+      "pathComplexity": 0.5333333333333333
+    }
+  },
+  {
+    "campaignId": "shared-exit",
+    "campaignVersion": "9e20156ca972",
+    "levelId": 4,
+    "levelVersion": "bf587237",
+    "score": 45.94166666666667,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 12,
+      "branching": 6.25,
+      "dependency": 1,
+      "repositioning": 5,
+      "deadEnds": 0,
+      "mechanics": 2,
+      "novelty": 0.16666666666666666,
+      "pathComplexity": 0.6666666666666666
+    }
+  },
+  {
+    "campaignId": "shared-exit",
+    "campaignVersion": "9e20156ca972",
+    "levelId": 5,
+    "levelVersion": "15ac98d1",
+    "score": 51.59479458450046,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 17,
+      "branching": 4.352941176470588,
+      "dependency": 1,
+      "repositioning": 9,
+      "deadEnds": 0.00992063492063492,
+      "mechanics": 3,
+      "novelty": 0.125,
+      "pathComplexity": 0.47058823529411764
+    }
+  },
+  {
+    "campaignId": "shared-exit",
+    "campaignVersion": "9e20156ca972",
+    "levelId": 6,
+    "levelVersion": "a22bcb36",
+    "score": 44.252941176470586,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 17,
+      "branching": 4.764705882352941,
+      "dependency": 0,
+      "repositioning": 10,
+      "deadEnds": 0,
+      "mechanics": 2,
+      "novelty": 0,
+      "pathComplexity": 0.35294117647058826
+    }
+  }
+]

@@ -1,12 +1,14 @@
+import { campaignStorage } from './CampaignStorage';
 import { createStore } from 'zustand/vanilla';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { TOTAL_LEVELS } from '../config/Constants';
+import { CAMPAIGN_ID, CAMPAIGN_VERSION, IS_GENERATED_CAMPAIGN } from '../config/Levels';
 
 declare const __DEV__: boolean;
 const DEV = typeof __DEV__ !== 'undefined' && __DEV__;
 
 export const WATCH_COOLDOWN_MS = 3 * 60 * 1000;
-export const PERSIST_KEY = 'fpp-game-state-v2';
+export const PERSIST_KEY = IS_GENERATED_CAMPAIGN ? `fpp-game-state-v2-${CAMPAIGN_ID}-${CAMPAIGN_VERSION}` : 'fpp-game-state-v2';
 
 export type StarCount = 1 | 2 | 3;
 
@@ -47,6 +49,8 @@ interface GameState {
 
 export function persistedSlice(s: GameState): Record<string, unknown> {
   return {
+    campaignId: CAMPAIGN_ID,
+    campaignVersion: CAMPAIGN_VERSION,
     currentLevel: s.currentLevel,
     unlockedLevel: s.unlockedLevel,
     sfxEnabled: s.sfxEnabled,
@@ -59,6 +63,8 @@ export function persistedSlice(s: GameState): Record<string, unknown> {
 }
 
 interface CloudSnapshot {
+  campaignId?: string;
+  campaignVersion?: string;
   currentLevel?: number;
   unlockedLevel?: number;
   sfxEnabled?: boolean;
@@ -74,6 +80,8 @@ export function mergeCloudSnapshot(cloud: unknown): boolean {
   // Zustand persist serializes as { state: {...}, version: n }
   const root = cloud as { state?: CloudSnapshot } & CloudSnapshot;
   const snap: CloudSnapshot = root.state ?? root;
+  if (IS_GENERATED_CAMPAIGN && (snap.campaignId !== CAMPAIGN_ID || snap.campaignVersion !== CAMPAIGN_VERSION)) return false;
+  if (!IS_GENERATED_CAMPAIGN && snap.campaignId && snap.campaignId !== CAMPAIGN_ID) return false;
   const cur = store.getState();
 
   const cloudStars = snap.bestStars
@@ -188,7 +196,7 @@ const store = createStore<GameState>()(
     }),
     {
       name: PERSIST_KEY,
-      storage: createJSONStorage(() => localStorage),
+      storage: createJSONStorage(() => campaignStorage(localStorage)),
       partialize: (s) => persistedSlice(s) as Partial<GameState>,
       migrate: (persisted: unknown) => {
         if (persisted && typeof persisted === 'object') {

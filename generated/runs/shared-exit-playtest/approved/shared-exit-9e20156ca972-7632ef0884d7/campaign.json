@@ -1,0 +1,940 @@
+{
+  "schemaVersion": "2.0.0",
+  "campaignId": "shared-exit",
+  "campaignVersion": "9e20156ca972",
+  "contentHash": "9e20156ca972559cc05f309f07dccb70b27da0c855b29bfa1008dd5e78e48a27",
+  "auditHash": "7632ef0884d70e02b8522f37caade88ab983ce3d67ebab1321055b6aca440612",
+  "auditVersion": "7632ef0884d7",
+  "rulesVersion": "1.0.0",
+  "levels": [
+    {
+      "id": 1,
+      "cols": 4,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            1,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            1,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            1,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "BOTTOM",
+          "index": 1
+        }
+      ],
+      "parMoves": 3,
+      "pack": "playtest"
+    },
+    {
+      "id": 2,
+      "cols": 5,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            1,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "LEFT",
+          "index": 3
+        }
+      ],
+      "parMoves": 10,
+      "pack": "playtest"
+    },
+    {
+      "id": 3,
+      "cols": 5,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            4,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m4",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            2,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "RIGHT"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "RIGHT",
+          "index": 2
+        }
+      ],
+      "parMoves": 15,
+      "pack": "playtest"
+    },
+    {
+      "id": 4,
+      "cols": 5,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            1,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m4",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            3,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "TOP",
+          "index": 3
+        }
+      ],
+      "parMoves": 12,
+      "pack": "playtest"
+    },
+    {
+      "id": 5,
+      "cols": 5,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            4,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            4,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "m4",
+          "type": "lock",
+          "color": "purple",
+          "position": [
+            2,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "unlockAt": 2
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            4,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o4",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "LEFT",
+          "index": 1
+        }
+      ],
+      "parMoves": 17,
+      "pack": "playtest"
+    },
+    {
+      "id": 6,
+      "cols": 4,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            1,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m4",
+          "type": "lock",
+          "color": "purple",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "unlockAt": 2
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "BOTTOM",
+          "index": 1
+        }
+      ],
+      "parMoves": 17,
+      "pack": "playtest"
+    }
+  ],
+  "solutions": {
+    "1": [
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      }
+    ],
+    "2": [
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      }
+    ],
+    "3": [
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      }
+    ],
+    "4": [
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      }
+    ],
+    "5": [
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      }
+    ],
+    "6": [
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m4",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      }
+    ]
+  },
+  "roles": {
+    "1": "TEACH",
+    "2": "TEACH",
+    "3": "TEACH",
+    "4": "TEACH",
+    "5": "TEACH",
+    "6": "MASTERY"
+  },
+  "tutorials": {
+    "1": {
+      "title": "One shared exit",
+      "body": "Move every block through the same exit."
+    },
+    "2": {
+      "title": "Plan which block must remain before using the shared exit",
+      "body": "All blocks share one exit. A block can be needed as a stopper before it leaves."
+    },
+    "3": {
+      "title": "Plan which block must remain before using the shared exit",
+      "body": "All blocks share one exit. A block can be needed as a stopper before it leaves."
+    },
+    "4": {
+      "title": "Plan which block must remain before using the shared exit",
+      "body": "All blocks share one exit. A block can be needed as a stopper before it leaves."
+    },
+    "5": {
+      "title": "Plan which block must remain before using the shared exit",
+      "body": "All blocks share one exit. A block can be needed as a stopper before it leaves."
+    }
+  }
+}

@@ -1,0 +1,3283 @@
+[
+  {
+    "levelId": 1,
+    "contractId": "shared-exit-1",
+    "decision": "ELIGIBLE",
+    "gates": {
+      "schema": "PASS",
+      "rules": "PASS",
+      "contractSchema": "PASS",
+      "product": "PASS",
+      "solvability": "PASS",
+      "optimality": "PASS",
+      "performance": "PASS",
+      "replay": "PASS",
+      "contract": "PASS",
+      "evidence": "PASS",
+      "uniqueness": "PASS",
+      "similarity": "PASS"
+    },
+    "reasons": [],
+    "evidence": [
+      {
+        "actionDomain": "SWIPES_ONLY",
+        "id": "mechanic",
+        "claim": "sliding-required",
+        "scope": "ALL_WINNING_PATHS",
+        "definition": "Every winning path includes displacement greater than zero",
+        "status": "VERIFIED",
+        "traceSteps": [
+          1
+        ],
+        "visitedStates": 2,
+        "reason": "Exhausted augmented graph; no avoiding winning path"
+      }
+    ],
+    "softPenalty": 12.433333333333334,
+    "evaluatorVersion": "2.1.0",
+    "context": {
+      "schemaVersion": "2.0.0",
+      "rulesVersion": "1.0.0",
+      "solverVersion": "1.0.0",
+      "evaluatorVersion": "2.1.0",
+      "budget": {
+        "maxStates": 30000,
+        "maxTransitions": 400000,
+        "timeoutMs": 60000
+      },
+      "catalog": [],
+      "learned": [],
+      "learnedInsights": [],
+      "catalogPatterns": [],
+      "model": {
+        "version": "heuristic-2.0.0",
+        "weights": {
+          "moves": 1.2,
+          "branching": 1.5,
+          "dependency": 4,
+          "repositioning": 2,
+          "deadEnds": 10,
+          "mechanics": 3,
+          "novelty": 5,
+          "pathComplexity": 2
+        },
+        "thresholds": [
+          15,
+          30,
+          50,
+          70
+        ]
+      },
+      "maxSpike": 30,
+      "graphMaxStates": 5000,
+      "contextHash": "921f7872a962ebbd6238a524db7dd48f51875b1bdaa37964089c106b17365122"
+    },
+    "solver": {
+      "status": "SOLVED",
+      "visitedStates": 618,
+      "exploredTransitions": 1603,
+      "elapsedMs": 54.62283699998807,
+      "solverVersion": "1.0.0",
+      "optimalityProven": true,
+      "solutionPath": [
+        {
+          "blockId": "m3",
+          "dir": "DOWN"
+        },
+        {
+          "blockId": "m2",
+          "dir": "DOWN"
+        },
+        {
+          "blockId": "m1",
+          "dir": "DOWN"
+        }
+      ],
+      "optimalMoves": 3
+    },
+    "diversity": {
+      "exactDuplicate": false,
+      "similarity": 0,
+      "reasons": []
+    },
+    "difficulty": {
+      "score": 19.433333333333334,
+      "category": "EASY",
+      "optimalMoves": 3,
+      "dependencyDepth": 0,
+      "effectiveBranching": 6.333333333333333,
+      "deadEndRisk": null,
+      "graphStatus": "maxStates",
+      "deadEndRiskVerified": false,
+      "mechanicComplexity": 1,
+      "noveltyScore": 1,
+      "modelVersion": "heuristic-2.0.0",
+      "confidence": 0.25,
+      "features": {
+        "moves": 3,
+        "branching": 6.333333333333333,
+        "dependency": 0,
+        "repositioning": 0,
+        "deadEnds": 0,
+        "mechanics": 0,
+        "novelty": 1,
+        "pathComplexity": 0.6666666666666666
+      },
+      "coverage": "Partial graph (5000 states); dead-end risk is unresolved and excluded from score",
+      "breakdown": {
+        "moves": 3.5999999999999996,
+        "branching": 9.5,
+        "dependency": 0,
+        "repositioning": 0,
+        "deadEnds": 0,
+        "mechanics": 0,
+        "novelty": 5,
+        "pathComplexity": 1.3333333333333333
+      }
+    },
+    "softFindings": [
+      "Predicted difficulty EASY differs from TUTORIAL"
+    ]
+  },
+  {
+    "levelId": 2,
+    "contractId": "shared-exit-2",
+    "decision": "ELIGIBLE",
+    "gates": {
+      "schema": "PASS",
+      "rules": "PASS",
+      "contractSchema": "PASS",
+      "product": "PASS",
+      "solvability": "PASS",
+      "optimality": "PASS",
+      "performance": "PASS",
+      "replay": "PASS",
+      "contract": "PASS",
+      "evidence": "PASS",
+      "uniqueness": "PASS",
+      "similarity": "PASS",
+      "decisions": "PASS"
+    },
+    "reasons": [],
+    "evidence": [
+      {
+        "actionDomain": "SWIPES_ONLY",
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS",
+        "definition": "ALL_WINNING_PATHS: block-as-stopper",
+        "status": "VERIFIED",
+        "traceSteps": [
+          5
+        ],
+        "visitedStates": 985,
+        "reason": "Exhausted augmented graph; no avoiding winning path"
+      },
+      {
+        "actionDomain": "SWIPES_ONLY",
+        "id": "mechanic",
+        "claim": "obstacle-interaction",
+        "scope": "ALL_WINNING_PATHS",
+        "definition": "ALL_WINNING_PATHS: obstacle-interaction",
+        "status": "VERIFIED",
+        "traceSteps": [
+          0
+        ],
+        "visitedStates": 5341,
+        "reason": "Exhausted augmented graph; no avoiding winning path"
+      }
+    ],
+    "softPenalty": 23.300000000000004,
+    "evaluatorVersion": "2.1.0",
+    "context": {
+      "schemaVersion": "2.0.0",
+      "rulesVersion": "1.0.0",
+      "solverVersion": "1.0.0",
+      "evaluatorVersion": "2.1.0",
+      "budget": {
+        "maxStates": 30000,
+        "maxTransitions": 400000,
+        "timeoutMs": 60000
+      },
+      "catalog": [
+        {
+          "id": 1,
+          "cols": 4,
+          "rows": 5,
+          "blocks": [
+            {
+              "id": "m1",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                1,
+                0
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m2",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                1,
+                3
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m3",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                1,
+                4
+              ],
+              "size": [
+                1,
+                1
+              ]
+            }
+          ],
+          "exits": [
+            {
+              "side": "BOTTOM",
+              "index": 1
+            }
+          ],
+          "parMoves": 3,
+          "pack": "playtest"
+        }
+      ],
+      "learned": [
+        "sliding"
+      ],
+      "learnedInsights": [
+        "One shared exit"
+      ],
+      "catalogPatterns": [
+        {
+          "levelId": 1,
+          "pattern": [
+            "0:simple:exit:free",
+            "1:simple:exit:free",
+            "2:simple:exit:free"
+          ]
+        }
+      ],
+      "model": {
+        "version": "heuristic-2.0.0",
+        "weights": {
+          "moves": 1.2,
+          "branching": 1.5,
+          "dependency": 4,
+          "repositioning": 2,
+          "deadEnds": 10,
+          "mechanics": 3,
+          "novelty": 5,
+          "pathComplexity": 2
+        },
+        "thresholds": [
+          15,
+          30,
+          50,
+          70
+        ]
+      },
+      "maxSpike": 30,
+      "graphMaxStates": 5000,
+      "contextHash": "5f7534c9f3c19c2351dfce61b7c3690a6bead76f5b31ca8f22fd6ae759e2e578"
+    },
+    "solver": {
+      "status": "SOLVED",
+      "visitedStates": 7274,
+      "exploredTransitions": 37926,
+      "elapsedMs": 1083.1120629999932,
+      "solverVersion": "1.0.0",
+      "optimalityProven": true,
+      "solutionPath": [
+        {
+          "blockId": "m1",
+          "dir": "UP"
+        },
+        {
+          "blockId": "m2",
+          "dir": "LEFT"
+        },
+        {
+          "blockId": "m3",
+          "dir": "DOWN"
+        },
+        {
+          "blockId": "m3",
+          "dir": "RIGHT"
+        },
+        {
+          "blockId": "m1",
+          "dir": "DOWN"
+        },
+        {
+          "blockId": "m3",
+          "dir": "LEFT"
+        },
+        {
+          "blockId": "m1",
+          "dir": "UP"
+        },
+        {
+          "blockId": "m1",
+          "dir": "LEFT"
+        },
+        {
+          "blockId": "m3",
+          "dir": "UP"
+        },
+        {
+          "blockId": "m3",
+          "dir": "LEFT"
+        }
+      ],
+      "optimalMoves": 10
+    },
+    "diversity": {
+      "exactDuplicate": false,
+      "similarLevelId": 1,
+      "similarity": 0.36363636363636365,
+      "reasons": [
+        "Structural feature similarity (estimate; not equivalence proof)",
+        "Solution similarity covers the recorded optimal path only"
+      ],
+      "solutionSimilarity": 0.3076923076923077,
+      "solutionSimilarLevelId": 1
+    },
+    "difficulty": {
+      "score": 37.300000000000004,
+      "category": "MEDIUM",
+      "optimalMoves": 10,
+      "dependencyDepth": 0,
+      "effectiveBranching": 4.9,
+      "deadEndRisk": null,
+      "graphStatus": "maxStates",
+      "deadEndRiskVerified": false,
+      "mechanicComplexity": 2,
+      "noveltyScore": 0.75,
+      "modelVersion": "heuristic-2.0.0",
+      "confidence": 0.25,
+      "features": {
+        "moves": 10,
+        "branching": 4.9,
+        "dependency": 0,
+        "repositioning": 5,
+        "deadEnds": 0,
+        "mechanics": 1,
+        "novelty": 0.75,
+        "pathComplexity": 0.6
+      },
+      "coverage": "Partial graph (5000 states); dead-end risk is unresolved and excluded from score",
+      "breakdown": {
+        "moves": 12,
+        "branching": 7.3500000000000005,
+        "dependency": 0,
+        "repositioning": 10,
+        "deadEnds": 0,
+        "mechanics": 3,
+        "novelty": 3.75,
+        "pathComplexity": 1.2
+      }
+    },
+    "decisions": {
+      "status": "VERIFIED",
+      "states": 9577,
+      "optimalMoves": 10,
+      "decisionPoints": 10,
+      "prematureExitTraps": 3,
+      "initialOptimalActionFraction": 0.375
+    },
+    "softFindings": []
+  },
+  {
+    "levelId": 3,
+    "contractId": "shared-exit-3",
+    "decision": "ELIGIBLE",
+    "gates": {
+      "schema": "PASS",
+      "rules": "PASS",
+      "contractSchema": "PASS",
+      "product": "PASS",
+      "solvability": "PASS",
+      "optimality": "PASS",
+      "performance": "PASS",
+      "replay": "PASS",
+      "contract": "PASS",
+      "evidence": "PASS",
+      "uniqueness": "PASS",
+      "similarity": "PASS",
+      "decisions": "PASS"
+    },
+    "reasons": [],
+    "evidence": [
+      {
+        "actionDomain": "SWIPES_ONLY",
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS",
+        "definition": "ALL_WINNING_PATHS: block-as-stopper",
+        "status": "VERIFIED",
+        "traceSteps": [
+          1
+        ],
+        "visitedStates": 367,
+        "reason": "Exhausted augmented graph; no avoiding winning path"
+      },
+      {
+        "actionDomain": "SWIPES_ONLY",
+        "id": "mechanic",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT",
+        "definition": "Relaxing a selected constraint reduces proven optimal cost or enables a winning path forbidden by that constraint",
+        "status": "VERIFIED",
+        "traceSteps": [
+          10
+        ],
+        "visitedStates": 87,
+        "counterexample": [
+          {
+            "blockId": "m1",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m1",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m2",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m2",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m4",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m1",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m1",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m1",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m3",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m4",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m2",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m1",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m1",
+            "dir": "RIGHT"
+          }
+        ],
+        "reason": "Replayed relaxed winning path includes an action forbidden by the original constraint"
+      }
+    ],
+    "softPenalty": 23.800000000000004,
+    "evaluatorVersion": "2.1.0",
+    "context": {
+      "schemaVersion": "2.0.0",
+      "rulesVersion": "1.0.0",
+      "solverVersion": "1.0.0",
+      "evaluatorVersion": "2.1.0",
+      "budget": {
+        "maxStates": 30000,
+        "maxTransitions": 400000,
+        "timeoutMs": 60000
+      },
+      "catalog": [
+        {
+          "id": 1,
+          "cols": 4,
+          "rows": 5,
+          "blocks": [
+            {
+              "id": "m1",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                1,
+                0
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m2",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                1,
+                3
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m3",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                1,
+                4
+              ],
+              "size": [
+                1,
+                1
+              ]
+            }
+          ],
+          "exits": [
+            {
+              "side": "BOTTOM",
+              "index": 1
+            }
+          ],
+          "parMoves": 3,
+          "pack": "playtest"
+        },
+        {
+          "id": 2,
+          "cols": 5,
+          "rows": 5,
+          "blocks": [
+            {
+              "id": "m1",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                2,
+                4
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m2",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                1,
+                3
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m3",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                0,
+                0
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o1",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                1,
+                0
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o2",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                3,
+                2
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o3",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                2,
+                2
+              ],
+              "size": [
+                1,
+                1
+              ]
+            }
+          ],
+          "exits": [
+            {
+              "side": "LEFT",
+              "index": 3
+            }
+          ],
+          "parMoves": 10,
+          "pack": "playtest"
+        }
+      ],
+      "learned": [
+        "obstacle",
+        "sliding"
+      ],
+      "learnedInsights": [
+        "One shared exit",
+        "Plan which block must remain before using the shared exit"
+      ],
+      "catalogPatterns": [
+        {
+          "levelId": 1,
+          "pattern": [
+            "0:simple:exit:free",
+            "1:simple:exit:free",
+            "2:simple:exit:free"
+          ]
+        },
+        {
+          "levelId": 2,
+          "pattern": [
+            "0:simple:slide:obstacle",
+            "1:simple:exit:free",
+            "2:simple:slide:free",
+            "2:simple:slide:free",
+            "0:simple:slide:free",
+            "2:simple:slide:stopper",
+            "0:simple:slide:obstacle",
+            "0:simple:exit:free",
+            "2:simple:slide:obstacle",
+            "2:simple:exit:free"
+          ]
+        }
+      ],
+      "model": {
+        "version": "heuristic-2.0.0",
+        "weights": {
+          "moves": 1.2,
+          "branching": 1.5,
+          "dependency": 4,
+          "repositioning": 2,
+          "deadEnds": 10,
+          "mechanics": 3,
+          "novelty": 5,
+          "pathComplexity": 2
+        },
+        "thresholds": [
+          15,
+          30,
+          50,
+          70
+        ]
+      },
+      "maxSpike": 30,
+      "graphMaxStates": 5000,
+      "contextHash": "af9e60bc364fe6ccd530d3d3d3a3ef56de15642343adac106feae88421bbd818"
+    },
+    "solver": {
+      "status": "SOLVED",
+      "visitedStates": 26063,
+      "exploredTransitions": 186729,
+      "elapsedMs": 3789.796933999998,
+      "solverVersion": "1.0.0",
+      "optimalityProven": true,
+      "solutionPath": [
+        {
+          "blockId": "m1",
+          "dir": "LEFT"
+        },
+        {
+          "blockId": "m2",
+          "dir": "LEFT"
+        },
+        {
+          "blockId": "m1",
+          "dir": "DOWN"
+        },
+        {
+          "blockId": "m2",
+          "dir": "DOWN"
+        },
+        {
+          "blockId": "m2",
+          "dir": "RIGHT"
+        },
+        {
+          "blockId": "m2",
+          "dir": "UP"
+        },
+        {
+          "blockId": "m1",
+          "dir": "RIGHT"
+        },
+        {
+          "blockId": "m1",
+          "dir": "DOWN"
+        },
+        {
+          "blockId": "m1",
+          "dir": "RIGHT"
+        },
+        {
+          "blockId": "m3",
+          "dir": "RIGHT"
+        },
+        {
+          "blockId": "m4",
+          "dir": "RIGHT"
+        },
+        {
+          "blockId": "m2",
+          "dir": "UP"
+        },
+        {
+          "blockId": "m2",
+          "dir": "RIGHT"
+        },
+        {
+          "blockId": "m1",
+          "dir": "UP"
+        },
+        {
+          "blockId": "m1",
+          "dir": "RIGHT"
+        }
+      ],
+      "optimalMoves": 15
+    },
+    "diversity": {
+      "exactDuplicate": false,
+      "similarLevelId": 2,
+      "similarity": 0.5454545454545454,
+      "reasons": [
+        "Structural feature similarity (estimate; not equivalence proof)",
+        "Solution similarity covers the recorded optimal path only"
+      ],
+      "solutionSimilarity": 0.32,
+      "solutionSimilarLevelId": 2
+    },
+    "difficulty": {
+      "score": 44.800000000000004,
+      "category": "MEDIUM",
+      "optimalMoves": 15,
+      "dependencyDepth": 0,
+      "effectiveBranching": 5.933333333333334,
+      "deadEndRisk": null,
+      "graphStatus": "maxStates",
+      "deadEndRiskVerified": false,
+      "mechanicComplexity": 3,
+      "noveltyScore": 0.16666666666666666,
+      "modelVersion": "heuristic-2.0.0",
+      "confidence": 0.25,
+      "features": {
+        "moves": 15,
+        "branching": 5.933333333333334,
+        "dependency": 0,
+        "repositioning": 9,
+        "deadEnds": 0,
+        "mechanics": 2,
+        "novelty": 0.16666666666666666,
+        "pathComplexity": 0.5333333333333333
+      },
+      "coverage": "Partial graph (5000 states); dead-end risk is unresolved and excluded from score",
+      "breakdown": {
+        "moves": 18,
+        "branching": 8.9,
+        "dependency": 0,
+        "repositioning": 10,
+        "deadEnds": 0,
+        "mechanics": 6,
+        "novelty": 0.8333333333333333,
+        "pathComplexity": 1.0666666666666667
+      }
+    },
+    "decisions": {
+      "status": "VERIFIED",
+      "states": 27649,
+      "optimalMoves": 15,
+      "decisionPoints": 15,
+      "prematureExitTraps": 0,
+      "initialOptimalActionFraction": 0.5
+    },
+    "softFindings": []
+  },
+  {
+    "levelId": 4,
+    "contractId": "shared-exit-4",
+    "decision": "ELIGIBLE",
+    "gates": {
+      "schema": "PASS",
+      "rules": "PASS",
+      "contractSchema": "PASS",
+      "product": "PASS",
+      "solvability": "PASS",
+      "optimality": "PASS",
+      "performance": "PASS",
+      "replay": "PASS",
+      "contract": "PASS",
+      "evidence": "PASS",
+      "uniqueness": "PASS",
+      "similarity": "PASS",
+      "decisions": "PASS"
+    },
+    "reasons": [],
+    "evidence": [
+      {
+        "actionDomain": "SWIPES_ONLY",
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS",
+        "definition": "ALL_WINNING_PATHS: block-as-stopper",
+        "status": "VERIFIED",
+        "traceSteps": [
+          3
+        ],
+        "visitedStates": 1051,
+        "reason": "Exhausted augmented graph; no avoiding winning path"
+      },
+      {
+        "actionDomain": "SWIPES_ONLY",
+        "id": "mechanic",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT",
+        "definition": "Relaxing a selected constraint reduces proven optimal cost or enables a winning path forbidden by that constraint",
+        "status": "VERIFIED",
+        "traceSteps": [
+          8
+        ],
+        "visitedStates": 13,
+        "counterexample": [
+          {
+            "blockId": "m4",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m1",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m1",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m1",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m1",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m3",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m3",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m3",
+            "dir": "UP"
+          }
+        ],
+        "reason": "Replayed relaxed winning path includes an action forbidden by the original constraint"
+      }
+    ],
+    "softPenalty": 17.94166666666667,
+    "evaluatorVersion": "2.1.0",
+    "context": {
+      "schemaVersion": "2.0.0",
+      "rulesVersion": "1.0.0",
+      "solverVersion": "1.0.0",
+      "evaluatorVersion": "2.1.0",
+      "budget": {
+        "maxStates": 30000,
+        "maxTransitions": 400000,
+        "timeoutMs": 60000
+      },
+      "catalog": [
+        {
+          "id": 1,
+          "cols": 4,
+          "rows": 5,
+          "blocks": [
+            {
+              "id": "m1",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                1,
+                0
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m2",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                1,
+                3
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m3",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                1,
+                4
+              ],
+              "size": [
+                1,
+                1
+              ]
+            }
+          ],
+          "exits": [
+            {
+              "side": "BOTTOM",
+              "index": 1
+            }
+          ],
+          "parMoves": 3,
+          "pack": "playtest"
+        },
+        {
+          "id": 2,
+          "cols": 5,
+          "rows": 5,
+          "blocks": [
+            {
+              "id": "m1",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                2,
+                4
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m2",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                1,
+                3
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m3",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                0,
+                0
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o1",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                1,
+                0
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o2",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                3,
+                2
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o3",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                2,
+                2
+              ],
+              "size": [
+                1,
+                1
+              ]
+            }
+          ],
+          "exits": [
+            {
+              "side": "LEFT",
+              "index": 3
+            }
+          ],
+          "parMoves": 10,
+          "pack": "playtest"
+        },
+        {
+          "id": 3,
+          "cols": 5,
+          "rows": 5,
+          "blocks": [
+            {
+              "id": "m1",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                3,
+                0
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m2",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                4,
+                0
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m3",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                3,
+                2
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m4",
+              "type": "constrained",
+              "color": "yellow",
+              "position": [
+                2,
+                2
+              ],
+              "size": [
+                1,
+                1
+              ],
+              "direction": "RIGHT"
+            },
+            {
+              "id": "o1",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                3,
+                4
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o2",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                2,
+                1
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o3",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                0,
+                4
+              ],
+              "size": [
+                1,
+                1
+              ]
+            }
+          ],
+          "exits": [
+            {
+              "side": "RIGHT",
+              "index": 2
+            }
+          ],
+          "parMoves": 15,
+          "pack": "playtest"
+        }
+      ],
+      "learned": [
+        "constrained",
+        "obstacle",
+        "sliding"
+      ],
+      "learnedInsights": [
+        "One shared exit",
+        "Plan which block must remain before using the shared exit"
+      ],
+      "catalogPatterns": [
+        {
+          "levelId": 1,
+          "pattern": [
+            "0:simple:exit:free",
+            "1:simple:exit:free",
+            "2:simple:exit:free"
+          ]
+        },
+        {
+          "levelId": 2,
+          "pattern": [
+            "0:simple:slide:obstacle",
+            "1:simple:exit:free",
+            "2:simple:slide:free",
+            "2:simple:slide:free",
+            "0:simple:slide:free",
+            "2:simple:slide:stopper",
+            "0:simple:slide:obstacle",
+            "0:simple:exit:free",
+            "2:simple:slide:obstacle",
+            "2:simple:exit:free"
+          ]
+        },
+        {
+          "levelId": 3,
+          "pattern": [
+            "0:simple:slide:free",
+            "1:simple:slide:stopper",
+            "0:simple:slide:obstacle",
+            "1:simple:slide:free",
+            "1:simple:slide:obstacle",
+            "1:simple:slide:stopper",
+            "0:simple:slide:stopper",
+            "0:simple:slide:free",
+            "0:simple:slide:obstacle",
+            "2:simple:exit:free",
+            "3:constrained:exit:free",
+            "1:simple:slide:obstacle",
+            "1:simple:exit:free",
+            "0:simple:slide:obstacle",
+            "0:simple:exit:free"
+          ]
+        }
+      ],
+      "model": {
+        "version": "heuristic-2.0.0",
+        "weights": {
+          "moves": 1.2,
+          "branching": 1.5,
+          "dependency": 4,
+          "repositioning": 2,
+          "deadEnds": 10,
+          "mechanics": 3,
+          "novelty": 5,
+          "pathComplexity": 2
+        },
+        "thresholds": [
+          15,
+          30,
+          50,
+          70
+        ]
+      },
+      "maxSpike": 30,
+      "graphMaxStates": 5000,
+      "contextHash": "60ad19a31a56a92a0ec17f47c8833bf3ab666b72a9025a058e7f8e1626ff1b8f"
+    },
+    "solver": {
+      "status": "SOLVED",
+      "visitedStates": 11380,
+      "exploredTransitions": 64562,
+      "elapsedMs": 1231.0557589999953,
+      "solverVersion": "1.0.0",
+      "optimalityProven": true,
+      "solutionPath": [
+        {
+          "blockId": "m1",
+          "dir": "RIGHT"
+        },
+        {
+          "blockId": "m2",
+          "dir": "RIGHT"
+        },
+        {
+          "blockId": "m1",
+          "dir": "UP"
+        },
+        {
+          "blockId": "m1",
+          "dir": "RIGHT"
+        },
+        {
+          "blockId": "m1",
+          "dir": "UP"
+        },
+        {
+          "blockId": "m3",
+          "dir": "RIGHT"
+        },
+        {
+          "blockId": "m2",
+          "dir": "DOWN"
+        },
+        {
+          "blockId": "m3",
+          "dir": "LEFT"
+        },
+        {
+          "blockId": "m4",
+          "dir": "UP"
+        },
+        {
+          "blockId": "m2",
+          "dir": "LEFT"
+        },
+        {
+          "blockId": "m2",
+          "dir": "UP"
+        },
+        {
+          "blockId": "m3",
+          "dir": "UP"
+        }
+      ],
+      "optimalMoves": 12
+    },
+    "diversity": {
+      "exactDuplicate": false,
+      "similarLevelId": 3,
+      "similarity": 0.6363636363636364,
+      "reasons": [
+        "Structural feature similarity (estimate; not equivalence proof)",
+        "Solution similarity covers the recorded optimal path only"
+      ],
+      "solutionSimilarity": 0.45454545454545453,
+      "solutionSimilarLevelId": 2
+    },
+    "difficulty": {
+      "score": 45.94166666666667,
+      "category": "MEDIUM",
+      "optimalMoves": 12,
+      "dependencyDepth": 1,
+      "effectiveBranching": 6.25,
+      "deadEndRisk": null,
+      "graphStatus": "maxStates",
+      "deadEndRiskVerified": false,
+      "mechanicComplexity": 3,
+      "noveltyScore": 0.16666666666666666,
+      "modelVersion": "heuristic-2.0.0",
+      "confidence": 0.25,
+      "features": {
+        "moves": 12,
+        "branching": 6.25,
+        "dependency": 1,
+        "repositioning": 5,
+        "deadEnds": 0,
+        "mechanics": 2,
+        "novelty": 0.16666666666666666,
+        "pathComplexity": 0.6666666666666666
+      },
+      "coverage": "Partial graph (5000 states); dead-end risk is unresolved and excluded from score",
+      "breakdown": {
+        "moves": 14.399999999999999,
+        "branching": 9.375,
+        "dependency": 4,
+        "repositioning": 10,
+        "deadEnds": 0,
+        "mechanics": 6,
+        "novelty": 0.8333333333333333,
+        "pathComplexity": 1.3333333333333333
+      }
+    },
+    "decisions": {
+      "status": "VERIFIED",
+      "states": 17715,
+      "optimalMoves": 12,
+      "decisionPoints": 12,
+      "prematureExitTraps": 0,
+      "initialOptimalActionFraction": 0.375
+    },
+    "softFindings": [
+      "Predicted difficulty MEDIUM differs from HARD"
+    ]
+  },
+  {
+    "levelId": 5,
+    "contractId": "shared-exit-5",
+    "decision": "ELIGIBLE",
+    "gates": {
+      "schema": "PASS",
+      "rules": "PASS",
+      "contractSchema": "PASS",
+      "product": "PASS",
+      "solvability": "PASS",
+      "optimality": "PASS",
+      "performance": "PASS",
+      "replay": "PASS",
+      "contract": "PASS",
+      "evidence": "PASS",
+      "uniqueness": "PASS",
+      "similarity": "PASS",
+      "decisions": "PASS"
+    },
+    "reasons": [],
+    "evidence": [
+      {
+        "actionDomain": "SWIPES_ONLY",
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS",
+        "definition": "ALL_WINNING_PATHS: block-as-stopper",
+        "status": "VERIFIED",
+        "traceSteps": [
+          2
+        ],
+        "visitedStates": 121,
+        "reason": "Exhausted augmented graph; no avoiding winning path"
+      },
+      {
+        "actionDomain": "SWIPES_ONLY",
+        "id": "mechanic",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT",
+        "definition": "Relaxing a selected constraint reduces proven optimal cost or enables a winning path forbidden by that constraint",
+        "status": "VERIFIED",
+        "traceSteps": [
+          13,
+          14
+        ],
+        "visitedStates": 271,
+        "counterexample": [
+          {
+            "blockId": "m4",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m4",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m4",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m4",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m4",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m4",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m4",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m4",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m4",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m4",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m4",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m2",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m4",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m4",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m4",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m2",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m4",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m4",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m4",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m4",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m2",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m2",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m1",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m2",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m1",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m2",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m1",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m1",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m2",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m2",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m2",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m1",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m1",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m2",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m1",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m2",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m2",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m1",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m2",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m1",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m1",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m2",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m2",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m1",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m2",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m2",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m1",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m2",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m2",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m1",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m1",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m1",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m3",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m3",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m3",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m3",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m3",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m3",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m3",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m3",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m3",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m3",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m3",
+            "dir": "LEFT"
+          }
+        ],
+        "reason": "Relaxation enables a winning path forbidden by the original constraint"
+      }
+    ],
+    "softPenalty": 16.594794584500463,
+    "evaluatorVersion": "2.1.0",
+    "context": {
+      "schemaVersion": "2.0.0",
+      "rulesVersion": "1.0.0",
+      "solverVersion": "1.0.0",
+      "evaluatorVersion": "2.1.0",
+      "budget": {
+        "maxStates": 30000,
+        "maxTransitions": 400000,
+        "timeoutMs": 60000
+      },
+      "catalog": [
+        {
+          "id": 1,
+          "cols": 4,
+          "rows": 5,
+          "blocks": [
+            {
+              "id": "m1",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                1,
+                0
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m2",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                1,
+                3
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m3",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                1,
+                4
+              ],
+              "size": [
+                1,
+                1
+              ]
+            }
+          ],
+          "exits": [
+            {
+              "side": "BOTTOM",
+              "index": 1
+            }
+          ],
+          "parMoves": 3,
+          "pack": "playtest"
+        },
+        {
+          "id": 2,
+          "cols": 5,
+          "rows": 5,
+          "blocks": [
+            {
+              "id": "m1",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                2,
+                4
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m2",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                1,
+                3
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m3",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                0,
+                0
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o1",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                1,
+                0
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o2",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                3,
+                2
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o3",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                2,
+                2
+              ],
+              "size": [
+                1,
+                1
+              ]
+            }
+          ],
+          "exits": [
+            {
+              "side": "LEFT",
+              "index": 3
+            }
+          ],
+          "parMoves": 10,
+          "pack": "playtest"
+        },
+        {
+          "id": 3,
+          "cols": 5,
+          "rows": 5,
+          "blocks": [
+            {
+              "id": "m1",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                3,
+                0
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m2",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                4,
+                0
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m3",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                3,
+                2
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m4",
+              "type": "constrained",
+              "color": "yellow",
+              "position": [
+                2,
+                2
+              ],
+              "size": [
+                1,
+                1
+              ],
+              "direction": "RIGHT"
+            },
+            {
+              "id": "o1",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                3,
+                4
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o2",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                2,
+                1
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o3",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                0,
+                4
+              ],
+              "size": [
+                1,
+                1
+              ]
+            }
+          ],
+          "exits": [
+            {
+              "side": "RIGHT",
+              "index": 2
+            }
+          ],
+          "parMoves": 15,
+          "pack": "playtest"
+        },
+        {
+          "id": 4,
+          "cols": 5,
+          "rows": 5,
+          "blocks": [
+            {
+              "id": "m1",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                0,
+                2
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m2",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                1,
+                1
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m3",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                3,
+                3
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m4",
+              "type": "dependent",
+              "color": "blue",
+              "position": [
+                3,
+                2
+              ],
+              "size": [
+                1,
+                1
+              ],
+              "dependsOn": "m1"
+            },
+            {
+              "id": "o1",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                2,
+                3
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o2",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                1,
+                0
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o3",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                2,
+                2
+              ],
+              "size": [
+                1,
+                1
+              ]
+            }
+          ],
+          "exits": [
+            {
+              "side": "TOP",
+              "index": 3
+            }
+          ],
+          "parMoves": 12,
+          "pack": "playtest"
+        }
+      ],
+      "learned": [
+        "constrained",
+        "dependent",
+        "obstacle",
+        "sliding"
+      ],
+      "learnedInsights": [
+        "One shared exit",
+        "Plan which block must remain before using the shared exit"
+      ],
+      "catalogPatterns": [
+        {
+          "levelId": 1,
+          "pattern": [
+            "0:simple:exit:free",
+            "1:simple:exit:free",
+            "2:simple:exit:free"
+          ]
+        },
+        {
+          "levelId": 2,
+          "pattern": [
+            "0:simple:slide:obstacle",
+            "1:simple:exit:free",
+            "2:simple:slide:free",
+            "2:simple:slide:free",
+            "0:simple:slide:free",
+            "2:simple:slide:stopper",
+            "0:simple:slide:obstacle",
+            "0:simple:exit:free",
+            "2:simple:slide:obstacle",
+            "2:simple:exit:free"
+          ]
+        },
+        {
+          "levelId": 3,
+          "pattern": [
+            "0:simple:slide:free",
+            "1:simple:slide:stopper",
+            "0:simple:slide:obstacle",
+            "1:simple:slide:free",
+            "1:simple:slide:obstacle",
+            "1:simple:slide:stopper",
+            "0:simple:slide:stopper",
+            "0:simple:slide:free",
+            "0:simple:slide:obstacle",
+            "2:simple:exit:free",
+            "3:constrained:exit:free",
+            "1:simple:slide:obstacle",
+            "1:simple:exit:free",
+            "0:simple:slide:obstacle",
+            "0:simple:exit:free"
+          ]
+        },
+        {
+          "levelId": 4,
+          "pattern": [
+            "0:simple:slide:obstacle",
+            "1:simple:slide:free",
+            "0:simple:slide:obstacle",
+            "0:simple:slide:stopper",
+            "0:simple:exit:free",
+            "2:simple:slide:free",
+            "1:simple:slide:stopper",
+            "2:simple:slide:obstacle",
+            "3:dependent:exit:free",
+            "1:simple:slide:obstacle",
+            "1:simple:exit:free",
+            "2:simple:exit:free"
+          ]
+        }
+      ],
+      "model": {
+        "version": "heuristic-2.0.0",
+        "weights": {
+          "moves": 1.2,
+          "branching": 1.5,
+          "dependency": 4,
+          "repositioning": 2,
+          "deadEnds": 10,
+          "mechanics": 3,
+          "novelty": 5,
+          "pathComplexity": 2
+        },
+        "thresholds": [
+          15,
+          30,
+          50,
+          70
+        ]
+      },
+      "maxSpike": 30,
+      "graphMaxStates": 5000,
+      "contextHash": "6f785daae68dfbcd6d522e83e6c0368696e964b257cafddb72f4e3e49a182e21"
+    },
+    "solver": {
+      "status": "SOLVED",
+      "visitedStates": 1297,
+      "exploredTransitions": 5305,
+      "elapsedMs": 163.37954999999783,
+      "solverVersion": "1.0.0",
+      "optimalityProven": true,
+      "solutionPath": [
+        {
+          "blockId": "m1",
+          "dir": "UP"
+        },
+        {
+          "blockId": "m2",
+          "dir": "UP"
+        },
+        {
+          "blockId": "m1",
+          "dir": "LEFT"
+        },
+        {
+          "blockId": "m1",
+          "dir": "UP"
+        },
+        {
+          "blockId": "m1",
+          "dir": "LEFT"
+        },
+        {
+          "blockId": "m2",
+          "dir": "DOWN"
+        },
+        {
+          "blockId": "m3",
+          "dir": "LEFT"
+        },
+        {
+          "blockId": "m2",
+          "dir": "UP"
+        },
+        {
+          "blockId": "m2",
+          "dir": "LEFT"
+        },
+        {
+          "blockId": "m3",
+          "dir": "DOWN"
+        },
+        {
+          "blockId": "m3",
+          "dir": "LEFT"
+        },
+        {
+          "blockId": "m3",
+          "dir": "DOWN"
+        },
+        {
+          "blockId": "m3",
+          "dir": "RIGHT"
+        },
+        {
+          "blockId": "m4",
+          "dir": "UP"
+        },
+        {
+          "blockId": "m4",
+          "dir": "LEFT"
+        },
+        {
+          "blockId": "m3",
+          "dir": "UP"
+        },
+        {
+          "blockId": "m3",
+          "dir": "LEFT"
+        }
+      ],
+      "optimalMoves": 17
+    },
+    "diversity": {
+      "exactDuplicate": false,
+      "similarLevelId": 3,
+      "similarity": 0.5833333333333334,
+      "reasons": [
+        "Structural feature similarity (estimate; not equivalence proof)",
+        "Solution similarity covers the recorded optimal path only"
+      ],
+      "solutionSimilarity": 0.41379310344827586,
+      "solutionSimilarLevelId": 4
+    },
+    "difficulty": {
+      "score": 51.59479458450046,
+      "category": "HARD",
+      "optimalMoves": 17,
+      "dependencyDepth": 1,
+      "effectiveBranching": 4.352941176470588,
+      "deadEndRisk": 0.00992063492063492,
+      "graphStatus": "COMPLETE",
+      "deadEndRiskVerified": true,
+      "mechanicComplexity": 4,
+      "noveltyScore": 0.125,
+      "modelVersion": "heuristic-2.0.0",
+      "confidence": 0.4,
+      "features": {
+        "moves": 17,
+        "branching": 4.352941176470588,
+        "dependency": 1,
+        "repositioning": 9,
+        "deadEnds": 0.00992063492063492,
+        "mechanics": 3,
+        "novelty": 0.125,
+        "pathComplexity": 0.47058823529411764
+      },
+      "coverage": "Complete reachable graph (1512 states)",
+      "breakdown": {
+        "moves": 20.4,
+        "branching": 6.529411764705882,
+        "dependency": 4,
+        "repositioning": 10,
+        "deadEnds": 0.0992063492063492,
+        "mechanics": 9,
+        "novelty": 0.625,
+        "pathComplexity": 0.9411764705882353
+      }
+    },
+    "decisions": {
+      "status": "VERIFIED",
+      "states": 1512,
+      "optimalMoves": 17,
+      "decisionPoints": 16,
+      "prematureExitTraps": 0,
+      "initialOptimalActionFraction": 0.5
+    },
+    "softFindings": []
+  },
+  {
+    "levelId": 6,
+    "contractId": "shared-exit-6",
+    "decision": "ELIGIBLE",
+    "gates": {
+      "schema": "PASS",
+      "rules": "PASS",
+      "contractSchema": "PASS",
+      "product": "PASS",
+      "solvability": "PASS",
+      "optimality": "PASS",
+      "performance": "PASS",
+      "replay": "PASS",
+      "contract": "PASS",
+      "evidence": "PASS",
+      "uniqueness": "PASS",
+      "similarity": "PASS",
+      "decisions": "PASS"
+    },
+    "reasons": [],
+    "evidence": [
+      {
+        "actionDomain": "SWIPES_ONLY",
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS",
+        "definition": "ALL_WINNING_PATHS: block-as-stopper",
+        "status": "VERIFIED",
+        "traceSteps": [
+          5
+        ],
+        "visitedStates": 305,
+        "reason": "Exhausted augmented graph; no avoiding winning path"
+      },
+      {
+        "actionDomain": "SWIPES_ONLY",
+        "id": "mechanic",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT",
+        "definition": "Relaxing a selected constraint reduces proven optimal cost or enables a winning path forbidden by that constraint",
+        "status": "VERIFIED",
+        "traceSteps": [
+          12
+        ],
+        "visitedStates": 206,
+        "counterexample": [
+          {
+            "blockId": "m1",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m1",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m2",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m2",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m2",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m3",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m4",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m3",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m3",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m1",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m3",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m4",
+            "dir": "DOWN"
+          },
+          {
+            "blockId": "m1",
+            "dir": "RIGHT"
+          },
+          {
+            "blockId": "m1",
+            "dir": "UP"
+          },
+          {
+            "blockId": "m1",
+            "dir": "LEFT"
+          },
+          {
+            "blockId": "m1",
+            "dir": "DOWN"
+          }
+        ],
+        "reason": "Replayed relaxed winning path includes an action forbidden by the original constraint"
+      }
+    ],
+    "softPenalty": 2.2529411764705856,
+    "evaluatorVersion": "2.1.0",
+    "context": {
+      "schemaVersion": "2.0.0",
+      "rulesVersion": "1.0.0",
+      "solverVersion": "1.0.0",
+      "evaluatorVersion": "2.1.0",
+      "budget": {
+        "maxStates": 30000,
+        "maxTransitions": 400000,
+        "timeoutMs": 60000
+      },
+      "catalog": [
+        {
+          "id": 1,
+          "cols": 4,
+          "rows": 5,
+          "blocks": [
+            {
+              "id": "m1",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                1,
+                0
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m2",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                1,
+                3
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m3",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                1,
+                4
+              ],
+              "size": [
+                1,
+                1
+              ]
+            }
+          ],
+          "exits": [
+            {
+              "side": "BOTTOM",
+              "index": 1
+            }
+          ],
+          "parMoves": 3,
+          "pack": "playtest"
+        },
+        {
+          "id": 2,
+          "cols": 5,
+          "rows": 5,
+          "blocks": [
+            {
+              "id": "m1",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                2,
+                4
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m2",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                1,
+                3
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m3",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                0,
+                0
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o1",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                1,
+                0
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o2",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                3,
+                2
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o3",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                2,
+                2
+              ],
+              "size": [
+                1,
+                1
+              ]
+            }
+          ],
+          "exits": [
+            {
+              "side": "LEFT",
+              "index": 3
+            }
+          ],
+          "parMoves": 10,
+          "pack": "playtest"
+        },
+        {
+          "id": 3,
+          "cols": 5,
+          "rows": 5,
+          "blocks": [
+            {
+              "id": "m1",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                3,
+                0
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m2",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                4,
+                0
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m3",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                3,
+                2
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m4",
+              "type": "constrained",
+              "color": "yellow",
+              "position": [
+                2,
+                2
+              ],
+              "size": [
+                1,
+                1
+              ],
+              "direction": "RIGHT"
+            },
+            {
+              "id": "o1",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                3,
+                4
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o2",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                2,
+                1
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o3",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                0,
+                4
+              ],
+              "size": [
+                1,
+                1
+              ]
+            }
+          ],
+          "exits": [
+            {
+              "side": "RIGHT",
+              "index": 2
+            }
+          ],
+          "parMoves": 15,
+          "pack": "playtest"
+        },
+        {
+          "id": 4,
+          "cols": 5,
+          "rows": 5,
+          "blocks": [
+            {
+              "id": "m1",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                0,
+                2
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m2",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                1,
+                1
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m3",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                3,
+                3
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m4",
+              "type": "dependent",
+              "color": "blue",
+              "position": [
+                3,
+                2
+              ],
+              "size": [
+                1,
+                1
+              ],
+              "dependsOn": "m1"
+            },
+            {
+              "id": "o1",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                2,
+                3
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o2",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                1,
+                0
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o3",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                2,
+                2
+              ],
+              "size": [
+                1,
+                1
+              ]
+            }
+          ],
+          "exits": [
+            {
+              "side": "TOP",
+              "index": 3
+            }
+          ],
+          "parMoves": 12,
+          "pack": "playtest"
+        },
+        {
+          "id": 5,
+          "cols": 5,
+          "rows": 5,
+          "blocks": [
+            {
+              "id": "m1",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                4,
+                3
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m2",
+              "type": "simple",
+              "color": "red",
+              "position": [
+                3,
+                2
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "m3",
+              "type": "dependent",
+              "color": "blue",
+              "position": [
+                4,
+                0
+              ],
+              "size": [
+                1,
+                1
+              ],
+              "dependsOn": "m1"
+            },
+            {
+              "id": "m4",
+              "type": "lock",
+              "color": "purple",
+              "position": [
+                2,
+                2
+              ],
+              "size": [
+                1,
+                1
+              ],
+              "unlockAt": 2
+            },
+            {
+              "id": "o1",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                3,
+                4
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o2",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                4,
+                1
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o3",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                0,
+                3
+              ],
+              "size": [
+                1,
+                1
+              ]
+            },
+            {
+              "id": "o4",
+              "type": "obstacle",
+              "color": "red",
+              "position": [
+                2,
+                0
+              ],
+              "size": [
+                1,
+                1
+              ]
+            }
+          ],
+          "exits": [
+            {
+              "side": "LEFT",
+              "index": 1
+            }
+          ],
+          "parMoves": 17,
+          "pack": "playtest"
+        }
+      ],
+      "learned": [
+        "constrained",
+        "dependent",
+        "lock",
+        "obstacle",
+        "sliding"
+      ],
+      "learnedInsights": [
+        "One shared exit",
+        "Plan which block must remain before using the shared exit"
+      ],
+      "catalogPatterns": [
+        {
+          "levelId": 1,
+          "pattern": [
+            "0:simple:exit:free",
+            "1:simple:exit:free",
+            "2:simple:exit:free"
+          ]
+        },
+        {
+          "levelId": 2,
+          "pattern": [
+            "0:simple:slide:obstacle",
+            "1:simple:exit:free",
+            "2:simple:slide:free",
+            "2:simple:slide:free",
+            "0:simple:slide:free",
+            "2:simple:slide:stopper",
+            "0:simple:slide:obstacle",
+            "0:simple:exit:free",
+            "2:simple:slide:obstacle",
+            "2:simple:exit:free"
+          ]
+        },
+        {
+          "levelId": 3,
+          "pattern": [
+            "0:simple:slide:free",
+            "1:simple:slide:stopper",
+            "0:simple:slide:obstacle",
+            "1:simple:slide:free",
+            "1:simple:slide:obstacle",
+            "1:simple:slide:stopper",
+            "0:simple:slide:stopper",
+            "0:simple:slide:free",
+            "0:simple:slide:obstacle",
+            "2:simple:exit:free",
+            "3:constrained:exit:free",
+            "1:simple:slide:obstacle",
+            "1:simple:exit:free",
+            "0:simple:slide:obstacle",
+            "0:simple:exit:free"
+          ]
+        },
+        {
+          "levelId": 4,
+          "pattern": [
+            "0:simple:slide:obstacle",
+            "1:simple:slide:free",
+            "0:simple:slide:obstacle",
+            "0:simple:slide:stopper",
+            "0:simple:exit:free",
+            "2:simple:slide:free",
+            "1:simple:slide:stopper",
+            "2:simple:slide:obstacle",
+            "3:dependent:exit:free",
+            "1:simple:slide:obstacle",
+            "1:simple:exit:free",
+            "2:simple:exit:free"
+          ]
+        },
+        {
+          "levelId": 5,
+          "pattern": [
+            "0:simple:slide:obstacle",
+            "1:simple:slide:free",
+            "0:simple:slide:stopper",
+            "0:simple:slide:stopper",
+            "0:simple:exit:free",
+            "1:simple:slide:obstacle",
+            "2:dependent:slide:obstacle",
+            "1:simple:slide:stopper",
+            "1:simple:exit:free",
+            "2:dependent:slide:obstacle",
+            "2:dependent:slide:obstacle",
+            "2:dependent:slide:free",
+            "2:dependent:slide:obstacle",
+            "3:lock:slide:obstacle",
+            "3:lock:exit:free",
+            "2:dependent:slide:obstacle",
+            "2:dependent:exit:free"
+          ]
+        }
+      ],
+      "model": {
+        "version": "heuristic-2.0.0",
+        "weights": {
+          "moves": 1.2,
+          "branching": 1.5,
+          "dependency": 4,
+          "repositioning": 2,
+          "deadEnds": 10,
+          "mechanics": 3,
+          "novelty": 5,
+          "pathComplexity": 2
+        },
+        "thresholds": [
+          15,
+          30,
+          50,
+          70
+        ]
+      },
+      "maxSpike": 30,
+      "graphMaxStates": 5000,
+      "contextHash": "d1a49f4e920d9c2e180f3f179cc01d4e9af6c3195784f09b79b42c14f5ccdf68"
+    },
+    "solver": {
+      "status": "SOLVED",
+      "visitedStates": 4327,
+      "exploredTransitions": 24753,
+      "elapsedMs": 609.5122099999862,
+      "solverVersion": "1.0.0",
+      "optimalityProven": true,
+      "solutionPath": [
+        {
+          "blockId": "m1",
+          "dir": "DOWN"
+        },
+        {
+          "blockId": "m1",
+          "dir": "LEFT"
+        },
+        {
+          "blockId": "m2",
+          "dir": "UP"
+        },
+        {
+          "blockId": "m2",
+          "dir": "RIGHT"
+        },
+        {
+          "blockId": "m2",
+          "dir": "DOWN"
+        },
+        {
+          "blockId": "m2",
+          "dir": "LEFT"
+        },
+        {
+          "blockId": "m2",
+          "dir": "DOWN"
+        },
+        {
+          "blockId": "m3",
+          "dir": "LEFT"
+        },
+        {
+          "blockId": "m3",
+          "dir": "DOWN"
+        },
+        {
+          "blockId": "m3",
+          "dir": "LEFT"
+        },
+        {
+          "blockId": "m1",
+          "dir": "UP"
+        },
+        {
+          "blockId": "m3",
+          "dir": "DOWN"
+        },
+        {
+          "blockId": "m4",
+          "dir": "DOWN"
+        },
+        {
+          "blockId": "m1",
+          "dir": "RIGHT"
+        },
+        {
+          "blockId": "m1",
+          "dir": "UP"
+        },
+        {
+          "blockId": "m1",
+          "dir": "LEFT"
+        },
+        {
+          "blockId": "m1",
+          "dir": "DOWN"
+        }
+      ],
+      "optimalMoves": 17
+    },
+    "diversity": {
+      "exactDuplicate": false,
+      "similarLevelId": 3,
+      "similarity": 0.6363636363636364,
+      "reasons": [
+        "Structural feature similarity (estimate; not equivalence proof)",
+        "Solution similarity covers the recorded optimal path only"
+      ],
+      "solutionSimilarity": 0.5,
+      "solutionSimilarLevelId": 3
+    },
+    "difficulty": {
+      "score": 44.252941176470586,
+      "category": "MEDIUM",
+      "optimalMoves": 17,
+      "dependencyDepth": 0,
+      "effectiveBranching": 4.764705882352941,
+      "deadEndRisk": 0,
+      "graphStatus": "COMPLETE",
+      "deadEndRiskVerified": true,
+      "mechanicComplexity": 3,
+      "noveltyScore": 0,
+      "modelVersion": "heuristic-2.0.0",
+      "confidence": 0.4,
+      "features": {
+        "moves": 17,
+        "branching": 4.764705882352941,
+        "dependency": 0,
+        "repositioning": 10,
+        "deadEnds": 0,
+        "mechanics": 2,
+        "novelty": 0,
+        "pathComplexity": 0.35294117647058826
+      },
+      "coverage": "Complete reachable graph (4685 states)",
+      "breakdown": {
+        "moves": 20.4,
+        "branching": 7.147058823529411,
+        "dependency": 0,
+        "repositioning": 10,
+        "deadEnds": 0,
+        "mechanics": 6,
+        "novelty": 0,
+        "pathComplexity": 0.7058823529411765
+      }
+    },
+    "decisions": {
+      "status": "VERIFIED",
+      "states": 4685,
+      "optimalMoves": 17,
+      "decisionPoints": 15,
+      "prematureExitTraps": 0,
+      "initialOptimalActionFraction": 0.5
+    },
+    "softFindings": [
+      "Predicted difficulty MEDIUM differs from HARD"
+    ]
+  }
+]
