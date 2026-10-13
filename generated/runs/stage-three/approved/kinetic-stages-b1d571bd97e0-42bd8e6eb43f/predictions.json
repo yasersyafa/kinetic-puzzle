@@ -1,0 +1,1082 @@
+[
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 1,
+    "levelVersion": "5eb27162",
+    "score": 24.184172661870505,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 2,
+      "branching": 4,
+      "dependency": 0,
+      "repositioning": 0,
+      "deadEnds": 0.9784172661870504,
+      "mechanics": 0,
+      "novelty": 1,
+      "pathComplexity": 0.5
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 2,
+    "levelVersion": "d7bfd27",
+    "score": 29.737739032620922,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 7,
+      "branching": 4.714285714285714,
+      "dependency": 0,
+      "repositioning": 3,
+      "deadEnds": 0.09448818897637795,
+      "mechanics": 1,
+      "novelty": 0.75,
+      "pathComplexity": 0.2857142857142857
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 3,
+    "levelVersion": "e3b754cb",
+    "score": 33.52222222222222,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 9,
+      "branching": 3,
+      "dependency": 0,
+      "repositioning": 4,
+      "deadEnds": 0,
+      "mechanics": 2,
+      "novelty": 0.6666666666666666,
+      "pathComplexity": 0.4444444444444444
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 4,
+    "levelVersion": "2de3ecdd",
+    "score": 34.41111111111111,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 9,
+      "branching": 4,
+      "dependency": 0,
+      "repositioning": 4,
+      "deadEnds": 0,
+      "mechanics": 2,
+      "novelty": 0.5,
+      "pathComplexity": 0.5555555555555556
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 5,
+    "levelVersion": "4780109e",
+    "score": 32.7,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 10,
+      "branching": 5,
+      "dependency": 0,
+      "repositioning": 3,
+      "deadEnds": 0,
+      "mechanics": 2,
+      "novelty": 0,
+      "pathComplexity": 0.6
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 6,
+    "levelVersion": "f5658aa6",
+    "score": 32.43524947119572,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 9,
+      "branching": 4.333333333333333,
+      "dependency": 0,
+      "repositioning": 4,
+      "deadEnds": 0.02463605823068309,
+      "mechanics": 2,
+      "novelty": 0,
+      "pathComplexity": 0.4444444444444444
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 7,
+    "levelVersion": "95424bc2",
+    "score": 40.79928998505231,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 12,
+      "branching": 4.75,
+      "dependency": 0,
+      "repositioning": 7,
+      "deadEnds": 0.21076233183856502,
+      "mechanics": 2,
+      "novelty": 0,
+      "pathComplexity": 0.5833333333333334
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 8,
+    "levelVersion": "febbdc4d",
+    "score": 39.775,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 12,
+      "branching": 5.583333333333333,
+      "dependency": 0,
+      "repositioning": 5,
+      "deadEnds": 0,
+      "mechanics": 2,
+      "novelty": 0,
+      "pathComplexity": 0.5
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 9,
+    "levelVersion": "c1a689b4",
+    "score": 34.8,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 10,
+      "branching": 5.2,
+      "dependency": 0,
+      "repositioning": 4,
+      "deadEnds": 0,
+      "mechanics": 2,
+      "novelty": 0,
+      "pathComplexity": 0.5
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 10,
+    "levelVersion": "8b27fc6b",
+    "score": 43.26666666666667,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 15,
+      "branching": 5.466666666666667,
+      "dependency": 0,
+      "repositioning": 8,
+      "deadEnds": 0,
+      "mechanics": 2,
+      "novelty": 0,
+      "pathComplexity": 0.5333333333333333
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 11,
+    "levelVersion": "6eeb3b4d",
+    "score": 42.756964656964655,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 13,
+      "branching": 4.615384615384615,
+      "dependency": 0,
+      "repositioning": 8,
+      "deadEnds": 0.08108108108108109,
+      "mechanics": 2,
+      "novelty": 0.5,
+      "pathComplexity": 0.46153846153846156
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 12,
+    "levelVersion": "834c7485",
+    "score": 42.394843150530356,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 14,
+      "branching": 4.928571428571429,
+      "dependency": 0,
+      "repositioning": 9,
+      "deadEnds": 0.09162717219589257,
+      "mechanics": 2,
+      "novelty": 0,
+      "pathComplexity": 0.6428571428571429
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 13,
+    "levelVersion": "369c2755",
+    "score": 42.46393613690911,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 14,
+      "branching": 5.857142857142857,
+      "dependency": 0,
+      "repositioning": 9,
+      "deadEnds": 0.030679327976625273,
+      "mechanics": 2,
+      "novelty": 0,
+      "pathComplexity": 0.2857142857142857
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 14,
+    "levelVersion": "c08987ec",
+    "score": 40.49042089985486,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 13,
+      "branching": 4.076923076923077,
+      "dependency": 0,
+      "repositioning": 8,
+      "deadEnds": 0.16981132075471697,
+      "mechanics": 2,
+      "novelty": 0,
+      "pathComplexity": 0.5384615384615384
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 15,
+    "levelVersion": "be45f3c",
+    "score": 46.35574177529484,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 18,
+      "branching": 5.222222222222222,
+      "dependency": 0,
+      "repositioning": 11,
+      "deadEnds": 0.0033519553072625698,
+      "mechanics": 2,
+      "novelty": 0,
+      "pathComplexity": 0.4444444444444444
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 16,
+    "levelVersion": "46ca5165",
+    "score": 44.01746031746031,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 15,
+      "branching": 4.266666666666667,
+      "dependency": 0,
+      "repositioning": 10,
+      "deadEnds": 0.031746031746031744,
+      "mechanics": 2,
+      "novelty": 0.5,
+      "pathComplexity": 0.4
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 17,
+    "levelVersion": "c34c16f",
+    "score": 44.72857142857143,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 14,
+      "branching": 5.428571428571429,
+      "dependency": 0,
+      "repositioning": 7,
+      "deadEnds": 0,
+      "mechanics": 2,
+      "novelty": 0.5,
+      "pathComplexity": 0.6428571428571429
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 18,
+    "levelVersion": "2547f265",
+    "score": 37.91456494325347,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 10,
+      "branching": 5.1,
+      "dependency": 0,
+      "repositioning": 5,
+      "deadEnds": 0.1664564943253468,
+      "mechanics": 2,
+      "novelty": 0,
+      "pathComplexity": 0.3
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 19,
+    "levelVersion": "1ecc2a26",
+    "score": 43.33333333333333,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 15,
+      "branching": 5.6,
+      "dependency": 0,
+      "repositioning": 8,
+      "deadEnds": 0,
+      "mechanics": 2,
+      "novelty": 0,
+      "pathComplexity": 0.4666666666666667
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 20,
+    "levelVersion": "aa4c31a5",
+    "score": 46.42941176470588,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 17,
+      "branching": 5.588235294117647,
+      "dependency": 0,
+      "repositioning": 10,
+      "deadEnds": 0,
+      "mechanics": 2,
+      "novelty": 0,
+      "pathComplexity": 0.8235294117647058
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 21,
+    "levelVersion": "68d513bd",
+    "score": 30.828571428571426,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 7,
+      "branching": 5.857142857142857,
+      "dependency": 0,
+      "repositioning": 2,
+      "deadEnds": 0,
+      "mechanics": 2,
+      "novelty": 0.5,
+      "pathComplexity": 0.5714285714285714
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 22,
+    "levelVersion": "1139ef26",
+    "score": 30.59047619047619,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 7,
+      "branching": 4,
+      "dependency": 1,
+      "repositioning": 1,
+      "deadEnds": 0,
+      "mechanics": 2,
+      "novelty": 0.6666666666666666,
+      "pathComplexity": 0.42857142857142855
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 23,
+    "levelVersion": "6704b3ad",
+    "score": 32.1625,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 8,
+      "branching": 4.875,
+      "dependency": 1,
+      "repositioning": 1,
+      "deadEnds": 0,
+      "mechanics": 2,
+      "novelty": 0.5,
+      "pathComplexity": 0.375
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 24,
+    "levelVersion": "513c8b9e",
+    "score": 40.829616748974054,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 11,
+      "branching": 4.090909090909091,
+      "dependency": 1,
+      "repositioning": 4,
+      "deadEnds": 0.008416220351951033,
+      "mechanics": 2,
+      "novelty": 0.5,
+      "pathComplexity": 0.45454545454545453
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 25,
+    "levelVersion": "13cbcbc7",
+    "score": 39.94018691588784,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 9,
+      "branching": 4.555555555555555,
+      "dependency": 1,
+      "repositioning": 3,
+      "deadEnds": 0.014018691588785047,
+      "mechanics": 3,
+      "novelty": 0.5,
+      "pathComplexity": 0.3333333333333333
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 26,
+    "levelVersion": "a31e8b2c",
+    "score": 48.91121593291405,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 16,
+      "branching": 4,
+      "dependency": 1,
+      "repositioning": 10,
+      "deadEnds": 0.04612159329140461,
+      "mechanics": 2,
+      "novelty": 0.5,
+      "pathComplexity": 0.375
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 27,
+    "levelVersion": "fa1ed427",
+    "score": 47.45915813424345,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 12,
+      "branching": 4.666666666666667,
+      "dependency": 2,
+      "repositioning": 4,
+      "deadEnds": 0.03924914675767918,
+      "mechanics": 2,
+      "novelty": 0.5,
+      "pathComplexity": 0.5833333333333334
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 28,
+    "levelVersion": "85630e7e",
+    "score": 54.7428172455926,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 17,
+      "branching": 4.411764705882353,
+      "dependency": 2,
+      "repositioning": 9,
+      "deadEnds": 0.05192878338278932,
+      "mechanics": 2,
+      "novelty": 0.5,
+      "pathComplexity": 0.35294117647058826
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 29,
+    "levelVersion": "84a10adb",
+    "score": 49.71694492120456,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 13,
+      "branching": 4.3076923076923075,
+      "dependency": 1,
+      "repositioning": 6,
+      "deadEnds": 0.07707910750507099,
+      "mechanics": 3,
+      "novelty": 0.5,
+      "pathComplexity": 0.6923076923076923
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 30,
+    "levelVersion": "201983c9",
+    "score": 31.97142857142857,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 7,
+      "branching": 1.8571428571428572,
+      "dependency": 1,
+      "repositioning": 4,
+      "deadEnds": 0,
+      "mechanics": 2,
+      "novelty": 0.5,
+      "pathComplexity": 0.14285714285714285
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 31,
+    "levelVersion": "4a13c5f9",
+    "score": 25.327659574468086,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 6,
+      "branching": 4,
+      "dependency": 0,
+      "repositioning": 0,
+      "deadEnds": 0.2127659574468085,
+      "mechanics": 2,
+      "novelty": 0.6666666666666666,
+      "pathComplexity": 0.3333333333333333
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 32,
+    "levelVersion": "26fcdf0b",
+    "score": 38.290909090909096,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 11,
+      "branching": 5,
+      "dependency": 0,
+      "repositioning": 4,
+      "deadEnds": 0,
+      "mechanics": 2,
+      "novelty": 0.5,
+      "pathComplexity": 0.5454545454545454
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 33,
+    "levelVersion": "ff73599b",
+    "score": 41.233333333333334,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 12,
+      "branching": 4.666666666666667,
+      "dependency": 0,
+      "repositioning": 5,
+      "deadEnds": 0,
+      "mechanics": 2,
+      "novelty": 0.5,
+      "pathComplexity": 0.6666666666666666
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 34,
+    "levelVersion": "f31143ed",
+    "score": 46.94817813765182,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 13,
+      "branching": 5,
+      "dependency": 0,
+      "repositioning": 8,
+      "deadEnds": 0.15789473684210525,
+      "mechanics": 3,
+      "novelty": 0.5,
+      "pathComplexity": 0.38461538461538464
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 35,
+    "levelVersion": "af3924df",
+    "score": 38.972727272727276,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 11,
+      "branching": 5.454545454545454,
+      "dependency": 0,
+      "repositioning": 4,
+      "deadEnds": 0,
+      "mechanics": 2,
+      "novelty": 0.5,
+      "pathComplexity": 0.5454545454545454
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 36,
+    "levelVersion": "ea22ed9",
+    "score": 47.9076923076923,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 13,
+      "branching": 3.923076923076923,
+      "dependency": 1,
+      "repositioning": 5,
+      "deadEnds": 0,
+      "mechanics": 3,
+      "novelty": 0.5,
+      "pathComplexity": 0.46153846153846156
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 37,
+    "levelVersion": "684ab8c",
+    "score": 51.52198838896952,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 13,
+      "branching": 4.230769230769231,
+      "dependency": 1,
+      "repositioning": 7,
+      "deadEnds": 0.030660377358490566,
+      "mechanics": 4,
+      "novelty": 0.5,
+      "pathComplexity": 0.38461538461538464
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 38,
+    "levelVersion": "28d0975b",
+    "score": 52.10223048327138,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 15,
+      "branching": 3.466666666666667,
+      "dependency": 1,
+      "repositioning": 9,
+      "deadEnds": 0.26022304832713755,
+      "mechanics": 3,
+      "novelty": 0.5,
+      "pathComplexity": 0.4
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 39,
+    "levelVersion": "51267d7c",
+    "score": 44.858333333333334,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 12,
+      "branching": 3.0833333333333335,
+      "dependency": 1,
+      "repositioning": 6,
+      "deadEnds": 0,
+      "mechanics": 3,
+      "novelty": 0.5,
+      "pathComplexity": 0.16666666666666666
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 40,
+    "levelVersion": "c12869ca",
+    "score": 54.97016129032259,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 16,
+      "branching": 3.75,
+      "dependency": 1,
+      "repositioning": 9,
+      "deadEnds": 0.06451612903225806,
+      "mechanics": 4,
+      "novelty": 0.5,
+      "pathComplexity": 0.5
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 41,
+    "levelVersion": "c49beb60",
+    "score": 41.60909090909091,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 11,
+      "branching": 6,
+      "dependency": 1,
+      "repositioning": 3,
+      "deadEnds": 0,
+      "mechanics": 2,
+      "novelty": 0.5,
+      "pathComplexity": 0.45454545454545453
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 42,
+    "levelVersion": "b72ac4d0",
+    "score": 42.986813778256185,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 10,
+      "branching": 4.3,
+      "dependency": 1,
+      "repositioning": 4,
+      "deadEnds": 0.023681377825618945,
+      "mechanics": 3,
+      "novelty": 0.5,
+      "pathComplexity": 0.4
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 43,
+    "levelVersion": "8e773a",
+    "score": 44.494903894790085,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 12,
+      "branching": 4.416666666666667,
+      "dependency": 1,
+      "repositioning": 7,
+      "deadEnds": 0.013657056145675266,
+      "mechanics": 2,
+      "novelty": 0.5,
+      "pathComplexity": 0.4166666666666667
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 44,
+    "levelVersion": "bee22570",
+    "score": 48.77005782039083,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 13,
+      "branching": 4.3076923076923075,
+      "dependency": 1,
+      "repositioning": 6,
+      "deadEnds": 0.028544243577545196,
+      "mechanics": 3,
+      "novelty": 0.5,
+      "pathComplexity": 0.46153846153846156
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 45,
+    "levelVersion": "884089ea",
+    "score": 45.42696078431372,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 12,
+      "branching": 4.75,
+      "dependency": 1,
+      "repositioning": 7,
+      "deadEnds": 0.023529411764705882,
+      "mechanics": 2,
+      "novelty": 0.5,
+      "pathComplexity": 0.5833333333333334
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 46,
+    "levelVersion": "6d7d8853",
+    "score": 47.253846153846155,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 13,
+      "branching": 5.384615384615385,
+      "dependency": 1,
+      "repositioning": 6,
+      "deadEnds": 0,
+      "mechanics": 2,
+      "novelty": 0.5,
+      "pathComplexity": 0.5384615384615384
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 47,
+    "levelVersion": "4694436a",
+    "score": 52.01383737517831,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 15,
+      "branching": 4.933333333333334,
+      "dependency": 1,
+      "repositioning": 8,
+      "deadEnds": 0.03138373751783167,
+      "mechanics": 3,
+      "novelty": 0.5,
+      "pathComplexity": 0.4
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 48,
+    "levelVersion": "39238096",
+    "score": 50.36666666666667,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 15,
+      "branching": 5.866666666666666,
+      "dependency": 1,
+      "repositioning": 7,
+      "deadEnds": 0,
+      "mechanics": 2,
+      "novelty": 0.5,
+      "pathComplexity": 0.5333333333333333
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 49,
+    "levelVersion": "47ec951",
+    "score": 36.68888888888889,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 9,
+      "branching": 2.111111111111111,
+      "dependency": 1,
+      "repositioning": 5,
+      "deadEnds": 0,
+      "mechanics": 2,
+      "novelty": 0.5,
+      "pathComplexity": 0.1111111111111111
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 50,
+    "levelVersion": "f73ffe27",
+    "score": 48.43026081802015,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 14,
+      "branching": 3.5,
+      "dependency": 1,
+      "repositioning": 7,
+      "deadEnds": 0.016597510373443983,
+      "mechanics": 3,
+      "novelty": 0.5,
+      "pathComplexity": 0.35714285714285715
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 51,
+    "levelVersion": "a12d575d",
+    "score": 45.31666666666666,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 12,
+      "branching": 4.166666666666667,
+      "dependency": 1,
+      "repositioning": 4,
+      "deadEnds": 0,
+      "mechanics": 3,
+      "novelty": 0.5,
+      "pathComplexity": 0.5833333333333334
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 52,
+    "levelVersion": "3828b236",
+    "score": 49.450678733031666,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 13,
+      "branching": 4.461538461538462,
+      "dependency": 1,
+      "repositioning": 8,
+      "deadEnds": 0.07352941176470588,
+      "mechanics": 3,
+      "novelty": 0.5,
+      "pathComplexity": 0.46153846153846156
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 53,
+    "levelVersion": "a3346fb6",
+    "score": 49.6,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 13,
+      "branching": 4.846153846153846,
+      "dependency": 1,
+      "repositioning": 6,
+      "deadEnds": 0,
+      "mechanics": 3,
+      "novelty": 0.5,
+      "pathComplexity": 0.6153846153846154
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 54,
+    "levelVersion": "d1fd27ff",
+    "score": 51.849160671462826,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 15,
+      "branching": 3.066666666666667,
+      "dependency": 1,
+      "repositioning": 8,
+      "deadEnds": 0.02158273381294964,
+      "mechanics": 4,
+      "novelty": 0.5,
+      "pathComplexity": 0.26666666666666666
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 55,
+    "levelVersion": "c8657008",
+    "score": 54.37058823529412,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 17,
+      "branching": 4.9411764705882355,
+      "dependency": 1,
+      "repositioning": 10,
+      "deadEnds": 0,
+      "mechanics": 3,
+      "novelty": 0.5,
+      "pathComplexity": 0.5294117647058824
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 56,
+    "levelVersion": "a10ea279",
+    "score": 52.95882352941176,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 17,
+      "branching": 4.235294117647059,
+      "dependency": 1,
+      "repositioning": 10,
+      "deadEnds": 0,
+      "mechanics": 3,
+      "novelty": 0.5,
+      "pathComplexity": 0.35294117647058826
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 57,
+    "levelVersion": "7060813",
+    "score": 58.503381642512075,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 18,
+      "branching": 4.222222222222222,
+      "dependency": 1,
+      "repositioning": 11,
+      "deadEnds": 0.08478260869565217,
+      "mechanics": 4,
+      "novelty": 0.5,
+      "pathComplexity": 0.6111111111111112
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 58,
+    "levelVersion": "627f7ec8",
+    "score": 55.03803418803419,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 18,
+      "branching": 4.722222222222222,
+      "dependency": 1,
+      "repositioning": 10,
+      "deadEnds": 0.007692307692307693,
+      "mechanics": 3,
+      "novelty": 0.5,
+      "pathComplexity": 0.3888888888888889
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 59,
+    "levelVersion": "2545818d",
+    "score": 39.65,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 10,
+      "branching": 2.5,
+      "dependency": 1,
+      "repositioning": 4,
+      "deadEnds": 0,
+      "mechanics": 3,
+      "novelty": 0.5,
+      "pathComplexity": 0.2
+    }
+  },
+  {
+    "campaignId": "kinetic-stages",
+    "campaignVersion": "b1d571bd97e0",
+    "levelId": 60,
+    "levelVersion": "61a7072e",
+    "score": 64.48323160198089,
+    "modelVersion": "heuristic-2.0.0",
+    "features": {
+      "moves": 19,
+      "branching": 5.7894736842105265,
+      "dependency": 1,
+      "repositioning": 12,
+      "deadEnds": 0.34463894967177244,
+      "mechanics": 4,
+      "novelty": 0.5,
+      "pathComplexity": 0.5263157894736842
+    }
+  }
+]

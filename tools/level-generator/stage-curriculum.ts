@@ -67,3 +67,45 @@ export function stageTwoContracts(): LevelDesignContract[] {
     } satisfies LevelDesignContract;
   });
 }
+
+/** Precision deepens existing rules: order, temporary stoppers, then combined planning. */
+export function stageThreeContracts(): LevelDesignContract[] {
+  const minima = [8, 10, 11, 12, 12, 13, 14, 15, 7, 14, 11, 12, 13, 14, 15, 16, 17, 18, 9, 17];
+  const insights = [
+    'Choose the first release', 'Leave help for the next exit', 'Open Blue without losing its route', 'Delay the tempting exit',
+    'Park a helper before releasing the parent', 'Make room before the parent leaves', 'Prepare Blue’s landing before exit', 'Prepare the return route',
+    'A short positioning reset', 'Coordinate the first release sequence',
+    'Choose exits for Blue and Purple', 'Prepare space before Purple opens', 'Unlock in order, move in order', 'Keep Yellow until its job is done',
+    'Move away to make room', 'Park help for two releases', 'Prepare each landing before unlocking', 'Plan the shared return route',
+    'A short sequencing reset', 'Master space and release order',
+  ];
+  return minima.map((min, i) => {
+    const id = 41 + i, relief = id === 49 || id === 59;
+    const lock = id >= 51;
+    const constrained = [42, 44, 47, 50, 54, 57, 60].includes(id);
+    const parking = id >= 45 && id <= 48 || id >= 55 && id <= 58 || id === 60;
+    const evidence: EvidenceSpec[] = [
+      { id: 'dependency', claim: 'dependency-planning', scope: 'COUNTERFACTUAL_EFFECT' },
+      { id: 'stopper', claim: 'block-as-stopper', scope: 'ALL_WINNING_PATHS' },
+    ];
+    if (lock) evidence.push({ id: 'lock', claim: 'lock-planning', scope: 'COUNTERFACTUAL_EFFECT' });
+    if (constrained) evidence.push({ id: 'direction', claim: 'direction-interaction', scope: 'COUNTERFACTUAL_EFFECT' });
+    if (parking) evidence.push({ id: 'preparation', claim: 'multi-step-planning', scope: 'ALL_WINNING_PATHS', blockIds: ['m1', 'm2', 'm3'], minSteps: id >= 55 ? 4 : 2 });
+    const exitOrder = [44, 50, 53, 58, 60].includes(id);
+    if (exitOrder) evidence.push({ id: 'exit-order', claim: 'false-opportunity', scope: 'EXISTS_REACHABLE_TRAP' });
+    const required: Mechanic[] = ['sliding', 'dependent', ...(lock ? ['lock' as const] : []), ...(constrained ? ['constrained' as const] : [])];
+    const scoreBands = [[34,42],[36,45],[38,47],[40,49],[40,49],[42,51],[44,53],[46,55],[28,38],[48,57],[39,48],[41,50],[43,52],[45,54],[46,55],[48,57],[50,59],[52,61],[34,44],[58,70]];
+    return {
+      schemaVersion: '2.0.0', diversityMode: 'LAYOUT_AND_STRUCTURE', productPolicy: PRODUCT_POLICY,
+      contractId: `stage3-${id}`, targetDifficulty: relief ? 'EASY' : id <= 44 || id === 51 ? 'MEDIUM' : 'HARD',
+      grid: { minCols: 4, maxCols: 5, minRows: 4, maxRows: 5 }, optimalMoves: { min, max: min + (relief ? 4 : 5) },
+      allowedMechanics: ['sliding', 'obstacle', ...required.filter(m => m !== 'sliding')], requiredMechanics: required,
+      primaryInsight: insights[i], secondaryInsights: [], learningObjective: insights[i],
+      progressionRole: relief ? 'RELIEF' : id === 50 || id === 60 ? 'MASTERY' : parking || exitOrder ? 'TWIST' : 'PRACTICE',
+      requiredEvidence: evidence, primaryEvidenceId: exitOrder ? 'exit-order' : parking ? 'preparation' : lock ? 'lock' : 'dependency',
+      mandatoryPrematureExitTrap: exitOrder || undefined, prematureExitTrapScope: exitOrder ? 'REACHABLE_WINNING_STATES' : undefined,
+      preferred: { difficultyScore: relief ? 35 : 36 + i, maxSimilarity: 0.85 }, mandatoryMaxSimilarity: 0.9,
+      mandatoryDifficultyScore: { min: scoreBands[i][0], max: scoreBands[i][1] },
+    } satisfies LevelDesignContract;
+  });
+}

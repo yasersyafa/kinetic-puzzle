@@ -1,0 +1,3257 @@
+[
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage1-1",
+    "targetDifficulty": "TUTORIAL",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 2,
+      "max": 6
+    },
+    "allowedMechanics": [
+      "sliding"
+    ],
+    "requiredMechanics": [
+      "sliding"
+    ],
+    "primaryInsight": "One exit for everyone",
+    "secondaryInsights": [],
+    "learningObjective": "Swipe the highlighted red block. It keeps sliding until stopped. Send every block through the same exit.",
+    "progressionRole": "TEACH",
+    "introducedMechanic": "sliding",
+    "requiredEvidence": [
+      {
+        "id": "mechanic",
+        "claim": "sliding-required",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "mechanic",
+    "preferred": {
+      "difficultyScore": 12,
+      "maxSimilarity": 0.9
+    },
+    "mandatoryMaxSimilarity": 0.94
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage1-2",
+    "targetDifficulty": "TUTORIAL",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 5,
+      "max": 9
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle"
+    ],
+    "requiredMechanics": [
+      "obstacle"
+    ],
+    "primaryInsight": "Obstacles stop your slide",
+    "secondaryInsights": [],
+    "learningObjective": "Gray obstacles stay in place. Use them to line up the shared exit.",
+    "progressionRole": "TEACH",
+    "introducedMechanic": "obstacle",
+    "requiredEvidence": [
+      {
+        "id": "mechanic",
+        "claim": "obstacle-interaction",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "mechanic",
+    "preferred": {
+      "difficultyScore": 14,
+      "maxSimilarity": 0.9
+    },
+    "mandatoryMaxSimilarity": 0.94
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage1-3",
+    "targetDifficulty": "TUTORIAL",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 6,
+      "max": 10
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "obstacle",
+      "constrained"
+    ],
+    "primaryInsight": "Yellow follows its arrow",
+    "secondaryInsights": [],
+    "learningObjective": "Yellow blocks move only in their arrow direction. Red blocks can help them reach the exit.",
+    "progressionRole": "TEACH",
+    "introducedMechanic": "constrained",
+    "requiredEvidence": [
+      {
+        "id": "mechanic",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      }
+    ],
+    "primaryEvidenceId": "mechanic",
+    "preferred": {
+      "difficultyScore": 16,
+      "maxSimilarity": 0.9
+    },
+    "mandatoryMaxSimilarity": 0.94
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage1-4",
+    "targetDifficulty": "EASY",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 7,
+      "max": 11
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "obstacle",
+      "constrained"
+    ],
+    "primaryInsight": "Keep a stopper until its job is done",
+    "secondaryInsights": [],
+    "learningObjective": "Keep a stopper until its job is done",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "mechanic",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      }
+    ],
+    "primaryEvidenceId": "mechanic",
+    "preferred": {
+      "difficultyScore": 18,
+      "maxSimilarity": 0.9
+    },
+    "mandatoryMaxSimilarity": 0.94
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage1-5",
+    "targetDifficulty": "EASY",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 8,
+      "max": 12
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "obstacle",
+      "constrained"
+    ],
+    "primaryInsight": "Keep a stopper until its job is done",
+    "secondaryInsights": [],
+    "learningObjective": "Keep a stopper until its job is done",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "mechanic",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      }
+    ],
+    "primaryEvidenceId": "mechanic",
+    "preferred": {
+      "difficultyScore": 20,
+      "maxSimilarity": 0.9
+    },
+    "mandatoryMaxSimilarity": 0.94
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage1-6",
+    "targetDifficulty": "MEDIUM",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 9,
+      "max": 17
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "obstacle",
+      "constrained"
+    ],
+    "primaryInsight": "Keep a stopper until its job is done",
+    "secondaryInsights": [],
+    "learningObjective": "Keep a stopper until its job is done",
+    "progressionRole": "TWIST",
+    "requiredEvidence": [
+      {
+        "id": "mechanic",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "mechanic",
+    "preferred": {
+      "difficultyScore": 22,
+      "maxSimilarity": 0.9
+    },
+    "mandatoryMaxSimilarity": 0.94,
+    "mandatoryDecisionPoints": 3
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage1-7",
+    "targetDifficulty": "MEDIUM",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 10,
+      "max": 18
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "obstacle",
+      "constrained"
+    ],
+    "primaryInsight": "Keep a stopper until its job is done",
+    "secondaryInsights": [],
+    "learningObjective": "Keep a stopper until its job is done",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "mechanic",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "mechanic",
+    "preferred": {
+      "difficultyScore": 24,
+      "maxSimilarity": 0.9
+    },
+    "mandatoryMaxSimilarity": 0.94,
+    "mandatoryDecisionPoints": 3
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage1-8",
+    "targetDifficulty": "MEDIUM",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 11,
+      "max": 19
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "obstacle",
+      "constrained"
+    ],
+    "primaryInsight": "Keep a stopper until its job is done",
+    "secondaryInsights": [],
+    "learningObjective": "Keep a stopper until its job is done",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "mechanic",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "mechanic",
+    "preferred": {
+      "difficultyScore": 26,
+      "maxSimilarity": 0.9
+    },
+    "mandatoryMaxSimilarity": 0.94,
+    "mandatoryDecisionPoints": 3
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage1-9",
+    "targetDifficulty": "MEDIUM",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 10,
+      "max": 18
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "obstacle",
+      "constrained"
+    ],
+    "primaryInsight": "Keep a stopper until its job is done",
+    "secondaryInsights": [],
+    "learningObjective": "Keep a stopper until its job is done",
+    "progressionRole": "TWIST",
+    "requiredEvidence": [
+      {
+        "id": "mechanic",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "mechanic",
+    "preferred": {
+      "difficultyScore": 28,
+      "maxSimilarity": 0.9
+    },
+    "mandatoryMaxSimilarity": 0.94,
+    "mandatoryDecisionPoints": 3
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage1-10",
+    "targetDifficulty": "MEDIUM",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 12,
+      "max": 20
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "obstacle",
+      "constrained"
+    ],
+    "primaryInsight": "Keep a stopper until its job is done",
+    "secondaryInsights": [],
+    "learningObjective": "Keep a stopper until its job is done",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "mechanic",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "mechanic",
+    "preferred": {
+      "difficultyScore": 30,
+      "maxSimilarity": 0.9
+    },
+    "mandatoryMaxSimilarity": 0.94,
+    "mandatoryDecisionPoints": 3
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage1-11",
+    "targetDifficulty": "MEDIUM",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 12,
+      "max": 20
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "obstacle",
+      "constrained"
+    ],
+    "primaryInsight": "Position first, exit later",
+    "secondaryInsights": [],
+    "learningObjective": "Position first, exit later",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "mechanic",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "mechanic",
+    "preferred": {
+      "difficultyScore": 32,
+      "maxSimilarity": 0.9
+    },
+    "mandatoryMaxSimilarity": 0.94,
+    "mandatoryDecisionPoints": 3
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage1-12",
+    "targetDifficulty": "MEDIUM",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 13,
+      "max": 21
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "obstacle",
+      "constrained"
+    ],
+    "primaryInsight": "Position first, exit later",
+    "secondaryInsights": [],
+    "learningObjective": "Position first, exit later",
+    "progressionRole": "TWIST",
+    "requiredEvidence": [
+      {
+        "id": "mechanic",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "mechanic",
+    "preferred": {
+      "difficultyScore": 34,
+      "maxSimilarity": 0.9
+    },
+    "mandatoryMaxSimilarity": 0.94,
+    "mandatoryDecisionPoints": 3
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage1-13",
+    "targetDifficulty": "MEDIUM",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 14,
+      "max": 22
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "obstacle",
+      "constrained"
+    ],
+    "primaryInsight": "Position first, exit later",
+    "secondaryInsights": [],
+    "learningObjective": "Position first, exit later",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "mechanic",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "mechanic",
+    "preferred": {
+      "difficultyScore": 36,
+      "maxSimilarity": 0.9
+    },
+    "mandatoryMaxSimilarity": 0.94,
+    "mandatoryDecisionPoints": 3
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage1-14",
+    "targetDifficulty": "MEDIUM",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 13,
+      "max": 21
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "obstacle",
+      "constrained"
+    ],
+    "primaryInsight": "Position first, exit later",
+    "secondaryInsights": [],
+    "learningObjective": "Position first, exit later",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "mechanic",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "mechanic",
+    "preferred": {
+      "difficultyScore": 38,
+      "maxSimilarity": 0.9
+    },
+    "mandatoryMaxSimilarity": 0.94,
+    "mandatoryDecisionPoints": 3
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage1-15",
+    "targetDifficulty": "MEDIUM",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 15,
+      "max": 23
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "obstacle",
+      "constrained"
+    ],
+    "primaryInsight": "Position first, exit later",
+    "secondaryInsights": [],
+    "learningObjective": "Position first, exit later",
+    "progressionRole": "TWIST",
+    "requiredEvidence": [
+      {
+        "id": "mechanic",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "mechanic",
+    "preferred": {
+      "difficultyScore": 40,
+      "maxSimilarity": 0.9
+    },
+    "mandatoryMaxSimilarity": 0.94,
+    "mandatoryDecisionPoints": 3
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage1-16",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 15,
+      "max": 23
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "obstacle",
+      "constrained"
+    ],
+    "primaryInsight": "Plan the complete exit order",
+    "secondaryInsights": [],
+    "learningObjective": "Plan the complete exit order",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "mechanic",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "mechanic",
+    "preferred": {
+      "difficultyScore": 42,
+      "maxSimilarity": 0.9
+    },
+    "mandatoryMaxSimilarity": 0.94,
+    "mandatoryDecisionPoints": 5
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage1-17",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 14,
+      "max": 22
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "obstacle",
+      "constrained"
+    ],
+    "primaryInsight": "Predict an irreversible exit order",
+    "secondaryInsights": [],
+    "learningObjective": "Predict an irreversible exit order",
+    "progressionRole": "TWIST",
+    "requiredEvidence": [
+      {
+        "id": "mechanic",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "exit-order",
+        "claim": "false-opportunity",
+        "scope": "EXISTS_REACHABLE_TRAP"
+      }
+    ],
+    "primaryEvidenceId": "exit-order",
+    "mandatoryPrematureExitTrap": true,
+    "prematureExitTrapScope": "REACHABLE_WINNING_STATES",
+    "preferred": {
+      "difficultyScore": 44,
+      "maxSimilarity": 0.9
+    },
+    "mandatoryMaxSimilarity": 0.94,
+    "mandatoryDecisionPoints": 5
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage1-18",
+    "targetDifficulty": "EASY",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 9,
+      "max": 12
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "obstacle",
+      "constrained"
+    ],
+    "primaryInsight": "Plan the complete exit order",
+    "secondaryInsights": [],
+    "learningObjective": "Plan the complete exit order",
+    "progressionRole": "RELIEF",
+    "requiredEvidence": [
+      {
+        "id": "mechanic",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "mechanic",
+    "preferred": {
+      "difficultyScore": 32,
+      "maxSimilarity": 0.9
+    },
+    "mandatoryMaxSimilarity": 0.94,
+    "mandatoryDecisionPoints": 2
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage1-19",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 15,
+      "max": 23
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "obstacle",
+      "constrained"
+    ],
+    "primaryInsight": "Predict an irreversible exit order",
+    "secondaryInsights": [],
+    "learningObjective": "Predict an irreversible exit order",
+    "progressionRole": "MASTERY",
+    "requiredEvidence": [
+      {
+        "id": "mechanic",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "exit-order",
+        "claim": "false-opportunity",
+        "scope": "EXISTS_REACHABLE_TRAP"
+      }
+    ],
+    "primaryEvidenceId": "exit-order",
+    "mandatoryPrematureExitTrap": true,
+    "prematureExitTrapScope": "REACHABLE_WINNING_STATES",
+    "preferred": {
+      "difficultyScore": 48,
+      "maxSimilarity": 0.9
+    },
+    "mandatoryMaxSimilarity": 0.94,
+    "mandatoryDecisionPoints": 5
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage1-20",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 16,
+      "max": 24
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "obstacle",
+      "constrained"
+    ],
+    "primaryInsight": "Predict an irreversible exit order",
+    "secondaryInsights": [],
+    "learningObjective": "Predict an irreversible exit order",
+    "progressionRole": "MASTERY",
+    "requiredEvidence": [
+      {
+        "id": "mechanic",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "exit-order",
+        "claim": "false-opportunity",
+        "scope": "EXISTS_REACHABLE_TRAP"
+      }
+    ],
+    "primaryEvidenceId": "exit-order",
+    "mandatoryPrematureExitTrap": true,
+    "prematureExitTrapScope": "REACHABLE_WINNING_STATES",
+    "preferred": {
+      "difficultyScore": 50,
+      "maxSimilarity": 0.9
+    },
+    "mandatoryMaxSimilarity": 0.94,
+    "mandatoryDecisionPoints": 5
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage2-21",
+    "targetDifficulty": "EASY",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 5,
+      "max": 9
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "constrained"
+    ],
+    "primaryInsight": "Plan within the move budget",
+    "secondaryInsights": [],
+    "learningObjective": "You have two moves beyond the shortest solution. Plan before you swipe.",
+    "progressionRole": "TEACH",
+    "introducedMechanic": "sliding",
+    "requiredEvidence": [
+      {
+        "id": "budget",
+        "claim": "sliding-required",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "direction",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      }
+    ],
+    "primaryEvidenceId": "budget",
+    "preferred": {
+      "difficultyScore": 22,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage2-22",
+    "targetDifficulty": "EASY",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 3,
+      "max": 7
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent"
+    ],
+    "primaryInsight": "Release the parent first",
+    "secondaryInsights": [],
+    "learningObjective": "Blue stays locked until its connected parent leaves through the exit. Release the parent, then move Blue.",
+    "progressionRole": "TEACH",
+    "introducedMechanic": "dependent",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      }
+    ],
+    "primaryEvidenceId": "dependency",
+    "preferred": {
+      "difficultyScore": 22,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage2-23",
+    "targetDifficulty": "MEDIUM",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 5,
+      "max": 12
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent"
+    ],
+    "primaryInsight": "Open a route for Blue",
+    "secondaryInsights": [],
+    "learningObjective": "Open a route for Blue",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      }
+    ],
+    "primaryEvidenceId": "dependency",
+    "preferred": {
+      "difficultyScore": 32,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage2-24",
+    "targetDifficulty": "MEDIUM",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 7,
+      "max": 14
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent"
+    ],
+    "primaryInsight": "Keep a stopper for the unlocked block",
+    "secondaryInsights": [],
+    "learningObjective": "Keep a stopper for the unlocked block",
+    "progressionRole": "TWIST",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "dependency",
+    "preferred": {
+      "difficultyScore": 33,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage2-25",
+    "targetDifficulty": "MEDIUM",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 8,
+      "max": 15
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained",
+      "dependent"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent",
+      "constrained"
+    ],
+    "primaryInsight": "Yellow sets the exit order",
+    "secondaryInsights": [],
+    "learningObjective": "Yellow sets the exit order",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "direction",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      }
+    ],
+    "primaryEvidenceId": "dependency",
+    "preferred": {
+      "difficultyScore": 34,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage2-26",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 9,
+      "max": 16
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent"
+    ],
+    "primaryInsight": "Position the parent before release",
+    "secondaryInsights": [],
+    "learningObjective": "Position the parent before release",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "dependency",
+    "preferred": {
+      "difficultyScore": 35,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage2-27",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 10,
+      "max": 17
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent"
+    ],
+    "primaryInsight": "Unlock a two-link chain",
+    "secondaryInsights": [],
+    "learningObjective": "Unlock a two-link chain",
+    "progressionRole": "TWIST",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "chain",
+        "claim": "dependency-chain",
+        "scope": "ALL_WINNING_PATHS",
+        "blockIds": [
+          "m1",
+          "m2",
+          "m4"
+        ]
+      }
+    ],
+    "primaryEvidenceId": "dependency",
+    "preferred": {
+      "difficultyScore": 36,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage2-28",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 11,
+      "max": 18
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent"
+    ],
+    "primaryInsight": "Prepare the chain landing points",
+    "secondaryInsights": [],
+    "learningObjective": "Prepare the chain landing points",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "chain",
+        "claim": "dependency-chain",
+        "scope": "ALL_WINNING_PATHS",
+        "blockIds": [
+          "m1",
+          "m2",
+          "m4"
+        ]
+      }
+    ],
+    "primaryEvidenceId": "dependency",
+    "preferred": {
+      "difficultyScore": 37,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage2-29",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 12,
+      "max": 19
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained",
+      "dependent"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent",
+      "constrained"
+    ],
+    "primaryInsight": "Keep help until the final exit",
+    "secondaryInsights": [],
+    "learningObjective": "Keep help until the final exit",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "direction",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "dependency",
+    "preferred": {
+      "difficultyScore": 38,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage2-30",
+    "targetDifficulty": "EASY",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 6,
+      "max": 10
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent"
+    ],
+    "primaryInsight": "A short dependency reset",
+    "secondaryInsights": [],
+    "learningObjective": "A short dependency reset",
+    "progressionRole": "RELIEF",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      }
+    ],
+    "primaryEvidenceId": "dependency",
+    "preferred": {
+      "difficultyScore": 30,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage2-31",
+    "targetDifficulty": "EASY",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 4,
+      "max": 8
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "lock"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "lock"
+    ],
+    "primaryInsight": "Count exits to open Purple",
+    "secondaryInsights": [],
+    "learningObjective": "Purple unlocks after its numbered exit count. Send that many other blocks out first, then move Purple.",
+    "progressionRole": "TEACH",
+    "introducedMechanic": "lock",
+    "requiredEvidence": [
+      {
+        "id": "lock",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      }
+    ],
+    "primaryEvidenceId": "lock",
+    "preferred": {
+      "difficultyScore": 22,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage2-32",
+    "targetDifficulty": "MEDIUM",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 6,
+      "max": 13
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "lock"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "lock"
+    ],
+    "primaryInsight": "Choose who leaves before the lock opens",
+    "secondaryInsights": [],
+    "learningObjective": "Choose who leaves before the lock opens",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "lock",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      }
+    ],
+    "primaryEvidenceId": "lock",
+    "preferred": {
+      "difficultyScore": 41,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage2-33",
+    "targetDifficulty": "MEDIUM",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 8,
+      "max": 15
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "lock"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "lock"
+    ],
+    "primaryInsight": "Prepare Purple before the gate opens",
+    "secondaryInsights": [],
+    "learningObjective": "Prepare Purple before the gate opens",
+    "progressionRole": "TWIST",
+    "requiredEvidence": [
+      {
+        "id": "lock",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "lock",
+    "preferred": {
+      "difficultyScore": 42,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage2-34",
+    "targetDifficulty": "MEDIUM",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 9,
+      "max": 16
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained",
+      "lock"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "lock",
+      "constrained"
+    ],
+    "primaryInsight": "Yellow controls the unlock order",
+    "secondaryInsights": [],
+    "learningObjective": "Yellow controls the unlock order",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "lock",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "direction",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      }
+    ],
+    "primaryEvidenceId": "lock",
+    "preferred": {
+      "difficultyScore": 43,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage2-35",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 10,
+      "max": 17
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "lock"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "lock"
+    ],
+    "primaryInsight": "Keep a stopper for Purple",
+    "secondaryInsights": [],
+    "learningObjective": "Keep a stopper for Purple",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "lock",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "lock",
+    "preferred": {
+      "difficultyScore": 44,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage2-36",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 12,
+      "max": 19
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent",
+      "lock"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent",
+      "lock"
+    ],
+    "primaryInsight": "Coordinate Blue and Purple",
+    "secondaryInsights": [],
+    "learningObjective": "Coordinate Blue and Purple",
+    "progressionRole": "TWIST",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "lock",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      }
+    ],
+    "primaryEvidenceId": "lock",
+    "preferred": {
+      "difficultyScore": 45,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage2-37",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 13,
+      "max": 20
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained",
+      "dependent",
+      "lock"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent",
+      "lock",
+      "constrained"
+    ],
+    "primaryInsight": "Unlock first, align second",
+    "secondaryInsights": [],
+    "learningObjective": "Unlock first, align second",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "lock",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "direction",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      }
+    ],
+    "primaryEvidenceId": "lock",
+    "preferred": {
+      "difficultyScore": 46,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage2-38",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 14,
+      "max": 21
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent",
+      "lock"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent",
+      "lock"
+    ],
+    "primaryInsight": "Plan every release and landing",
+    "secondaryInsights": [],
+    "learningObjective": "Plan every release and landing",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "lock",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "lock",
+    "preferred": {
+      "difficultyScore": 47,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage2-39",
+    "targetDifficulty": "EASY",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 8,
+      "max": 12
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent",
+      "lock"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent",
+      "lock"
+    ],
+    "primaryInsight": "A short combined reset",
+    "secondaryInsights": [],
+    "learningObjective": "A short combined reset",
+    "progressionRole": "RELIEF",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "lock",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      }
+    ],
+    "primaryEvidenceId": "lock",
+    "preferred": {
+      "difficultyScore": 30,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage2-40",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 16,
+      "max": 23
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "constrained",
+      "dependent",
+      "lock"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent",
+      "lock",
+      "constrained"
+    ],
+    "primaryInsight": "Master the connected exit order",
+    "secondaryInsights": [],
+    "learningObjective": "Master the connected exit order",
+    "progressionRole": "MASTERY",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "lock",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "direction",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "lock",
+    "preferred": {
+      "difficultyScore": 49,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage3-41",
+    "targetDifficulty": "MEDIUM",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 8,
+      "max": 13
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent"
+    ],
+    "primaryInsight": "Choose the first release",
+    "secondaryInsights": [],
+    "learningObjective": "Choose the first release",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "dependency",
+    "preferred": {
+      "difficultyScore": 36,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9,
+    "mandatoryDifficultyScore": {
+      "min": 34,
+      "max": 42
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage3-42",
+    "targetDifficulty": "MEDIUM",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 10,
+      "max": 15
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent",
+      "constrained"
+    ],
+    "primaryInsight": "Leave help for the next exit",
+    "secondaryInsights": [],
+    "learningObjective": "Leave help for the next exit",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "direction",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      }
+    ],
+    "primaryEvidenceId": "dependency",
+    "preferred": {
+      "difficultyScore": 37,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9,
+    "mandatoryDifficultyScore": {
+      "min": 36,
+      "max": 45
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage3-43",
+    "targetDifficulty": "MEDIUM",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 11,
+      "max": 16
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent"
+    ],
+    "primaryInsight": "Open Blue without losing its route",
+    "secondaryInsights": [],
+    "learningObjective": "Open Blue without losing its route",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "dependency",
+    "preferred": {
+      "difficultyScore": 38,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9,
+    "mandatoryDifficultyScore": {
+      "min": 38,
+      "max": 47
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage3-44",
+    "targetDifficulty": "MEDIUM",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 12,
+      "max": 17
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent",
+      "constrained"
+    ],
+    "primaryInsight": "Delay the tempting exit",
+    "secondaryInsights": [],
+    "learningObjective": "Delay the tempting exit",
+    "progressionRole": "TWIST",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "direction",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "exit-order",
+        "claim": "false-opportunity",
+        "scope": "EXISTS_REACHABLE_TRAP"
+      }
+    ],
+    "primaryEvidenceId": "exit-order",
+    "mandatoryPrematureExitTrap": true,
+    "prematureExitTrapScope": "REACHABLE_WINNING_STATES",
+    "preferred": {
+      "difficultyScore": 39,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9,
+    "mandatoryDifficultyScore": {
+      "min": 40,
+      "max": 49
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage3-45",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 12,
+      "max": 17
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent"
+    ],
+    "primaryInsight": "Park a helper before releasing the parent",
+    "secondaryInsights": [],
+    "learningObjective": "Park a helper before releasing the parent",
+    "progressionRole": "TWIST",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "preparation",
+        "claim": "multi-step-planning",
+        "scope": "ALL_WINNING_PATHS",
+        "blockIds": [
+          "m1",
+          "m2",
+          "m3"
+        ],
+        "minSteps": 2
+      }
+    ],
+    "primaryEvidenceId": "preparation",
+    "preferred": {
+      "difficultyScore": 40,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9,
+    "mandatoryDifficultyScore": {
+      "min": 40,
+      "max": 49
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage3-46",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 13,
+      "max": 18
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent"
+    ],
+    "primaryInsight": "Make room before the parent leaves",
+    "secondaryInsights": [],
+    "learningObjective": "Make room before the parent leaves",
+    "progressionRole": "TWIST",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "preparation",
+        "claim": "multi-step-planning",
+        "scope": "ALL_WINNING_PATHS",
+        "blockIds": [
+          "m1",
+          "m2",
+          "m3"
+        ],
+        "minSteps": 2
+      }
+    ],
+    "primaryEvidenceId": "preparation",
+    "preferred": {
+      "difficultyScore": 41,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9,
+    "mandatoryDifficultyScore": {
+      "min": 42,
+      "max": 51
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage3-47",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 14,
+      "max": 19
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent",
+      "constrained"
+    ],
+    "primaryInsight": "Prepare Blue’s landing before exit",
+    "secondaryInsights": [],
+    "learningObjective": "Prepare Blue’s landing before exit",
+    "progressionRole": "TWIST",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "direction",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "preparation",
+        "claim": "multi-step-planning",
+        "scope": "ALL_WINNING_PATHS",
+        "blockIds": [
+          "m1",
+          "m2",
+          "m3"
+        ],
+        "minSteps": 2
+      }
+    ],
+    "primaryEvidenceId": "preparation",
+    "preferred": {
+      "difficultyScore": 42,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9,
+    "mandatoryDifficultyScore": {
+      "min": 44,
+      "max": 53
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage3-48",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 15,
+      "max": 20
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent"
+    ],
+    "primaryInsight": "Prepare the return route",
+    "secondaryInsights": [],
+    "learningObjective": "Prepare the return route",
+    "progressionRole": "TWIST",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "preparation",
+        "claim": "multi-step-planning",
+        "scope": "ALL_WINNING_PATHS",
+        "blockIds": [
+          "m1",
+          "m2",
+          "m3"
+        ],
+        "minSteps": 2
+      }
+    ],
+    "primaryEvidenceId": "preparation",
+    "preferred": {
+      "difficultyScore": 43,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9,
+    "mandatoryDifficultyScore": {
+      "min": 46,
+      "max": 55
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage3-49",
+    "targetDifficulty": "EASY",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 7,
+      "max": 11
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent"
+    ],
+    "primaryInsight": "A short positioning reset",
+    "secondaryInsights": [],
+    "learningObjective": "A short positioning reset",
+    "progressionRole": "RELIEF",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      }
+    ],
+    "primaryEvidenceId": "dependency",
+    "preferred": {
+      "difficultyScore": 35,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9,
+    "mandatoryDifficultyScore": {
+      "min": 28,
+      "max": 38
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage3-50",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 14,
+      "max": 19
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent",
+      "constrained"
+    ],
+    "primaryInsight": "Coordinate the first release sequence",
+    "secondaryInsights": [],
+    "learningObjective": "Coordinate the first release sequence",
+    "progressionRole": "MASTERY",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "direction",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "exit-order",
+        "claim": "false-opportunity",
+        "scope": "EXISTS_REACHABLE_TRAP"
+      }
+    ],
+    "primaryEvidenceId": "exit-order",
+    "mandatoryPrematureExitTrap": true,
+    "prematureExitTrapScope": "REACHABLE_WINNING_STATES",
+    "preferred": {
+      "difficultyScore": 45,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9,
+    "mandatoryDifficultyScore": {
+      "min": 48,
+      "max": 57
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage3-51",
+    "targetDifficulty": "MEDIUM",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 11,
+      "max": 16
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent",
+      "lock"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent",
+      "lock"
+    ],
+    "primaryInsight": "Choose exits for Blue and Purple",
+    "secondaryInsights": [],
+    "learningObjective": "Choose exits for Blue and Purple",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "lock",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      }
+    ],
+    "primaryEvidenceId": "lock",
+    "preferred": {
+      "difficultyScore": 46,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9,
+    "mandatoryDifficultyScore": {
+      "min": 39,
+      "max": 48
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage3-52",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 12,
+      "max": 17
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent",
+      "lock"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent",
+      "lock"
+    ],
+    "primaryInsight": "Prepare space before Purple opens",
+    "secondaryInsights": [],
+    "learningObjective": "Prepare space before Purple opens",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "lock",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      }
+    ],
+    "primaryEvidenceId": "lock",
+    "preferred": {
+      "difficultyScore": 47,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9,
+    "mandatoryDifficultyScore": {
+      "min": 41,
+      "max": 50
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage3-53",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 13,
+      "max": 18
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent",
+      "lock"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent",
+      "lock"
+    ],
+    "primaryInsight": "Unlock in order, move in order",
+    "secondaryInsights": [],
+    "learningObjective": "Unlock in order, move in order",
+    "progressionRole": "TWIST",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "lock",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "exit-order",
+        "claim": "false-opportunity",
+        "scope": "EXISTS_REACHABLE_TRAP"
+      }
+    ],
+    "primaryEvidenceId": "exit-order",
+    "mandatoryPrematureExitTrap": true,
+    "prematureExitTrapScope": "REACHABLE_WINNING_STATES",
+    "preferred": {
+      "difficultyScore": 48,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9,
+    "mandatoryDifficultyScore": {
+      "min": 43,
+      "max": 52
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage3-54",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 14,
+      "max": 19
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent",
+      "lock",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent",
+      "lock",
+      "constrained"
+    ],
+    "primaryInsight": "Keep Yellow until its job is done",
+    "secondaryInsights": [],
+    "learningObjective": "Keep Yellow until its job is done",
+    "progressionRole": "PRACTICE",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "lock",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "direction",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      }
+    ],
+    "primaryEvidenceId": "lock",
+    "preferred": {
+      "difficultyScore": 49,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9,
+    "mandatoryDifficultyScore": {
+      "min": 45,
+      "max": 54
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage3-55",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 15,
+      "max": 20
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent",
+      "lock"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent",
+      "lock"
+    ],
+    "primaryInsight": "Move away to make room",
+    "secondaryInsights": [],
+    "learningObjective": "Move away to make room",
+    "progressionRole": "TWIST",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "lock",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "preparation",
+        "claim": "multi-step-planning",
+        "scope": "ALL_WINNING_PATHS",
+        "blockIds": [
+          "m1",
+          "m2",
+          "m3"
+        ],
+        "minSteps": 4
+      }
+    ],
+    "primaryEvidenceId": "preparation",
+    "preferred": {
+      "difficultyScore": 50,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9,
+    "mandatoryDifficultyScore": {
+      "min": 46,
+      "max": 55
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage3-56",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 16,
+      "max": 21
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent",
+      "lock"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent",
+      "lock"
+    ],
+    "primaryInsight": "Park help for two releases",
+    "secondaryInsights": [],
+    "learningObjective": "Park help for two releases",
+    "progressionRole": "TWIST",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "lock",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "preparation",
+        "claim": "multi-step-planning",
+        "scope": "ALL_WINNING_PATHS",
+        "blockIds": [
+          "m1",
+          "m2",
+          "m3"
+        ],
+        "minSteps": 4
+      }
+    ],
+    "primaryEvidenceId": "preparation",
+    "preferred": {
+      "difficultyScore": 51,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9,
+    "mandatoryDifficultyScore": {
+      "min": 48,
+      "max": 57
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage3-57",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 17,
+      "max": 22
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent",
+      "lock",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent",
+      "lock",
+      "constrained"
+    ],
+    "primaryInsight": "Prepare each landing before unlocking",
+    "secondaryInsights": [],
+    "learningObjective": "Prepare each landing before unlocking",
+    "progressionRole": "TWIST",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "lock",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "direction",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "preparation",
+        "claim": "multi-step-planning",
+        "scope": "ALL_WINNING_PATHS",
+        "blockIds": [
+          "m1",
+          "m2",
+          "m3"
+        ],
+        "minSteps": 4
+      }
+    ],
+    "primaryEvidenceId": "preparation",
+    "preferred": {
+      "difficultyScore": 52,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9,
+    "mandatoryDifficultyScore": {
+      "min": 50,
+      "max": 59
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage3-58",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 18,
+      "max": 23
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent",
+      "lock"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent",
+      "lock"
+    ],
+    "primaryInsight": "Plan the shared return route",
+    "secondaryInsights": [],
+    "learningObjective": "Plan the shared return route",
+    "progressionRole": "TWIST",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "lock",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "preparation",
+        "claim": "multi-step-planning",
+        "scope": "ALL_WINNING_PATHS",
+        "blockIds": [
+          "m1",
+          "m2",
+          "m3"
+        ],
+        "minSteps": 4
+      },
+      {
+        "id": "exit-order",
+        "claim": "false-opportunity",
+        "scope": "EXISTS_REACHABLE_TRAP"
+      }
+    ],
+    "primaryEvidenceId": "exit-order",
+    "mandatoryPrematureExitTrap": true,
+    "prematureExitTrapScope": "REACHABLE_WINNING_STATES",
+    "preferred": {
+      "difficultyScore": 53,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9,
+    "mandatoryDifficultyScore": {
+      "min": 52,
+      "max": 61
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage3-59",
+    "targetDifficulty": "EASY",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 9,
+      "max": 13
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent",
+      "lock"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent",
+      "lock"
+    ],
+    "primaryInsight": "A short sequencing reset",
+    "secondaryInsights": [],
+    "learningObjective": "A short sequencing reset",
+    "progressionRole": "RELIEF",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "lock",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      }
+    ],
+    "primaryEvidenceId": "lock",
+    "preferred": {
+      "difficultyScore": 35,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9,
+    "mandatoryDifficultyScore": {
+      "min": 34,
+      "max": 44
+    }
+  },
+  {
+    "schemaVersion": "2.0.0",
+    "diversityMode": "LAYOUT_AND_STRUCTURE",
+    "productPolicy": "single-exit-semantic-1.0.0",
+    "contractId": "stage3-60",
+    "targetDifficulty": "HARD",
+    "grid": {
+      "minCols": 4,
+      "maxCols": 5,
+      "minRows": 4,
+      "maxRows": 5
+    },
+    "optimalMoves": {
+      "min": 17,
+      "max": 22
+    },
+    "allowedMechanics": [
+      "sliding",
+      "obstacle",
+      "dependent",
+      "lock",
+      "constrained"
+    ],
+    "requiredMechanics": [
+      "sliding",
+      "dependent",
+      "lock",
+      "constrained"
+    ],
+    "primaryInsight": "Master space and release order",
+    "secondaryInsights": [],
+    "learningObjective": "Master space and release order",
+    "progressionRole": "MASTERY",
+    "requiredEvidence": [
+      {
+        "id": "dependency",
+        "claim": "dependency-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "stopper",
+        "claim": "block-as-stopper",
+        "scope": "ALL_WINNING_PATHS"
+      },
+      {
+        "id": "lock",
+        "claim": "lock-planning",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "direction",
+        "claim": "direction-interaction",
+        "scope": "COUNTERFACTUAL_EFFECT"
+      },
+      {
+        "id": "preparation",
+        "claim": "multi-step-planning",
+        "scope": "ALL_WINNING_PATHS",
+        "blockIds": [
+          "m1",
+          "m2",
+          "m3"
+        ],
+        "minSteps": 4
+      },
+      {
+        "id": "exit-order",
+        "claim": "false-opportunity",
+        "scope": "EXISTS_REACHABLE_TRAP"
+      }
+    ],
+    "primaryEvidenceId": "exit-order",
+    "mandatoryPrematureExitTrap": true,
+    "prematureExitTrapScope": "REACHABLE_WINNING_STATES",
+    "preferred": {
+      "difficultyScore": 55,
+      "maxSimilarity": 0.85
+    },
+    "mandatoryMaxSimilarity": 0.9,
+    "mandatoryDifficultyScore": {
+      "min": 58,
+      "max": 70
+    }
+  }
+]

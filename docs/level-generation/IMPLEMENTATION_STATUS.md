@@ -1,6 +1,16 @@
 # Implementation status
 
-## Current staged release: Connections
+## Current staged release: Precision
+
+The default snapshot contains 60 levels. Precision appends L41–60 to the unchanged first 40 levels. Campaign `kinetic-stages`, content `b1d571bd97e0`, audit `42bd8e6eb43f`, is selected by `generated/runs/stage-one/latest.json`; the frozen Stage 1 and Connections snapshots remain available for rollback. Existing per-level completions and tutorials retain their versions. Precision unlocks after completing all 20 Connections levels. Stage 4 remains unpublished.
+
+No mechanics or teaching dialogues are added. L41–44 revisit exit order, L45–48 require preparation and witnessed temporary parking, L49 provides relief, and L50 combines the first half. L51–54 combine Blue and Purple; L55–58 deepen preparation and parking. L59 is relief before L60, which has the highest estimated Stage 3 score. Each new level proves movable-stopper use and dependency influence; locks/direction constraints are proven where present. Selected order levels prove premature-exit traps. Every parking contract proves multiple nonexit preparation moves on all winning paths, while the recorded shortest solution additionally parks an actor away from the exit before using it again. Mandatory score bands and maximum upward jumps of 12 (25 for the post-relief finale) control pacing. These are solver and heuristic checks, not human difficulty measurements.
+
+Stage 3 uses its existing optimum +1 move policy and automatic Sunset palette. Gameplay colors, animations and layout are unchanged. Shortest solutions take 9–19 moves. Human playtesting is still needed for perceived difficulty and puzzle feel.
+
+Validation: 79 unit tests, typecheck, the default production build and all 31 targeted renderer-enabled browser checks pass. Browser coverage includes all 20 Stage 3 live replays, six earlier-level regressions, automatic palettes, both old-save imports and stage gates, and the unchanged Blue/Purple tutorials. Independent export verification re-proves all 60 levels before bundling. The localhost:3000 development server was restarted and serves the verified Precision campaign.
+
+## Connections release (historical)
 
 The default snapshot now contains 40 levels: Stage 1 is unchanged and Stage 2 adds L21–40. Campaign `kinetic-stages`, content `1a7993503381`, audit `445ff8f460ac`, is selected by `generated/runs/stage-one/latest.json`. The old 20-level snapshot remains available for rollback. Per-level completion hashes preserve existing Stage 1 progress; Connections opens after completing all 20 first-stage levels.
 
@@ -8,7 +18,7 @@ Connections teaches the optimum +2 move budget at L21, dependencies at L22, and 
 
 Manual palette selection, unlocks, scene and saved selection are removed. Stage palettes cycle Classic/Ocean/Sunset, beginning with Classic on Stage 1 and Ocean on Stage 2. Level select uses the selected stage; replaying earlier levels restores their palette. Mechanic block colors stay fixed. Legacy palette preferences are ignored without discarding completion or audio preferences. New Blue/Purple dialogue lessons spotlight the locked block and guide a valid prefix through its first move. The Blue lesson additionally requires tapping the dependent block, explains the parent circle, and waits for NEXT before guiding the release. Only L22 uses the newer dialogue version so players who saw the old Blue lesson receive the tap instruction.
 
-Validation: 74 full-suite unit tests, four focused Stage 2 checks, typecheck, and the default production build pass. All 27 targeted renderer-enabled browser checks pass: all 20 Stage 2 live solution replays, Stage 1 L1/L3/L20 regressions, stage palette/navigation/removal checks, old-save import and stage gating, and both new guided tutorials. The production build independently re-verifies the 40-level snapshot before bundling. Stage 2 still needs human playtesting for puzzle feel and perceived pacing.
+Validation: 74 full-suite unit tests, four focused Stage 2 checks, typecheck, and the default production build pass. All 27 targeted renderer-enabled browser checks pass: all 20 Stage 2 live solution replays, Stage 1 L1/L3/L20 regressions, stage palette/navigation/removal checks, old-save import and stage gating, and both new guided tutorials. The production build independently re-verifies the 40-level snapshot before bundling. Stage 2 was subsequently played and accepted by the user.
 
 ## Stage 1 baseline (historical)
 

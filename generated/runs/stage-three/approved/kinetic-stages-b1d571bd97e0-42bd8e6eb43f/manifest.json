@@ -1,0 +1,398 @@
+{
+  "schemaVersion": "2.0.0",
+  "exporterVersion": "2.2.0",
+  "campaignId": "kinetic-stages",
+  "campaignVersion": "b1d571bd97e0",
+  "auditVersion": "42bd8e6eb43f",
+  "contentHash": "b1d571bd97e06dadd21d445e53cddf1f3161f97aff00930f3f527e45f0b6f7a5",
+  "auditHash": "42bd8e6eb43fb504b50e778f03102033689950f9a86a55b7399a4c83d147ec36",
+  "provenance": [
+    {
+      "seed": 20261011,
+      "attempt": 0,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 0,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 20,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 1,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 9,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 77,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 36,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 15,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 12,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 55,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 177,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 90,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 518,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 544,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 873,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 1950,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 3,
+      "generatorVersion": "stage-1.0.0",
+      "strategy": "mutation",
+      "parentId": "shared-exit-reference-L2",
+      "sourceCandidateHash": "e04cc1a58777c6ae4086b77a793e525fecdd4ae70026a889130175061b310fe0",
+      "sourceGeneratorVersion": "3.1.0",
+      "history": [
+        {
+          "reason": "Require meaningful irreversible exit choices",
+          "operation": "Constrain the aligned block; change actor/obstacle positions and optionally add a red actor"
+        }
+      ]
+    },
+    {
+      "seed": 20261011,
+      "attempt": 25,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261011,
+      "attempt": 11,
+      "generatorVersion": "stage-1.0.0",
+      "strategy": "mutation",
+      "parentId": "shared-exit-reference-L2",
+      "sourceCandidateHash": "e04cc1a58777c6ae4086b77a793e525fecdd4ae70026a889130175061b310fe0",
+      "sourceGeneratorVersion": "3.1.0",
+      "history": [
+        {
+          "reason": "Require meaningful irreversible exit choices",
+          "operation": "Constrain the aligned block; change actor/obstacle positions and optionally add a red actor"
+        }
+      ]
+    },
+    {
+      "seed": 20261011,
+      "attempt": 298,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261013,
+      "attempt": 2,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261013,
+      "attempt": 28,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261013,
+      "attempt": 2,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261013,
+      "attempt": 2,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261013,
+      "attempt": 2,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261013,
+      "attempt": 1,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261013,
+      "attempt": 19,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261013,
+      "attempt": 10,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261013,
+      "attempt": 147,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261013,
+      "attempt": 3,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261013,
+      "attempt": 7,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261013,
+      "attempt": 3,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261013,
+      "attempt": 11,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261013,
+      "attempt": 0,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261013,
+      "attempt": 52,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261013,
+      "attempt": 14,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261013,
+      "attempt": 80,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261013,
+      "attempt": 15,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261013,
+      "attempt": 4,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261013,
+      "attempt": 1033,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261014,
+      "attempt": 6,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261014,
+      "attempt": 21,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261014,
+      "attempt": 88,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261014,
+      "attempt": 163,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261014,
+      "attempt": 8,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261014,
+      "attempt": 75,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261014,
+      "attempt": 40,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261014,
+      "attempt": 0,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261014,
+      "attempt": 243,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261014,
+      "attempt": 304,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261014,
+      "attempt": 44,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261014,
+      "attempt": 21,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261014,
+      "attempt": 29,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261014,
+      "attempt": 946,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261014,
+      "attempt": 117,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261014,
+      "attempt": 35,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261014,
+      "attempt": 138,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261014,
+      "attempt": 888,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261014,
+      "attempt": 271,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    },
+    {
+      "seed": 20261014,
+      "attempt": 3601,
+      "generatorVersion": "3.1.0",
+      "strategy": "constraint"
+    }
+  ],
+  "files": {
+    "campaign.json": "c19ac92b692f336c511d34e0d70ea5e6acb015d19f2a88dfb3c84dd677eb586a",
+    "contracts.json": "3a18aa07339d503ace0d0280f2b76e69e27a58a1067f5c810e561db505dfff23",
+    "reports.json": "da0b8d5b453f2c467fb7eb536802ad32bb30d3e1ce5e94304685c46575ec34e4",
+    "contexts.json": "a758525c3d1ee00d39d8796e26bf845196d039cde025738b2a8f7bb3a05391b4",
+    "campaign-validation.json": "601d617f0c0563ab0a4e051d72c8ffc4c077ac49432f14221b3e34dd4f1499c4",
+    "predictions.json": "e9d354436307e8a9d8a5cc2b02feccc57c9f5834f7337ce87600f9cd952e76d9",
+    "generation.json": "b263827b09c096877dae7d03554472f0b437452a18da8596f4f20240da34afe0"
+  }
+}

@@ -36,7 +36,7 @@ test('stage palettes follow replayed levels and selected tabs; manual palette co
   expect(await page.evaluate(() => window.kineticTest.game.scene.getScene('LevelSelectScene').cameras.main.backgroundColor.color)).toBe(0xe0f0f5);
 });
 
-test('append preserves Stage 1 progress, unlocks Connections and keeps unpublished stages locked', async ({ page }) => {
+test('append preserves Stage 1 progress and requires Connections completion before Stage 3', async ({ page }) => {
   const { levelContentVersion } = await import('../../../../src/core/puzzle/LevelVersion');
   const old = JSON.parse(readFileSync('generated/runs/stage-one/approved/kinetic-stages-3bacc398317c-192dac966e1b/campaign.json', 'utf8'));
   const completedLevels = Object.fromEntries(old.levels.map((level: any) => [level.id, { levelVersion: levelContentVersion(level) }]));
@@ -50,7 +50,7 @@ test('append preserves Stage 1 progress, unlocks Connections and keeps unpublish
     const { store, levels } = window.kineticTest, state = store.getState();
     return { count: levels.length, completed: levels.slice(0, 20).every((level: any) => state.isCompleted(level.id)),
       unlocked: state.unlockedLevel, stage2: state.canPlay(21), stage3: state.canPlay(41), muted: !state.audioEnabled };
-  })).toEqual({ count: 40, completed: true, unlocked: 21, stage2: true, stage3: false, muted: true });
+  })).toEqual({ count: campaign.levels.length, completed: true, unlocked: 21, stage2: true, stage3: false, muted: true });
 });
 
 for (const id of [22, 31]) test(`new mechanic tutorial L${id} highlights its locked block then guides a valid prefix`, async ({ page }) => {

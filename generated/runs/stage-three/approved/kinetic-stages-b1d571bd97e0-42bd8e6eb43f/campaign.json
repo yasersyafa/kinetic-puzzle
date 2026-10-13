@@ -1,0 +1,9143 @@
+{
+  "schemaVersion": "2.1.0",
+  "stageConfig": {
+    "targetLevels": 1000,
+    "batchSize": 20,
+    "stages": [
+      {
+        "id": "stage-1",
+        "number": 1,
+        "name": "First Steps",
+        "firstLevel": 1,
+        "levelCount": 20,
+        "allowedBlockTypes": [
+          "simple",
+          "constrained",
+          "obstacle"
+        ],
+        "moveBudget": {
+          "mode": "UNLIMITED"
+        }
+      },
+      {
+        "id": "stage-2",
+        "number": 2,
+        "name": "Connections",
+        "firstLevel": 21,
+        "levelCount": 20,
+        "allowedBlockTypes": [
+          "simple",
+          "constrained",
+          "obstacle",
+          "dependent",
+          "lock"
+        ],
+        "moveBudget": {
+          "mode": "OPTIMAL_PLUS",
+          "extraMoves": 2
+        }
+      },
+      {
+        "id": "stage-3",
+        "number": 3,
+        "name": "Precision",
+        "firstLevel": 41,
+        "levelCount": 20,
+        "allowedBlockTypes": [
+          "simple",
+          "constrained",
+          "obstacle",
+          "dependent",
+          "lock"
+        ],
+        "moveBudget": {
+          "mode": "OPTIMAL_PLUS",
+          "extraMoves": 1
+        }
+      },
+      {
+        "id": "stage-4",
+        "number": 4,
+        "name": "Mastery 1",
+        "firstLevel": 61,
+        "levelCount": 20,
+        "allowedBlockTypes": [
+          "simple",
+          "constrained",
+          "obstacle",
+          "dependent",
+          "lock"
+        ],
+        "moveBudget": {
+          "mode": "OPTIMAL_PLUS",
+          "extraMoves": 0
+        }
+      }
+    ]
+  },
+  "campaignId": "kinetic-stages",
+  "campaignVersion": "b1d571bd97e0",
+  "contentHash": "b1d571bd97e06dadd21d445e53cddf1f3161f97aff00930f3f527e45f0b6f7a5",
+  "auditHash": "42bd8e6eb43fb504b50e778f03102033689950f9a86a55b7399a4c83d147ec36",
+  "auditVersion": "42bd8e6eb43f",
+  "rulesVersion": "1.0.0",
+  "levels": [
+    {
+      "id": 1,
+      "cols": 5,
+      "rows": 4,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "RIGHT",
+          "index": 2
+        }
+      ],
+      "parMoves": 2,
+      "pack": "stage-1"
+    },
+    {
+      "id": 2,
+      "cols": 4,
+      "rows": 4,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "LEFT",
+          "index": 2
+        }
+      ],
+      "parMoves": 7,
+      "pack": "stage-1"
+    },
+    {
+      "id": 3,
+      "cols": 4,
+      "rows": 4,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            1,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            2,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "UP"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o4",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "TOP",
+          "index": 2
+        }
+      ],
+      "parMoves": 9,
+      "pack": "stage-1"
+    },
+    {
+      "id": 4,
+      "cols": 5,
+      "rows": 4,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            3,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "DOWN"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "BOTTOM",
+          "index": 3
+        }
+      ],
+      "parMoves": 9,
+      "pack": "stage-1"
+    },
+    {
+      "id": 5,
+      "cols": 4,
+      "rows": 4,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m4",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            2,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "UP"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "TOP",
+          "index": 2
+        }
+      ],
+      "parMoves": 10,
+      "pack": "stage-1"
+    },
+    {
+      "id": 6,
+      "cols": 5,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            4,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            2,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "DOWN"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "BOTTOM",
+          "index": 2
+        }
+      ],
+      "parMoves": 9,
+      "pack": "stage-1"
+    },
+    {
+      "id": 7,
+      "cols": 4,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            1,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "RIGHT"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o4",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "RIGHT",
+          "index": 3
+        }
+      ],
+      "parMoves": 12,
+      "pack": "stage-1"
+    },
+    {
+      "id": 8,
+      "cols": 5,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m4",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            4,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "RIGHT"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            4,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            4,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "RIGHT",
+          "index": 1
+        }
+      ],
+      "parMoves": 12,
+      "pack": "stage-1"
+    },
+    {
+      "id": 9,
+      "cols": 4,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            1,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m4",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "DOWN"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "BOTTOM",
+          "index": 1
+        }
+      ],
+      "parMoves": 10,
+      "pack": "stage-1"
+    },
+    {
+      "id": 10,
+      "cols": 5,
+      "rows": 4,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            4,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m4",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            1,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "DOWN"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o4",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "BOTTOM",
+          "index": 1
+        }
+      ],
+      "parMoves": 15,
+      "pack": "stage-1"
+    },
+    {
+      "id": 11,
+      "cols": 5,
+      "rows": 4,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            1,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            1,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "LEFT"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "LEFT",
+          "index": 1
+        }
+      ],
+      "parMoves": 13,
+      "pack": "stage-1"
+    },
+    {
+      "id": 12,
+      "cols": 4,
+      "rows": 4,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            0,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "RIGHT"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "RIGHT",
+          "index": 2
+        }
+      ],
+      "parMoves": 14,
+      "pack": "stage-1"
+    },
+    {
+      "id": 13,
+      "cols": 5,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            2,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "RIGHT"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "RIGHT",
+          "index": 1
+        }
+      ],
+      "parMoves": 14,
+      "pack": "stage-1"
+    },
+    {
+      "id": 14,
+      "cols": 4,
+      "rows": 4,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            2,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "DOWN"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "BOTTOM",
+          "index": 2
+        }
+      ],
+      "parMoves": 13,
+      "pack": "stage-1"
+    },
+    {
+      "id": 15,
+      "cols": 4,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m4",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            2,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "RIGHT"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o4",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "RIGHT",
+          "index": 1
+        }
+      ],
+      "parMoves": 18,
+      "pack": "stage-1"
+    },
+    {
+      "id": 16,
+      "cols": 4,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            0,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "LEFT"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o4",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "LEFT",
+          "index": 1
+        }
+      ],
+      "parMoves": 15,
+      "pack": "stage-1"
+    },
+    {
+      "id": 17,
+      "cols": 5,
+      "rows": 5,
+      "parMoves": 14,
+      "pack": "stage-1",
+      "exits": [
+        {
+          "side": "BOTTOM",
+          "index": 3
+        }
+      ],
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            1,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "DOWN"
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m4",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "cols": 4,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            1,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "UP"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o4",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "TOP",
+          "index": 1
+        }
+      ],
+      "parMoves": 10,
+      "pack": "stage-1"
+    },
+    {
+      "id": 19,
+      "cols": 5,
+      "rows": 5,
+      "parMoves": 15,
+      "pack": "stage-1",
+      "exits": [
+        {
+          "side": "TOP",
+          "index": 1
+        }
+      ],
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            4,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            1,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "UP"
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            4,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            4,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m4",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "cols": 4,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            1,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m4",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            1,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "DOWN"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o4",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "BOTTOM",
+          "index": 1
+        }
+      ],
+      "parMoves": 17,
+      "pack": "stage-1"
+    },
+    {
+      "id": 21,
+      "cols": 4,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            1,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "DOWN"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o4",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "BOTTOM",
+          "index": 1
+        }
+      ],
+      "parMoves": 7,
+      "pack": "stage-2"
+    },
+    {
+      "id": 22,
+      "cols": 4,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m4",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            0,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "BOTTOM",
+          "index": 2
+        }
+      ],
+      "parMoves": 7,
+      "pack": "stage-2"
+    },
+    {
+      "id": 23,
+      "cols": 4,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m4",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            0,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "RIGHT",
+          "index": 2
+        }
+      ],
+      "parMoves": 8,
+      "pack": "stage-2"
+    },
+    {
+      "id": 24,
+      "cols": 4,
+      "rows": 4,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m4",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "LEFT",
+          "index": 1
+        }
+      ],
+      "parMoves": 11,
+      "pack": "stage-2"
+    },
+    {
+      "id": 25,
+      "cols": 4,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            0,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "m4",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "RIGHT"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o4",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "RIGHT",
+          "index": 2
+        }
+      ],
+      "parMoves": 9,
+      "pack": "stage-2"
+    },
+    {
+      "id": 26,
+      "cols": 5,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            4,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o4",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "RIGHT",
+          "index": 2
+        }
+      ],
+      "parMoves": 16,
+      "pack": "stage-2"
+    },
+    {
+      "id": 27,
+      "cols": 5,
+      "rows": 4,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m4",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m2"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "BOTTOM",
+          "index": 2
+        }
+      ],
+      "parMoves": 12,
+      "pack": "stage-2"
+    },
+    {
+      "id": 28,
+      "cols": 4,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            0,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m4",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            3,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m2"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "TOP",
+          "index": 1
+        }
+      ],
+      "parMoves": 17,
+      "pack": "stage-2"
+    },
+    {
+      "id": 29,
+      "cols": 4,
+      "rows": 4,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            0,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "m4",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            1,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "LEFT"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "LEFT",
+          "index": 1
+        }
+      ],
+      "parMoves": 13,
+      "pack": "stage-2"
+    },
+    {
+      "id": 30,
+      "cols": 5,
+      "rows": 4,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            4,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "TOP",
+          "index": 3
+        }
+      ],
+      "parMoves": 7,
+      "pack": "stage-2"
+    },
+    {
+      "id": 31,
+      "cols": 4,
+      "rows": 4,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "lock",
+          "color": "purple",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "unlockAt": 1
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "BOTTOM",
+          "index": 2
+        }
+      ],
+      "parMoves": 6,
+      "pack": "stage-2"
+    },
+    {
+      "id": 32,
+      "cols": 4,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m4",
+          "type": "lock",
+          "color": "purple",
+          "position": [
+            1,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "unlockAt": 2
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "TOP",
+          "index": 1
+        }
+      ],
+      "parMoves": 11,
+      "pack": "stage-2"
+    },
+    {
+      "id": 33,
+      "cols": 5,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m4",
+          "type": "lock",
+          "color": "purple",
+          "position": [
+            1,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "unlockAt": 2
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            4,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o4",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "LEFT",
+          "index": 3
+        }
+      ],
+      "parMoves": 12,
+      "pack": "stage-2"
+    },
+    {
+      "id": 34,
+      "cols": 5,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "lock",
+          "color": "purple",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "unlockAt": 1
+        },
+        {
+          "id": "m3",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            1,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "LEFT"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            4,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "LEFT",
+          "index": 3
+        }
+      ],
+      "parMoves": 13,
+      "pack": "stage-2"
+    },
+    {
+      "id": 35,
+      "cols": 5,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            1,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m4",
+          "type": "lock",
+          "color": "purple",
+          "position": [
+            3,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "unlockAt": 1
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "BOTTOM",
+          "index": 3
+        }
+      ],
+      "parMoves": 11,
+      "pack": "stage-2"
+    },
+    {
+      "id": 36,
+      "cols": 5,
+      "rows": 4,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            4,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "lock",
+          "color": "purple",
+          "position": [
+            4,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "unlockAt": 1
+        },
+        {
+          "id": "m4",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            1,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "RIGHT",
+          "index": 2
+        }
+      ],
+      "parMoves": 13,
+      "pack": "stage-2"
+    },
+    {
+      "id": 37,
+      "cols": 4,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "lock",
+          "color": "purple",
+          "position": [
+            0,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "unlockAt": 1
+        },
+        {
+          "id": "m3",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            2,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "m4",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            2,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "DOWN"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "BOTTOM",
+          "index": 2
+        }
+      ],
+      "parMoves": 13,
+      "pack": "stage-2"
+    },
+    {
+      "id": 38,
+      "cols": 4,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            1,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "lock",
+          "color": "purple",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "unlockAt": 1
+        },
+        {
+          "id": "m3",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            3,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o4",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "RIGHT",
+          "index": 3
+        }
+      ],
+      "parMoves": 15,
+      "pack": "stage-2"
+    },
+    {
+      "id": 39,
+      "cols": 4,
+      "rows": 4,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "lock",
+          "color": "purple",
+          "position": [
+            2,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "unlockAt": 1
+        },
+        {
+          "id": "m3",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            1,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "RIGHT",
+          "index": 1
+        }
+      ],
+      "parMoves": 12,
+      "pack": "stage-2"
+    },
+    {
+      "id": 40,
+      "cols": 4,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "lock",
+          "color": "purple",
+          "position": [
+            0,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "unlockAt": 2
+        },
+        {
+          "id": "m3",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "m4",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            3,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "RIGHT"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "RIGHT",
+          "index": 1
+        }
+      ],
+      "parMoves": 16,
+      "pack": "stage-2"
+    },
+    {
+      "id": 41,
+      "cols": 5,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            4,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            4,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m4",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            1,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            4,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o4",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "LEFT",
+          "index": 3
+        }
+      ],
+      "parMoves": 11,
+      "pack": "stage-3"
+    },
+    {
+      "id": 42,
+      "cols": 5,
+      "rows": 4,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "m4",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "LEFT"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            4,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "LEFT",
+          "index": 2
+        }
+      ],
+      "parMoves": 10,
+      "pack": "stage-3"
+    },
+    {
+      "id": 43,
+      "cols": 5,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            1,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            3,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            4,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "TOP",
+          "index": 3
+        }
+      ],
+      "parMoves": 12,
+      "pack": "stage-3"
+    },
+    {
+      "id": 44,
+      "cols": 5,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            4,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            0,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "m4",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "DOWN"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            4,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "BOTTOM",
+          "index": 2
+        }
+      ],
+      "parMoves": 13,
+      "pack": "stage-3"
+    },
+    {
+      "id": 45,
+      "cols": 5,
+      "rows": 4,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            1,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            2,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "TOP",
+          "index": 2
+        }
+      ],
+      "parMoves": 12,
+      "pack": "stage-3"
+    },
+    {
+      "id": 46,
+      "cols": 5,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            4,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            4,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m4",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            0,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            4,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "TOP",
+          "index": 3
+        }
+      ],
+      "parMoves": 13,
+      "pack": "stage-3"
+    },
+    {
+      "id": 47,
+      "cols": 5,
+      "rows": 4,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            4,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            4,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "m4",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            3,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "UP"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            4,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "TOP",
+          "index": 3
+        }
+      ],
+      "parMoves": 15,
+      "pack": "stage-3"
+    },
+    {
+      "id": 48,
+      "cols": 4,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m4",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o4",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "LEFT",
+          "index": 3
+        }
+      ],
+      "parMoves": 15,
+      "pack": "stage-3"
+    },
+    {
+      "id": 49,
+      "cols": 4,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            3,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "RIGHT",
+          "index": 1
+        }
+      ],
+      "parMoves": 9,
+      "pack": "stage-3"
+    },
+    {
+      "id": 50,
+      "cols": 4,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            3,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "m4",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            1,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "RIGHT"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o4",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "RIGHT",
+          "index": 3
+        }
+      ],
+      "parMoves": 14,
+      "pack": "stage-3"
+    },
+    {
+      "id": 51,
+      "cols": 5,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            4,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            4,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "lock",
+          "color": "purple",
+          "position": [
+            2,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "unlockAt": 1
+        },
+        {
+          "id": "m4",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            4,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "BOTTOM",
+          "index": 3
+        }
+      ],
+      "parMoves": 12,
+      "pack": "stage-3"
+    },
+    {
+      "id": 52,
+      "cols": 5,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            4,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "lock",
+          "color": "purple",
+          "position": [
+            3,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "unlockAt": 1
+        },
+        {
+          "id": "m3",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            4,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o4",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "RIGHT",
+          "index": 3
+        }
+      ],
+      "parMoves": 13,
+      "pack": "stage-3"
+    },
+    {
+      "id": 53,
+      "cols": 5,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "lock",
+          "color": "purple",
+          "position": [
+            4,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "unlockAt": 1
+        },
+        {
+          "id": "m4",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            1,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "LEFT",
+          "index": 3
+        }
+      ],
+      "parMoves": 13,
+      "pack": "stage-3"
+    },
+    {
+      "id": 54,
+      "cols": 5,
+      "rows": 4,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "lock",
+          "color": "purple",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "unlockAt": 2
+        },
+        {
+          "id": "m3",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            4,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "m4",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            3,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "LEFT"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            4,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            4,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            4,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o4",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "LEFT",
+          "index": 2
+        }
+      ],
+      "parMoves": 15,
+      "pack": "stage-3"
+    },
+    {
+      "id": 55,
+      "cols": 5,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            1,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "lock",
+          "color": "purple",
+          "position": [
+            4,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "unlockAt": 1
+        },
+        {
+          "id": "m4",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "BOTTOM",
+          "index": 1
+        }
+      ],
+      "parMoves": 17,
+      "pack": "stage-3"
+    },
+    {
+      "id": 56,
+      "cols": 4,
+      "rows": 4,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "lock",
+          "color": "purple",
+          "position": [
+            1,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "unlockAt": 1
+        },
+        {
+          "id": "m4",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            0,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "TOP",
+          "index": 1
+        }
+      ],
+      "parMoves": 17,
+      "pack": "stage-3"
+    },
+    {
+      "id": 57,
+      "cols": 5,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            2,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "lock",
+          "color": "purple",
+          "position": [
+            3,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "unlockAt": 1
+        },
+        {
+          "id": "m3",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            0,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "m4",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "LEFT"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            2,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "LEFT",
+          "index": 2
+        }
+      ],
+      "parMoves": 18,
+      "pack": "stage-3"
+    },
+    {
+      "id": 58,
+      "cols": 4,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m3",
+          "type": "lock",
+          "color": "purple",
+          "position": [
+            1,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "unlockAt": 2
+        },
+        {
+          "id": "m4",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            2,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o4",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "BOTTOM",
+          "index": 1
+        }
+      ],
+      "parMoves": 18,
+      "pack": "stage-3"
+    },
+    {
+      "id": 59,
+      "cols": 4,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            0,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "lock",
+          "color": "purple",
+          "position": [
+            1,
+            4
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "unlockAt": 2
+        },
+        {
+          "id": "m3",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            2,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            3,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            0,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "LEFT",
+          "index": 1
+        }
+      ],
+      "parMoves": 10,
+      "pack": "stage-3"
+    },
+    {
+      "id": 60,
+      "cols": 5,
+      "rows": 5,
+      "blocks": [
+        {
+          "id": "m1",
+          "type": "simple",
+          "color": "red",
+          "position": [
+            3,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "m2",
+          "type": "lock",
+          "color": "purple",
+          "position": [
+            2,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "unlockAt": 1
+        },
+        {
+          "id": "m3",
+          "type": "dependent",
+          "color": "blue",
+          "position": [
+            4,
+            3
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "dependsOn": "m1"
+        },
+        {
+          "id": "m4",
+          "type": "constrained",
+          "color": "yellow",
+          "position": [
+            3,
+            0
+          ],
+          "size": [
+            1,
+            1
+          ],
+          "direction": "DOWN"
+        },
+        {
+          "id": "o1",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            4,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o2",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            4,
+            1
+          ],
+          "size": [
+            1,
+            1
+          ]
+        },
+        {
+          "id": "o3",
+          "type": "obstacle",
+          "color": "red",
+          "position": [
+            1,
+            2
+          ],
+          "size": [
+            1,
+            1
+          ]
+        }
+      ],
+      "exits": [
+        {
+          "side": "BOTTOM",
+          "index": 3
+        }
+      ],
+      "parMoves": 19,
+      "pack": "stage-3"
+    }
+  ],
+  "solutions": {
+    "1": [
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      }
+    ],
+    "2": [
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      }
+    ],
+    "3": [
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      }
+    ],
+    "4": [
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      }
+    ],
+    "5": [
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m4",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      }
+    ],
+    "6": [
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      }
+    ],
+    "7": [
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      }
+    ],
+    "8": [
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      }
+    ],
+    "9": [
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      }
+    ],
+    "10": [
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      }
+    ],
+    "11": [
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      }
+    ],
+    "12": [
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      }
+    ],
+    "13": [
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      }
+    ],
+    "14": [
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      }
+    ],
+    "15": [
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      }
+    ],
+    "16": [
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      }
+    ],
+    "17": [
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m4",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m4",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "DOWN"
+      }
+    ],
+    "18": [
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      }
+    ],
+    "19": [
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m4",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "UP"
+      }
+    ],
+    "20": [
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m4",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      }
+    ],
+    "21": [
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      }
+    ],
+    "22": [
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m4",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "DOWN"
+      }
+    ],
+    "23": [
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "RIGHT"
+      }
+    ],
+    "24": [
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "LEFT"
+      }
+    ],
+    "25": [
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      }
+    ],
+    "26": [
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      }
+    ],
+    "27": [
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m4",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m4",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      }
+    ],
+    "28": [
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "UP"
+      }
+    ],
+    "29": [
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m4",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      }
+    ],
+    "30": [
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      }
+    ],
+    "31": [
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      }
+    ],
+    "32": [
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      }
+    ],
+    "33": [
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m4",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      }
+    ],
+    "34": [
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      }
+    ],
+    "35": [
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      }
+    ],
+    "36": [
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      }
+    ],
+    "37": [
+      {
+        "blockId": "m4",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      }
+    ],
+    "38": [
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      }
+    ],
+    "39": [
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      }
+    ],
+    "40": [
+      {
+        "blockId": "m4",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      }
+    ],
+    "41": [
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m4",
+        "dir": "LEFT"
+      }
+    ],
+    "42": [
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m4",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      }
+    ],
+    "43": [
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      }
+    ],
+    "44": [
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      }
+    ],
+    "45": [
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      }
+    ],
+    "46": [
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      }
+    ],
+    "47": [
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      }
+    ],
+    "48": [
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m4",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      }
+    ],
+    "49": [
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      }
+    ],
+    "50": [
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      }
+    ],
+    "51": [
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m4",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      }
+    ],
+    "52": [
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      }
+    ],
+    "53": [
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m4",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      }
+    ],
+    "54": [
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      }
+    ],
+    "55": [
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      }
+    ],
+    "56": [
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m4",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "UP"
+      }
+    ],
+    "57": [
+      {
+        "blockId": "m4",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      }
+    ],
+    "58": [
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m4",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m4",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      }
+    ],
+    "59": [
+      {
+        "blockId": "m1",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m1",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m1",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "LEFT"
+      }
+    ],
+    "60": [
+      {
+        "blockId": "m1",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m4",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "UP"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "LEFT"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m3",
+        "dir": "RIGHT"
+      },
+      {
+        "blockId": "m4",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m3",
+        "dir": "DOWN"
+      },
+      {
+        "blockId": "m2",
+        "dir": "DOWN"
+      }
+    ]
+  },
+  "roles": {
+    "1": "TEACH",
+    "2": "TEACH",
+    "3": "TEACH",
+    "4": "PRACTICE",
+    "5": "PRACTICE",
+    "6": "TWIST",
+    "7": "PRACTICE",
+    "8": "PRACTICE",
+    "9": "TWIST",
+    "10": "PRACTICE",
+    "11": "PRACTICE",
+    "12": "TWIST",
+    "13": "PRACTICE",
+    "14": "PRACTICE",
+    "15": "TWIST",
+    "16": "PRACTICE",
+    "17": "TWIST",
+    "18": "RELIEF",
+    "19": "MASTERY",
+    "20": "MASTERY",
+    "21": "TEACH",
+    "22": "TEACH",
+    "23": "PRACTICE",
+    "24": "TWIST",
+    "25": "PRACTICE",
+    "26": "PRACTICE",
+    "27": "TWIST",
+    "28": "PRACTICE",
+    "29": "PRACTICE",
+    "30": "RELIEF",
+    "31": "TEACH",
+    "32": "PRACTICE",
+    "33": "TWIST",
+    "34": "PRACTICE",
+    "35": "PRACTICE",
+    "36": "TWIST",
+    "37": "PRACTICE",
+    "38": "PRACTICE",
+    "39": "RELIEF",
+    "40": "MASTERY",
+    "41": "PRACTICE",
+    "42": "PRACTICE",
+    "43": "PRACTICE",
+    "44": "TWIST",
+    "45": "TWIST",
+    "46": "TWIST",
+    "47": "TWIST",
+    "48": "TWIST",
+    "49": "RELIEF",
+    "50": "MASTERY",
+    "51": "PRACTICE",
+    "52": "PRACTICE",
+    "53": "TWIST",
+    "54": "PRACTICE",
+    "55": "TWIST",
+    "56": "TWIST",
+    "57": "TWIST",
+    "58": "TWIST",
+    "59": "RELIEF",
+    "60": "MASTERY"
+  },
+  "tutorials": {
+    "1": {
+      "title": "One exit for everyone",
+      "body": "Swipe the highlighted red block. It keeps sliding until stopped. Send every block through the same exit."
+    },
+    "2": {
+      "title": "Obstacles stop your slide",
+      "body": "Gray obstacles stay in place. Use them to line up the shared exit."
+    },
+    "3": {
+      "title": "Yellow follows its arrow",
+      "body": "Yellow blocks move only in their arrow direction. Red blocks can help them reach the exit."
+    },
+    "21": {
+      "title": "Plan within the move budget",
+      "body": "You have two moves beyond the shortest solution. Plan before you swipe."
+    },
+    "22": {
+      "title": "Release the parent first",
+      "body": "Blue stays locked until its connected parent leaves through the exit. Release the parent, then move Blue."
+    },
+    "31": {
+      "title": "Count exits to open Purple",
+      "body": "Purple unlocks after its numbered exit count. Send that many other blocks out first, then move Purple."
+    }
+  }
+}

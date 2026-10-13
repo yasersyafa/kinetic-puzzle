@@ -1,0 +1,13 @@
+{
+  "purpose": "Stage 3 Precision",
+  "seed": 20261014,
+  "generatorVersion": "stage3-1.0.0",
+  "baseContentHash": "1a7993503381fe6683af31645c7baa2f06652241ba15e7731eff63d9cc887fab",
+  "rejectionCounts": {
+    "difficulty: FAIL": 4,
+    "evidence: FAIL": 1,
+    "decisions: FAIL": 1
+  },
+  "maxRecentSolutionSimilarity": 0.88,
+  "maxLayoutSimilarity": 0.9
+}

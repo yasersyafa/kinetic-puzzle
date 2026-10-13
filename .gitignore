@@ -37,3 +37,11 @@ generated/runs/stage-two/*
 !generated/runs/stage-two/approved/
 generated/runs/stage-two/approved/*
 !generated/runs/stage-two/approved/kinetic-stages-1a7993503381-445ff8f460ac/
+
+# Approved Stage 3 release artifacts; search checkpoints stay local
+!generated/runs/stage-three/
+generated/runs/stage-three/*
+!generated/runs/stage-three/latest.json
+!generated/runs/stage-three/approved/
+generated/runs/stage-three/approved/*
+!generated/runs/stage-three/approved/kinetic-stages-b1d571bd97e0-42bd8e6eb43f/

@@ -36,7 +36,8 @@
     "levels:playtest:build": "tsx tools/level-generator/stage-build.ts",
     "levels:reference:build": "tsx tools/level-generator/challenge-playtest.ts",
     "levels:stage:build": "tsx tools/level-generator/stage-build.ts",
-    "levels:stage2:build": "tsx tools/level-generator/stage-two-build.ts"
+    "levels:stage2:build": "tsx tools/level-generator/stage-two-build.ts",
+    "levels:stage3:build": "tsx tools/level-generator/stage-three-build.ts"
   },
   "keywords": [
     "phaser",
