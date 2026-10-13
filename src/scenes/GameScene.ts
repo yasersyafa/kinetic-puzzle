@@ -40,7 +40,7 @@ import {
 import { LevelTutorial, LEVEL_TUTORIALS } from "../ui/LevelTutorial";
 import { paletteUI } from "../config/Palettes";
 
-import { DialogueTutorial, dialogueSteps, DIALOGUE_VERSION } from '../ui/DialogueTutorial';
+import { DialogueTutorial, dialogueSteps, dialogueVersion } from '../ui/DialogueTutorial';
 import { resolveAttempt, type AttemptResult } from '../core/campaign/Stage';
 import { findHint, hintFromSolution } from '../core/puzzle/HintSearch';
 import { createState, type PuzzleState } from '../core/puzzle/GameRules';
@@ -182,9 +182,10 @@ export class GameScene extends Phaser.Scene {
     const level = store.currentLevel;
     const generatedTutorial = GENERATED_TUTORIALS[level];
     if (STAGES.length) {
-      if (!generatedTutorial || (!force && store.hasSeenTutorial(level, DIALOGUE_VERSION))) return;
+      const version = dialogueVersion(level);
+      if (!generatedTutorial || (!force && store.hasSeenTutorial(level, version))) return;
       this.dialogue?.destroy();
-      this.dialogue = new DialogueTutorial(this, dialogueSteps(getLevel(level), getSolution(level), generatedTutorial.body), this.blocks, this.grid, getLevel(level), () => store.markTutorialSeen(level, DIALOGUE_VERSION));
+      this.dialogue = new DialogueTutorial(this, dialogueSteps(getLevel(level), getSolution(level), generatedTutorial.body), this.blocks, this.grid, getLevel(level), () => store.markTutorialSeen(level, version));
       return;
     }
     const cfg = IS_GENERATED_CAMPAIGN ? generatedTutorial && { title: generatedTutorial.title, message: generatedTutorial.body } : LEVEL_TUTORIALS[level];
@@ -239,6 +240,7 @@ export class GameScene extends Phaser.Scene {
     if (!parent || parent.removed) return;
     this.drawHintRing(parent);
     AudioManager.hover();
+    this.dialogue?.inspected(dep.blockId);
     // Advance tutorial tap-stage if currently awaiting an inspect tap
     if (this.tutorial?.isAwaitingTap()) {
       this.tutorial.advanceAfterTap(this.blocks, this.grid);

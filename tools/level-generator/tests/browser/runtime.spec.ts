@@ -24,7 +24,7 @@ for(const id of ids) test(`live Phaser replay L${id} matches pure rules after an
       // Stop through the manager immediately: ScenePlugin.stop queues a stop
       // that can destroy the next GameScene after it has already started.
       for(const scene of game.scene.scenes)if(scene.scene.isActive())game.scene.stop(scene.sys.settings.key);
-      store.getState().setEquippedPalette('ocean');store.getState().setCurrentLevel(id);game.scene.start('GameScene');
+      store.getState().setCurrentLevel(id);game.scene.start('GameScene');
       const sleep=()=>new Promise(r=>setTimeout(r,10));let scene:any;
       for(let i=0;i<1000;i++){scene=game.scene.getScene('GameScene');if(scene.grid&&scene.grid!==previousGrid&&scene.blocks?.length&&scene.restartBtn&&game.scene.isActive('GameScene'))break;await sleep();}
       scene.time.timeScale=30;scene.tweens.timeScale=30;scene.tutorial?.destroy();scene.tutorial=undefined;scene.dialogue?.destroy();scene.dialogue=undefined;

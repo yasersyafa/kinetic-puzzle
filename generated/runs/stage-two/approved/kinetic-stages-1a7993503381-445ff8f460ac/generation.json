@@ -1,0 +1,11 @@
+{
+  "purpose": "Stage 2 Connections",
+  "seed": 20261013,
+  "generatorVersion": "stage2-1.0.0",
+  "baseContentHash": "3bacc398317c27eee7c377a2cb32c6f5993b13d34cc9d0e8da15ef7ea150ac62",
+  "rejectionCounts": {
+    "evidence: FAIL": 18
+  },
+  "maxRecentSolutionSimilarity": 0.88,
+  "maxLayoutSimilarity": 0.9
+}

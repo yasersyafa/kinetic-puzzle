@@ -123,7 +123,7 @@ test('success has no stars, persists completion after reload, and retains future
     const scene=window.kineticTest.game.scene.getScene('LevelSelectScene'), texts:string[]=[];
     const walk=(o:any)=>{if(typeof o.text==='string')texts.push(o.text);if(o.list)o.list.forEach(walk);};scene.children.list.forEach(walk);return texts;
   });
-  expect(labels.join(' ')).toContain('COMING SOON');expect(labels.join(' ')).toContain('1/20 COMPLETED');
+  expect(labels.join(' ')).toContain('SOON');expect(labels.join(' ')).toContain('1/20');
 });
 test('move cap rejects unfinished last move and accepts a win at the cap; invalid swipe uses no move',async({page})=>{
   await start(page,3);

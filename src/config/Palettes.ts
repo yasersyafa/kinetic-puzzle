@@ -1,6 +1,6 @@
 import { Color } from '../types/Game';
 import { useGameStore } from '../managers/GameStateManager';
-import { PACKS, STAGES } from './Levels';
+import { STAGES } from './Levels';
 
 export type PaletteId = 'classic' | 'sunset' | 'ocean';
 
@@ -20,7 +20,6 @@ export interface Palette {
   description: string;
   colors: Record<Color, number>;
   ui: PaletteUI;
-  unlock: { tag: 'always' | 'pack-clear'; packId?: string };
 }
 
 export const PALETTES: Palette[] = [
@@ -45,7 +44,6 @@ export const PALETTES: Palette[] = [
       danger: 0xf28b82,
       exitGlow: 0xff8a5b,
     },
-    unlock: { tag: 'always' },
   },
   {
     id: 'sunset',
@@ -68,7 +66,6 @@ export const PALETTES: Palette[] = [
       danger: 0xd96b6b,
       exitGlow: 0xff6b3d,
     },
-    unlock: { tag: 'pack-clear', packId: 'stage-1' },
   },
   {
     id: 'ocean',
@@ -91,7 +88,6 @@ export const PALETTES: Palette[] = [
       danger: 0x6a87b8,
       exitGlow: 0x4a90c2,
     },
-    unlock: { tag: 'pack-clear', packId: 'stage-2' },
   },
 ];
 
@@ -99,37 +95,13 @@ export function getPalette(id: string): Palette {
   return PALETTES.find((p) => p.id === id) ?? PALETTES[0];
 }
 
-export function getEquippedPalette(): Palette {
-  return getPalette(useGameStore.getState().equippedPalette);
+/** Stage identity follows the selected level; old manual selections are ignored. */
+export function getStagePalette(stageNumber: number): Palette {
+  const order: PaletteId[] = ['classic', 'ocean', 'sunset'];
+  return getPalette(order[(Math.max(1, stageNumber) - 1) % order.length]);
 }
 
-export function paletteUI(): PaletteUI {
-  return getEquippedPalette().ui;
-}
-
-export function isPaletteUnlocked(id: PaletteId): boolean {
-  const p = getPalette(id);
-  const store = useGameStore.getState();
-  if (p.unlock.tag === 'always') return true;
-  if (p.unlock.tag === 'pack-clear' && p.unlock.packId) {
-    const packId = STAGES.length ? p.unlock.packId : p.unlock.packId === 'stage-1' ? 'tutorial' : 'gears';
-    const pack = PACKS.find((pk) => pk.id === packId);
-    if (!pack || !pack.levelIds.length) return false;
-    return pack.levelIds.every((lvl) => store.isCompleted(lvl));
-  }
-  return false;
-}
-
-export function unlockProgress(id: PaletteId): { current: number; total: number } | null {
-  const p = getPalette(id);
-  const store = useGameStore.getState();
-  if (p.unlock.tag === 'always') return null;
-  if (p.unlock.tag === 'pack-clear' && p.unlock.packId) {
-    const packId = STAGES.length ? p.unlock.packId : p.unlock.packId === 'stage-1' ? 'tutorial' : 'gears';
-    const pack = PACKS.find((pk) => pk.id === packId);
-    if (!pack) return null;
-    const cleared = pack.levelIds.filter((lvl) => store.isCompleted(lvl)).length;
-    return { current: cleared, total: pack.levelIds.length || STAGES.find(s => s.id === packId)?.levelCount || 20 };
-  }
-  return null;
+export function paletteUI(levelId = useGameStore.getState().currentLevel): PaletteUI {
+  const stage = STAGES.find(s => levelId >= s.firstLevel && levelId < s.firstLevel + s.levelCount);
+  return getStagePalette(stage?.number ?? 1).ui;
 }

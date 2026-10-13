@@ -38,7 +38,8 @@ export class LevelSelectScene extends Phaser.Scene {
 
   create(): void {
     fadeIn(this);
-    dottedBackground(this);
+    const activePack = PACKS.find((p) => p.id === this.activePackId);
+    dottedBackground(this, activePack?.levelIds[0]);
     AudioManager.menuOpen();
     this.spawnAmbientDecor();
 
@@ -51,7 +52,6 @@ export class LevelSelectScene extends Phaser.Scene {
     slideUpIn(this, back.container, 60, -20);
 
     // Per-pack unlock button: unlocks only the ACTIVE pack via rewarded ad.
-    const activePack = PACKS.find((p) => p.id === this.activePackId);
     const packLastId = activePack ? activePack.levelIds[activePack.levelIds.length - 1] : 0;
     const packAlreadyUnlocked = useGameStore.getState().unlockedLevel >= packLastId;
     if (!STAGES.length && activePack && !packAlreadyUnlocked && SDKManager.hasRewardedAds()) {

@@ -64,7 +64,7 @@ test('one music track continues across results, menus and pause while respecting
   });
   await page.waitForFunction(() => window.kineticTest.game.scene.isActive('MenuScene'));
   await assertPlaying();
-  for (const key of ['LevelSelectScene', 'CosmeticsScene']) {
+  for (const key of ['LevelSelectScene']) {
     await page.evaluate(key => window.kineticTest.game.scene.getScenes(true)[0].scene.start(key), key);
     await page.waitForFunction(key => window.kineticTest.game.scene.isActive(key), key);
     await assertPlaying();

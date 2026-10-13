@@ -92,20 +92,6 @@ export class MenuScene extends Phaser.Scene {
     });
     slideUpIn(this, lsBtn.container, 360);
 
-    const paletteBtn = neoPill(
-      this,
-      width - 430,
-      70,
-      'PALETTE',
-      () => {
-        AudioManager.uiTap();
-        this.cleanupDemo();
-        fadeOutAndStart(this, SCENE_KEYS.Cosmetics);
-      },
-      { w: 240, h: 72, fill: TOKENS.white, textSize: 26 },
-    );
-    slideUpIn(this, paletteBtn.container, 140, -30);
-
     if (store.unlockedLevel > 1) {
       const resetBtn = neoButton(
         this,

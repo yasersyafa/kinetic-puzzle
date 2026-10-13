@@ -76,11 +76,11 @@ test('calibration isolates level versions and excludes autoplay; no fabricated o
   assert.equal(report.excludedAutoplay,1);assert.equal(report.levels[0].attemptCount,1);assert.equal(report.levels[1].completionRate,undefined);assert.throws(()=>calibrate([{}],[]));
 });
 
-test('campaign storage isolates progress while sharing audio/cosmetic preferences',async()=>{
+test('campaign storage isolates progress while sharing audio preferences',async()=>{
   const {campaignStorage}=await import('../../../src/managers/CampaignStorage');
   const values=new Map<string,string>();const storage=campaignStorage({getItem:k=>values.get(k)??null,setItem:(k,v)=>{values.set(k,v);},removeItem:k=>{values.delete(k);}});
   storage.setItem('fpp-game-state-v2',JSON.stringify({version:0,state:{unlockedLevel:80,sfxEnabled:false,audioEnabled:false,equippedPalette:'classic'}}));
-  const fresh=JSON.parse(storage.getItem('new-campaign')!);assert.equal(fresh.state.unlockedLevel,undefined);assert.equal(fresh.state.sfxEnabled,false);
+  const fresh=JSON.parse(storage.getItem('new-campaign')!);assert.equal(fresh.state.unlockedLevel,undefined);assert.equal(fresh.state.sfxEnabled,false);assert.equal(fresh.state.equippedPalette,undefined);
   storage.setItem('new-campaign',JSON.stringify({version:0,state:{unlockedLevel:3,sfxEnabled:true,audioEnabled:true,equippedPalette:'classic'}}));
   const old=JSON.parse(storage.getItem('fpp-game-state-v2')!);assert.equal(old.state.unlockedLevel,80);assert.equal(old.state.sfxEnabled,true);
 });

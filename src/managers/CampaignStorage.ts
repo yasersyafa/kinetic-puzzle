@@ -1,8 +1,8 @@
 export const PREFERENCES_KEY='fpp-shared-preferences-v1';
-const fields=['sfxEnabled','audioEnabled','equippedPalette'] as const;
+const fields=['sfxEnabled','audioEnabled'] as const;
 function preferences(value:Record<string,unknown>):Record<string,unknown>{
   const result:Record<string,unknown>={};
-  for(const field of fields)if((field==='equippedPalette'&&typeof value[field]==='string')||(field!=='equippedPalette'&&typeof value[field]==='boolean'))result[field]=value[field];
+  for(const field of fields)if(typeof value[field]==='boolean')result[field]=value[field];
   return result;
 }
 function parse(raw:string|null):Record<string,unknown>|undefined {

@@ -8,6 +8,7 @@ import type { Action } from '../core/puzzle/GameRules';
 import { TutorialSession, type DialogueStep } from '../core/campaign/TutorialSession';
 
 export const DIALOGUE_VERSION = 'dialogue-1';
+export function dialogueVersion(levelId: number): string { return levelId === 22 ? 'dialogue-2' : DIALOGUE_VERSION; }
 export function dialogueSteps(level: LevelData, solution: readonly Action[], body: string): DialogueStep[] {
   if (level.id === 1) return [
     { text: "Hi! I'm Red. We keep sliding until a block, obstacle, or board edge stops us. Everyone shares one exit.", highlightExit: true },
@@ -20,6 +21,28 @@ export function dialogueSteps(level: LevelData, solution: readonly Action[], bod
       ...solution.slice(0, yellowAt + 1).map(action => ({ action, text: level.blocks.find(b => b.id === action.blockId)?.type === 'constrained' ? 'The path is ready! Swipe Yellow in its arrow direction.' : 'First, move this red block along the arrow. Positioning and exit order make the difference.' })),
       { text: 'Great teamwork! Finish the puzzle yourself. If an order goes wrong, restart and try another plan.', highlightExit: true },
     ];
+  }
+  if (level.id === 22 || level.id === 31) {
+    const type = level.id === 22 ? 'dependent' : 'lock';
+    const target = level.blocks.find(block => block.type === type);
+    const firstMove = solution.findIndex(action => action.blockId === target?.id);
+    if (target && firstMove >= 0) {
+      const guided = solution.slice(0, firstMove + 1).map(action => ({
+        action,
+        text: action.blockId === target.id
+          ? type === 'dependent' ? 'Blue is unlocked! Swipe it along the arrow.' : 'Purple is unlocked! Swipe it along the arrow.'
+          : type === 'dependent' ? 'Follow the arrow to prepare the route and release Blue’s parent.' : 'Follow the arrow. Each block that exits brings Purple closer to unlocking.',
+      }));
+      return [
+        { text: body, highlightBlockId: target.id },
+        ...(type === 'dependent' && target.dependsOn ? [
+          { text: 'Tap Blue to see which block unlocks it. A circle will mark its parent.', highlightBlockId: target.id, inspectBlockId: target.id },
+          { text: 'The circle marks Blue’s parent. Send this parent through the exit to unlock Blue. Tap a locked Blue block anytime to check its parent.', highlightParentId: target.dependsOn },
+        ] : []),
+        ...guided,
+        ...(firstMove < solution.length - 1 ? [{ text: 'Now finish the puzzle yourself. Keep an eye on the remaining moves.', highlightExit: true }] : []),
+      ];
+    }
   }
   return [{ text: body, highlightExit: true }];
 }
@@ -46,6 +69,7 @@ export class DialogueTutorial {
       if (actor) { actor.setScale(1.15); this.scene.tweens.add({ targets: actor, scale: 1, duration: 250, ease: 'Back.easeOut' }); }
     }
   }
+  inspected(blockId: string): void { if (this.session.inspected(blockId)) this.render(); }
   skip(): void { this.session.skip(); this.render(); }
   next(): void { if (this.session.next()) this.render(); }
   private clear(): void {
@@ -81,6 +105,14 @@ export class DialogueTutorial {
       return horizontal
         ? new Phaser.Geom.Rectangle(originX - 28, center.y - block.size[1] * size / 2 - 18, cols * size + 56, block.size[1] * size + 36)
         : new Phaser.Geom.Rectangle(center.x - block.size[0] * size / 2 - 18, originY - 28, block.size[0] * size + 36, rows * size + 56);
+    }
+    const highlightedId = step.highlightBlockId ?? step.highlightParentId;
+    if (highlightedId) {
+      const block = this.blocks.find(b => b.blockId === highlightedId && !b.removed);
+      if (block) {
+        const center = this.blockCenter(block);
+        return new Phaser.Geom.Rectangle(center.x - size / 2 - 28, center.y - size / 2 - 28, size + 56, size + 56);
+      }
     }
     if (step.highlightExit) {
       const exit = this.level.exits[0];
@@ -153,10 +185,10 @@ export class DialogueTutorial {
     this.timers.push(this.scene.time.addEvent({ delay: 2200, loop:true, callback: () => this.scene.tweens.add({targets:eyes,scaleY:0.1,duration:90,yoyo:true}) }));
     panel.add(this.scene.add.text(-w / 2 + 156, -h / 2 + 22, 'RED', {fontFamily:FONT_NEO,fontSize:'26px',color:TOKENS.inkHex}));
     panel.add(body);
-    panel.add(this.scene.add.text(w / 2 - 24, -h / 2 + 28, `${this.session.index + 1} / ${this.session.steps.length}${step.action ? ' · YOUR TURN' : ''}`, {fontFamily:FONT_NEO,fontSize:'17px',color:TOKENS.inkHex}).setOrigin(1, 0));
+    panel.add(this.scene.add.text(w / 2 - 24, -h / 2 + 28, `${this.session.index + 1} / ${this.session.steps.length}${step.inspectBlockId ? ' · TAP BLUE' : step.action ? ' · YOUR TURN' : ''}`, {fontFamily:FONT_NEO,fontSize:'17px',color:TOKENS.inkHex}).setOrigin(1, 0));
     const skip = neoButton(this.scene, -w / 2 + 104, h / 2 - 42, 150, 58, 'SKIP', TOKENS.white, () => this.skip(), {textSize:20});
     skip.container.setName('tutorial-skip').on('pointerdown', this.stopPointerDown); panel.add(skip.container);
-    if (!step.action) {
+    if (!step.action && !step.inspectBlockId) {
       const next = neoButton(this.scene, w / 2 - 104, h / 2 - 42, 150, 58, 'NEXT', TOKENS.mint, () => this.next(), {textSize:20});
       next.container.setName('tutorial-next').on('pointerdown', this.stopPointerDown); panel.add(next.container);
     }
@@ -171,6 +203,19 @@ export class DialogueTutorial {
         g.fillStyle(TOKENS.ink);
         if (dx) g.fillTriangle(center.x+dx,center.y,center.x+dx-Math.sign(dx)*18,center.y-14,center.x+dx-Math.sign(dx)*18,center.y+14);
         else g.fillTriangle(center.x,center.y+dy,center.x-14,center.y+dy-Math.sign(dy)*18,center.x+14,center.y+dy-Math.sign(dy)*18);
+      }
+    } else if (step.highlightParentId) {
+      const block = this.blocks.find(b => b.blockId === step.highlightParentId && !b.removed);
+      if (block) {
+        const center = this.blockCenter(block), size = this.grid.cellSize;
+        g.lineStyle(8, TOKENS.exitGlow).strokeCircle(center.x, center.y, size / 2 + 15);
+        highlight.setName('tutorial-parent-ring');
+      }
+    } else if (step.highlightBlockId) {
+      const block = this.blocks.find(b => b.blockId === step.highlightBlockId && !b.removed);
+      if (block) {
+        const center = this.blockCenter(block), size = this.grid.cellSize;
+        g.lineStyle(6, TOKENS.exitGlow).strokeRoundedRect(center.x - size / 2 - 5, center.y - size / 2 - 5, size + 10, size + 10, 14);
       }
     } else if (step.highlightExit) {
       const exit = this.level.exits[0]; const col = exit.side === 'LEFT' ? 0 : exit.side === 'RIGHT' ? this.grid.cols-1 : exit.index;

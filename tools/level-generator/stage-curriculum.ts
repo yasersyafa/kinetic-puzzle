@@ -25,3 +25,45 @@ export function stageOneContracts(): LevelDesignContract[] {
     } satisfies LevelDesignContract;
   });
 }
+
+/** Connections: pacing resets for each new rule; alternate sequencing and positioning insights. */
+export function stageTwoContracts(): LevelDesignContract[] {
+  const minima = [5, 3, 5, 7, 8, 9, 10, 11, 12, 6, 4, 6, 8, 9, 10, 12, 13, 14, 8, 16];
+  const insights = [
+    'Plan within the move budget', 'Release the parent first', 'Open a route for Blue',
+    'Keep a stopper for the unlocked block', 'Yellow sets the exit order', 'Position the parent before release',
+    'Unlock a two-link chain', 'Prepare the chain landing points', 'Keep help until the final exit',
+    'A short dependency reset', 'Count exits to open Purple', 'Choose who leaves before the lock opens',
+    'Prepare Purple before the gate opens', 'Yellow controls the unlock order', 'Keep a stopper for Purple',
+    'Coordinate Blue and Purple', 'Unlock first, align second', 'Plan every release and landing',
+    'A short combined reset', 'Master the connected exit order',
+  ];
+  return minima.map((min, i) => {
+    const id = i + 21, dependent = id >= 22 && id <= 30 || id >= 36;
+    const lock = id >= 31;
+    const constrained = [21, 25, 29, 34, 37, 40].includes(id);
+    const relief = id === 30 || id === 39;
+    const introduced: Mechanic | undefined = id === 21 ? 'sliding' : id === 22 ? 'dependent' : id === 31 ? 'lock' : undefined;
+    const evidence: EvidenceSpec[] = [];
+    if (id === 21) evidence.push({ id: 'budget', claim: 'sliding-required', scope: 'ALL_WINNING_PATHS' });
+    if (dependent) evidence.push({ id: 'dependency', claim: 'dependency-planning', scope: 'COUNTERFACTUAL_EFFECT' });
+    if (lock) evidence.push({ id: 'lock', claim: 'lock-planning', scope: 'COUNTERFACTUAL_EFFECT' });
+    if (constrained) evidence.push({ id: 'direction', claim: 'direction-interaction', scope: 'COUNTERFACTUAL_EFFECT' });
+    if ([24, 26, 29, 33, 35, 38, 40].includes(id)) evidence.push({ id: 'stopper', claim: 'block-as-stopper', scope: 'ALL_WINNING_PATHS' });
+    if ([27, 28].includes(id)) evidence.push({ id: 'chain', claim: 'dependency-chain', scope: 'ALL_WINNING_PATHS', blockIds: ['m1', 'm2', 'm4'] });
+    const required: Mechanic[] = ['sliding', ...(dependent ? ['dependent' as const] : []), ...(lock ? ['lock' as const] : []), ...(constrained ? ['constrained' as const] : [])];
+    return {
+      schemaVersion: '2.0.0', diversityMode: 'LAYOUT_AND_STRUCTURE', productPolicy: PRODUCT_POLICY,
+      contractId: `stage2-${id}`, targetDifficulty: introduced || relief ? 'EASY' : id <= 25 || id <= 34 && id >= 31 ? 'MEDIUM' : 'HARD',
+      grid: { minCols: 4, maxCols: 5, minRows: 4, maxRows: 5 }, optimalMoves: { min, max: min + (introduced || relief ? 4 : 7) },
+      allowedMechanics: ['sliding', 'obstacle', ...(constrained ? ['constrained' as const] : []), ...(dependent ? ['dependent' as const] : []), ...(lock ? ['lock' as const] : [])],
+      requiredMechanics: required, primaryInsight: insights[i], secondaryInsights: [],
+      learningObjective: id === 21 ? 'You have two moves beyond the shortest solution. Plan before you swipe.'
+        : id === 22 ? 'Blue stays locked until its connected parent leaves through the exit. Release the parent, then move Blue.'
+        : id === 31 ? 'Purple unlocks after its numbered exit count. Send that many other blocks out first, then move Purple.' : insights[i],
+      progressionRole: introduced ? 'TEACH' : id === 40 ? 'MASTERY' : relief ? 'RELIEF' : i % 3 === 0 ? 'TWIST' : 'PRACTICE',
+      introducedMechanic: introduced, requiredEvidence: evidence, primaryEvidenceId: id === 21 ? 'budget' : lock ? 'lock' : 'dependency',
+      preferred: { difficultyScore: introduced ? 22 : relief ? 30 : 30 + i, maxSimilarity: 0.85 }, mandatoryMaxSimilarity: 0.9,
+    } satisfies LevelDesignContract;
+  });
+}

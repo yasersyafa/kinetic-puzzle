@@ -253,9 +253,9 @@ export function neoPill(
   );
 }
 
-export function dottedBackground(scene: Phaser.Scene): void {
+export function dottedBackground(scene: Phaser.Scene, levelId?: number): void {
   const { width, height } = scene.scale;
-  const ui = paletteUI();
+  const ui = paletteUI(levelId);
   scene.cameras.main.setBackgroundColor(ui.bgHex);
   // A tiny repeated texture replaces ~1,300 vector circles per frame.
   // Draw at 2x density to preserve smooth dot edges without changing text resolution.

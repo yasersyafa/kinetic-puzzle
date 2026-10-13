@@ -27,7 +27,6 @@ export const SCENE_KEYS = {
   Game: "GameScene",
   Pause: "PauseScene",
   GameOver: "GameOverScene",
-  Cosmetics: "CosmeticsScene",
 } as const;
 
 export const FONT_HEADER = '"Bungee", "Arial Black", sans-serif';

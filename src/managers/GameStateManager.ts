@@ -12,17 +12,17 @@ const tutorialKey = (level: number, version = 'dialogue-1') => `${level}:${catal
 
 interface GameState {
   currentLevel: number; unlockedLevel: number; movesThisLevel: number;
-  sfxEnabled: boolean; audioEnabled: boolean; equippedPalette: string;
+  sfxEnabled: boolean; audioEnabled: boolean;
   completedLevels: Completions; tutorialSeen: string[];
   setCurrentLevel: (n: number) => void; unlockNext: () => void; incMoves: () => void; resetMoves: () => void;
   toggleAudio: () => void; hasSeenTutorial: (level: number, version?: string) => boolean; markTutorialSeen: (level: number, version?: string) => void;
   recordCompletion: (id: number) => void; isCompleted: (id: number) => boolean; canPlay: (id: number) => boolean;
-  setEquippedPalette: (id: string) => void; resetProgress: () => void; unlockAll: () => void; unlockUpTo: (id: number) => void;
+  resetProgress: () => void; unlockAll: () => void; unlockUpTo: (id: number) => void;
 }
 export function persistedSlice(s: GameState): Record<string, unknown> {
   return { campaignId: CAMPAIGN_ID, campaignVersion: CAMPAIGN_VERSION, currentLevel: s.currentLevel,
     unlockedLevel: progression(s.completedLevels, catalog), completedLevels: s.completedLevels, tutorialSeen: s.tutorialSeen,
-    sfxEnabled: s.sfxEnabled, audioEnabled: s.audioEnabled, equippedPalette: s.equippedPalette };
+    sfxEnabled: s.sfxEnabled, audioEnabled: s.audioEnabled };
 }
 function restore(raw: unknown): Partial<GameState> {
   const p = raw && typeof raw === 'object' ? raw as Record<string, unknown> : {};
@@ -30,8 +30,7 @@ function restore(raw: unknown): Partial<GameState> {
   return { completedLevels, unlockedLevel, currentLevel: Math.max(1, Math.min(unlockedLevel, typeof p.currentLevel === 'number' && Number.isInteger(p.currentLevel) ? p.currentLevel : 1)),
     tutorialSeen: Array.isArray(p.tutorialSeen) ? p.tutorialSeen.filter((k): k is string => typeof k === 'string' && LEVELS.some(l => k.startsWith(`${l.id}:${catalog.levelVersions[l.id]}:`))) : [],
     sfxEnabled: typeof p.sfxEnabled === 'boolean' ? p.sfxEnabled : typeof p.audioEnabled === 'boolean' ? p.audioEnabled : true,
-    audioEnabled: typeof p.audioEnabled === 'boolean' ? p.audioEnabled : typeof p.sfxEnabled === 'boolean' ? p.sfxEnabled : true,
-    equippedPalette: typeof p.equippedPalette === 'string' ? p.equippedPalette : 'classic' };
+    audioEnabled: typeof p.audioEnabled === 'boolean' ? p.audioEnabled : typeof p.sfxEnabled === 'boolean' ? p.sfxEnabled : true };
 }
 export function mergeCloudSnapshot(cloud: unknown): boolean {
   if (!cloud || typeof cloud !== 'object') return false;
@@ -46,7 +45,7 @@ const baseStorage = typeof localStorage !== 'undefined' ? campaignStorage(localS
 const storage = baseStorage && { ...baseStorage, getItem(name: string) { return !localStorage.getItem(name) && LEGACY_KEY && localStorage.getItem(LEGACY_KEY) ? baseStorage.getItem(LEGACY_KEY) : baseStorage.getItem(name); } };
 const store = createStore<GameState>()(persist((set, get) => ({
   currentLevel: 1, unlockedLevel: 1, movesThisLevel: 0, sfxEnabled: true, audioEnabled: true,
-  completedLevels: {}, tutorialSeen: [], equippedPalette: 'classic',
+  completedLevels: {}, tutorialSeen: [],
   setCurrentLevel: n => set({ currentLevel: Math.max(1, Math.min(TOTAL_LEVELS, n)), movesThisLevel: 0 }),
   unlockNext: () => set(s => ({ unlockedLevel: progression(s.completedLevels, catalog) })),
   incMoves: () => set(s => ({ movesThisLevel: s.movesThisLevel + 1 })), resetMoves: () => set({ movesThisLevel: 0 }),
@@ -56,7 +55,6 @@ const store = createStore<GameState>()(persist((set, get) => ({
   recordCompletion: id => { if (catalog.levelVersions[id]) set(s => ({ completedLevels: { ...compatibleCompletions(s.completedLevels, catalog), [id]: { levelVersion: catalog.levelVersions[id] } } })); },
   isCompleted: id => !!catalog.levelVersions[id] && get().completedLevels[id]?.levelVersion === catalog.levelVersions[id],
   canPlay: id => !!catalog.levelVersions[id] && canPlayLevel(id, get().unlockedLevel, get().completedLevels, STAGES),
-  setEquippedPalette: id => set({ equippedPalette: id }),
   resetProgress: () => set({ currentLevel: 1, unlockedLevel: 1, movesThisLevel: 0, completedLevels: {}, tutorialSeen: [] }),
   unlockAll: () => set({ unlockedLevel: TOTAL_LEVELS }),
   unlockUpTo: id => set(s => ({ unlockedLevel: Math.min(TOTAL_LEVELS, Math.max(s.unlockedLevel, id)) })),

@@ -1,8 +1,8 @@
 # Stage campaign tooling
 
-The active campaign grows in verified batches of 20 toward 500–1000 levels. Stage 1 contains only red ordinary blocks, yellow one-direction blocks and gray static obstacles, with one shared exit and unlimited moves. Stage 2 introduces blue dependent blocks followed by purple exit-count locks; its move limit is the proven optimum +2. Stage 3 uses +1; Stage 4 onward uses the optimum. Only Stage 1 content is currently published; future stage definitions are not playable placeholders.
+The active campaign grows in verified batches of 20 toward 500–1000 levels. Stage 1 contains only red ordinary blocks, yellow one-direction blocks and gray static obstacles, with one shared exit and unlimited moves. Stage 2 introduces blue dependent blocks followed by purple exit-count locks; its move limit is the proven optimum +2. Stage 3 uses +1; Stage 4 onward uses the optimum. Stages 1 and 2 are published (40 levels); later stage definitions remain unavailable until complete verified batches exist.
 
-`bun run playtest` (or `npm run playtest`) opens the approved Stage 1 snapshot selected by `generated/runs/stage-one/latest.json`. Normal `dev` and `build` select that same snapshot. Each generated build independently verifies its proofs and artifact integrity before bundling. Use `--env legacy` to load the original campaign, or `--env campaign=<approved/campaign.json>` for another verified snapshot.
+`bun run playtest` (or `npm run playtest`) opens the approved 40-level campaign selected by `generated/runs/stage-one/latest.json`. Normal `dev` and `build` select that same snapshot. Each generated build independently verifies its proofs and artifact integrity before bundling. Use `--env legacy` to load the original campaign, or `--env campaign=<approved/campaign.json>` for another verified snapshot.
 
 ```sh
 bun run levels:stage:build
@@ -13,6 +13,10 @@ npm run build
 ```
 
 `levels:stage:build` / `levels:playtest:build` run through tsx/Node, including memory-bounded final verification workers. Do not invoke the TypeScript file directly with Bun. `--help` documents seed, attempt, candidate and time budgets. Repeat the same command to resume checkpointed work. Every stored candidate is regenerated from its seed/attempt and reevaluated before reuse. A partial run never replaces `latest.json`; exports are immutable and atomic. `previous.json` retains the preceding selection after a later successful export, allowing rollback of the pointer.
+
+`npm run levels:stage2:build` appends Connections to the frozen Stage 1 snapshot. It regenerates proposals from deterministic seeds, proves meaningful dependency/lock/direction effects, rejects near-duplicate layouts and recent solution patterns, inserts relief at L30/L39, and requires L40 to reach the stage’s highest estimated difficulty. The immutable export contains all 40 levels and their proofs; building a new snapshot does not automatically change the active pointer.
+
+Stage 2 introduces the move budget at L21, Blue at L22, and Purple at L31. Guided tutorials spotlight the locked block and walk through the first unlock. The stage uses proven optimum +2; all Stage 1 content and per-level versions remain unchanged. Palette selection is automatic: Classic for Stage 1, Ocean for Stage 2, Sunset for Stage 3, repeating for later stages. Gameplay block colors stay fixed. Manual palette UI/state is removed; legacy selections are ignored while completion and audio preferences remain compatible.
 
 The stage metadata is part of the runtime content hash (campaign schema 2.1). Publishing a stage requires all 20 positions, compatible mechanics, one exit, proven optimum, replay, design evidence, diversity and campaign pacing checks. The earlier six-level shared-exit pack remains a reference; `levels:reference:build` rebuilds it. Historical 80-slot tooling below is retained for regression and research, not the new campaign's progression plan.
 

@@ -1,6 +1,16 @@
 # Implementation status
 
-## Current staged release
+## Current staged release: Connections
+
+The default snapshot now contains 40 levels: Stage 1 is unchanged and Stage 2 adds L21–40. Campaign `kinetic-stages`, content `1a7993503381`, audit `445ff8f460ac`, is selected by `generated/runs/stage-one/latest.json`. The old 20-level snapshot remains available for rollback. Per-level completion hashes preserve existing Stage 1 progress; Connections opens after completing all 20 first-stage levels.
+
+Connections teaches the optimum +2 move budget at L21, dependencies at L22, and exit-count locks at L31. L27/L28 teach a two-link dependency chain. L30/L39 are verified relief levels, and L40 has the highest estimated Stage 2 difficulty. Every level has a shortest-path proof, successful replay and verified mechanic evidence. The batch rejects layout duplicates including rotations/reflections, layout similarity above 0.9, and recorded solution similarity above 0.88 against the preceding two levels. These are design and heuristic checks, not human difficulty measurements.
+
+Manual palette selection, unlocks, scene and saved selection are removed. Stage palettes cycle Classic/Ocean/Sunset, beginning with Classic on Stage 1 and Ocean on Stage 2. Level select uses the selected stage; replaying earlier levels restores their palette. Mechanic block colors stay fixed. Legacy palette preferences are ignored without discarding completion or audio preferences. New Blue/Purple dialogue lessons spotlight the locked block and guide a valid prefix through its first move. The Blue lesson additionally requires tapping the dependent block, explains the parent circle, and waits for NEXT before guiding the release. Only L22 uses the newer dialogue version so players who saw the old Blue lesson receive the tap instruction.
+
+Validation: 74 full-suite unit tests, four focused Stage 2 checks, typecheck, and the default production build pass. All 27 targeted renderer-enabled browser checks pass: all 20 Stage 2 live solution replays, Stage 1 L1/L3/L20 regressions, stage palette/navigation/removal checks, old-save import and stage gating, and both new guided tutorials. The production build independently re-verifies the 40-level snapshot before bundling. Stage 2 still needs human playtesting for puzzle feel and perceived pacing.
+
+## Stage 1 baseline (historical)
 
 Stage 1 contains 20 independently verified levels, using one exit, red simple blocks, yellow direction-constrained blocks and obstacles. Moves are unlimited. The game now reports SUCCESS/FAILED, removes Undo, provides current-state hints, and teaches through interactive dialogue with an animated red square character. Restart resets the full puzzle; demonstration playback cannot award completion.
 
