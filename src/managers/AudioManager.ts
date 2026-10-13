@@ -1,7 +1,7 @@
 import { useGameStore } from './GameStateManager';
 
 type Wave = OscillatorType;
-type Bus = 'ui' | 'fx';
+type Bus = 'ui' | 'fx' | 'music';
 
 interface BlipOpts {
   freq: number;
@@ -15,6 +15,7 @@ interface BlipOpts {
 
 const FX_BUS_GAIN = 1.3;
 const UI_BUS_GAIN = 1.1;
+const MUSIC_BUS_GAIN = 0.5;
 const MASTER_GAIN = 1.3;
 const UNIFORM_VOL = 0.75;
 
@@ -23,6 +24,7 @@ class AudioManagerImpl {
   private master!: GainNode;
   private uiBus!: GainNode;
   private fxBus!: GainNode;
+  private musicBus!: GainNode;
 
   private resuming: Promise<void> | null = null;
   private unlocked = false;
@@ -30,13 +32,19 @@ class AudioManagerImpl {
 
   private adDucked = false;
 
+  private bgmAudio: HTMLAudioElement | null = null;
+  private bgmPlaying = false;
+
   private getBusGain(bus: Bus): GainNode {
     if (bus === 'ui') return this.uiBus;
+    if (bus === 'music') return this.musicBus;
     return this.fxBus;
   }
 
-  private busEnabled(_bus: Bus): boolean {
-    return useGameStore.getState().sfxEnabled;
+  private busEnabled(bus: Bus): boolean {
+    const state = useGameStore.getState();
+    if (bus === 'music') return state.audioEnabled;
+    return state.sfxEnabled;
   }
 
   private createCtx(): boolean {
@@ -56,6 +64,9 @@ class AudioManagerImpl {
     this.fxBus = this.ctx.createGain();
     this.fxBus.gain.value = FX_BUS_GAIN;
     this.fxBus.connect(this.master);
+    this.musicBus = this.ctx.createGain();
+    this.musicBus.gain.value = MUSIC_BUS_GAIN;
+    this.musicBus.connect(this.master);
     return true;
   }
 
@@ -103,6 +114,9 @@ class AudioManagerImpl {
    * Primes iOS Safari + warms ctx so first SFX has zero latency.
    */
   public unlock(): void {
+    if (this.bgmPlaying && this.bgmAudio && this.bgmAudio.paused && this.busEnabled('music')) {
+      this.bgmAudio.play().catch(() => {});
+    }
     if (!this.createCtx() || !this.ctx) return;
     if (this.unlocked) return;
     this.ensure();
@@ -317,33 +331,67 @@ class AudioManagerImpl {
   // ---------- Mix control ----------
 
   public duckForAd(active: boolean): void {
-    if (!this.ctx) return;
-    const now = this.ctx.currentTime;
-    if (active && !this.adDucked) {
-      this.adDucked = true;
-      this.master.gain.cancelScheduledValues(now);
-      this.master.gain.setValueAtTime(this.master.gain.value, now);
-      this.master.gain.linearRampToValueAtTime(0, now + 0.2);
-    } else if (!active && this.adDucked) {
-      this.adDucked = false;
-      this.master.gain.cancelScheduledValues(now);
-      this.master.gain.setValueAtTime(this.master.gain.value, now);
-      this.master.gain.linearRampToValueAtTime(MASTER_GAIN, now + 0.2);
+    if (this.ctx) {
+      const now = this.ctx.currentTime;
+      if (active && !this.adDucked) {
+        this.adDucked = true;
+        this.master.gain.cancelScheduledValues(now);
+        this.master.gain.setValueAtTime(this.master.gain.value, now);
+        this.master.gain.linearRampToValueAtTime(0, now + 0.2);
+      } else if (!active && this.adDucked) {
+        this.adDucked = false;
+        this.master.gain.cancelScheduledValues(now);
+        this.master.gain.setValueAtTime(this.master.gain.value, now);
+        this.master.gain.linearRampToValueAtTime(MASTER_GAIN, now + 0.2);
+      }
+    }
+    if (this.bgmAudio) {
+      this.bgmAudio.muted = active || !this.busEnabled('music');
     }
   }
 
-  // No-op kept for callers that previously toggled music. SFX state is the only
-  // thing that matters now.
   public refreshEnabledBuses(): void {
-    /* no-op */
+    if (this.bgmAudio) {
+      this.bgmAudio.muted = this.adDucked || !this.busEnabled('music');
+      if (this.busEnabled('music') && this.bgmPlaying && this.bgmAudio.paused) {
+        this.bgmAudio.play().catch(() => {});
+      }
+    }
+  }
+
+  private initBgm(): void {
+    if (typeof window === 'undefined' || this.bgmAudio) return;
+    try {
+      this.bgmAudio = new Audio('audio/bgm.mp3');
+      this.bgmAudio.loop = true;
+      this.bgmAudio.volume = 0.45;
+      this.bgmAudio.muted = this.adDucked || !this.busEnabled('music');
+    } catch (e) {
+      console.warn('[audio] Failed to initialize BGM audio', e);
+    }
   }
 
   public startAmbient(): void {
-    /* no-op: music removed */
+    this.bgmPlaying = true;
+    this.initBgm();
+    if (!this.bgmAudio) return;
+
+    this.bgmAudio.muted = this.adDucked || !this.busEnabled('music');
+    if (this.busEnabled('music') && this.bgmAudio.paused) {
+      const playPromise = this.bgmAudio.play();
+      if (playPromise) {
+        playPromise.catch(() => {
+          // Autoplay policy prevented playback until user gesture
+        });
+      }
+    }
   }
 
   public stopAmbient(): void {
-    /* no-op: music removed */
+    this.bgmPlaying = false;
+    if (this.bgmAudio && !this.bgmAudio.paused) {
+      this.bgmAudio.pause();
+    }
   }
 
   // ---------- Debug ----------

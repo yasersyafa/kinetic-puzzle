@@ -165,7 +165,6 @@ export class GameScene extends Phaser.Scene {
       this.tutorial?.destroy();
       this.tutorial = undefined;
       this.hovered = null;
-      AudioManager.stopAmbient();
     });
 
     const willAutoplay = !!this.registry.get("autoplaySolution");
@@ -684,7 +683,6 @@ export class GameScene extends Phaser.Scene {
       Analytics.log("level_failed", { reason: result === "MOVE_LIMIT" ? "move_limit" : "dead_end", moves: store.movesThisLevel });
       AudioManager.levelFail();
     }
-    AudioManager.stopAmbient();
     SDKManager.gameplayStop();
     this.time.delayedCall(500, () => {
       fadeOutAndStart(this, SCENE_KEYS.GameOver, { result });

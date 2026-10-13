@@ -41,6 +41,7 @@ export class PauseScene extends Phaser.Scene {
       this, cx, cy + 10, 504, 108, audioLabel(), ui.secondary,
       () => {
         useGameStore.getState().toggleAudio();
+        AudioManager.refreshEnabledBuses();
         audioBtn.setLabel(audioLabel());
         AudioManager.uiTap();
       },
@@ -65,7 +66,6 @@ export class PauseScene extends Phaser.Scene {
 
     neoButton(this, cx, cy + 284, 504, 108, 'MAIN MENU', ui.danger, () => {
       AudioManager.uiTap();
-      AudioManager.stopAmbient();
       this.scene.stop(SCENE_KEYS.Game);
       this.scene.stop();
       this.scene.start(SCENE_KEYS.Menu);

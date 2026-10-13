@@ -77,6 +77,10 @@ module.exports = (env, argv) => {
           from: path.resolve(__dirname, 'src/assets/fonts'),
           to: path.resolve(__dirname, 'dist/fonts'),
         },
+        {
+          from: path.resolve(__dirname, 'src/assets/audio'),
+          to: path.resolve(__dirname, 'dist/audio'),
+        },
         ...(buildTarget === 'playgama'
           ? [
               {

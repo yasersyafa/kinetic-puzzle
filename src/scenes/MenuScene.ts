@@ -37,6 +37,7 @@ export class MenuScene extends Phaser.Scene {
     fadeIn(this);
     dottedBackground(this);
     AudioManager.menuOpen();
+    AudioManager.startAmbient();
     this.demoBlocks = [];
 
     this.spawnAmbientDecor();
@@ -141,6 +142,7 @@ export class MenuScene extends Phaser.Scene {
       audioLabel(),
       () => {
         useGameStore.getState().toggleAudio();
+        AudioManager.refreshEnabledBuses();
         audioBtn.setLabel(audioLabel());
         AudioManager.uiTap();
       },

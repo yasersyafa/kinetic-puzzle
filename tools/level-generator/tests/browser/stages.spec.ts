@@ -16,16 +16,17 @@ async function start(page:Page,id:number,dialogue=false) {
     scene.time.timeScale=20;scene.tweens.timeScale=20;
   },{id,dialogue});
 }
-test('red speaker tutorial preserves board access, responds to correct actions, and can be replayed',async({page})=>{
+test('spotlight tutorial keeps its target clear, responds to correct actions, and can be replayed',async({page})=>{
   await start(page,1,true);
   const layout=await page.evaluate(()=>{
     const scene=window.kineticTest.game.scene.getScene('GameScene'), panel=scene.dialogue.panel;
-    return {speaker:panel.list.some((o:any)=>o.name==='red-speaker'), panelRight:panel.x+230,boardLeft:scene.grid.originX,index:scene.dialogue.session.index,moves:window.kineticTest.store.getState().movesThisLevel};
+    return {speaker:panel.list.some((o:any)=>o.name==='red-speaker'), overlay:!!scene.children.getByName('tutorial-overlay'), panelX:panel.x,index:scene.dialogue.session.index,moves:window.kineticTest.store.getState().movesThisLevel};
   });
-  expect(layout.speaker).toBe(true);expect(layout.panelRight).toBeLessThan(layout.boardLeft);expect(layout.moves).toBe(0);
+  expect(layout.speaker).toBe(true);expect(layout.overlay).toBe(true);expect(layout.panelX).toBe(960);expect(layout.moves).toBe(0);
   const next=await page.evaluate(()=>{
     const scene=window.kineticTest.game.scene.getScene('GameScene'),rect=window.kineticTest.game.canvas.getBoundingClientRect();
-    return {x:rect.left+(scene.dialogue.panel.x+115)/1920*rect.width,y:rect.top+633/1080*rect.height};
+    const button=scene.dialogue.panel.getByName('tutorial-next');
+    return {x:rect.left+(scene.dialogue.panel.x+button.x)/1920*rect.width,y:rect.top+(scene.dialogue.panel.y+button.y)/1080*rect.height};
   });
   await page.mouse.click(next.x,next.y);
   await page.waitForFunction(()=>window.kineticTest.game.scene.getScene('GameScene').dialogue.session.index===1);
@@ -44,7 +45,62 @@ test('red speaker tutorial preserves board access, responds to correct actions, 
     return {indexAfterWrong,movesAfterWrong,indexAfterCorrect,seen,replayIndex:scene.dialogue.session.index,moves:store.getState().movesThisLevel};
   });
   expect(state).toEqual({indexAfterWrong:1,movesAfterWrong:0,indexAfterCorrect:2,seen:true,replayIndex:0,moves:0});
-  await page.screenshot({path:'generated/stage-one-tutorial.png'});
+  await page.screenshot({path:test.info().outputPath('tutorial-overlay.png')});
+});
+test('spotlight tutorial allows real swipes in every guided direction and cleans up on skip', async ({page}) => {
+  await start(page, 3, true);
+  await page.waitForFunction(() => !window.kineticTest.game.scene.getScene('GameScene').cameras.main.fadeEffect.isRunning);
+  const clickButton = async (name: string) => {
+    const point = await page.evaluate(name => {
+      const { game } = window.kineticTest, scene = game.scene.getScene('GameScene');
+      const panel = scene.dialogue.panel, button = panel.getByName(name), rect = game.canvas.getBoundingClientRect();
+      return { x: rect.left + (panel.x + button.x) / 1920 * rect.width, y: rect.top + (panel.y + button.y) / 1080 * rect.height };
+    }, name);
+    await page.mouse.click(point.x, point.y);
+  };
+  await clickButton('tutorial-next');
+  await page.screenshot({path: test.info().outputPath('tutorial-after-next.png')});
+  await page.waitForFunction(() => window.kineticTest.game.scene.getScene('GameScene').dialogue.session.index === 1, undefined, { timeout: 15000 });
+  for (let i = 0; i < 20; i++) {
+    await page.waitForFunction(() => {
+      const scene = window.kineticTest.game.scene.getScene('GameScene');
+      return scene.blocks.every((block: any) => {
+        const center = scene.dialogue.blockCenter(block);
+        return block.removed || Math.abs(block.x - center.x) < 1 && Math.abs(block.y - center.y) < 1;
+      });
+    });
+    const step = await page.evaluate(() => {
+      const { game } = window.kineticTest, scene = game.scene.getScene('GameScene'), dialogue = scene.dialogue;
+      const current = dialogue.session.current;
+      if (!current?.action) return null;
+      const block = scene.blocks.find((b: any) => b.blockId === current.action.blockId);
+      const panel = dialogue.panel, focus = dialogue.focusArea(current), rect = game.canvas.getBoundingClientRect();
+      const overlaps = panel.x - panel.width / 2 < focus.right && panel.x + panel.width / 2 > focus.left && panel.y - panel.height / 2 < focus.bottom && panel.y + panel.height / 2 > focus.top;
+      return { index: dialogue.session.index, dir: current.action.dir, overlaps,
+        onScreen: panel.x - panel.width / 2 >= 0 && panel.x + panel.width / 2 <= 1920 && panel.y - panel.height / 2 >= 0 && panel.y + panel.height / 2 <= 1080,
+        x: rect.left + block.x / 1920 * rect.width, y: rect.top + block.y / 1080 * rect.height };
+    });
+    if (!step) break;
+    expect(step.overlaps).toBe(false); expect(step.onScreen).toBe(true);
+    const dx = step.dir === 'LEFT' ? -90 : step.dir === 'RIGHT' ? 90 : 0;
+    const dy = step.dir === 'UP' ? -90 : step.dir === 'DOWN' ? 90 : 0;
+    await page.mouse.move(step.x, step.y); await page.mouse.down();
+    await page.mouse.move(step.x + dx, step.y + dy, { steps: 5 }); await page.mouse.up();
+    await page.waitForFunction(index => {
+      const scene = window.kineticTest.game.scene.getScene('GameScene');
+      return scene.dialogue.session.index > index && !scene.busy;
+    }, step.index, { timeout: 15000 }).catch(async error => {
+      await page.screenshot({ path: test.info().outputPath(`tutorial-step-${step.index}.png`) });
+      throw new Error(`Tutorial swipe ${step.index} (${step.dir}) did not advance: ${error}`);
+    });
+  }
+  expect(await page.evaluate(() => window.kineticTest.game.scene.getScene('GameScene').dialogue.session.current?.action)).toBeUndefined();
+  await clickButton('tutorial-skip');
+  await page.waitForFunction(() => !window.kineticTest.game.scene.getScene('GameScene').children.getByName('tutorial-overlay'));
+  expect(await page.evaluate(() => {
+    const { game, store } = window.kineticTest, scene = game.scene.getScene('GameScene');
+    return { panel: !!scene.dialogue.panel, highlights: !!scene.dialogue.highlights, seen: store.getState().hasSeenTutorial(3, 'dialogue-1') };
+  })).toEqual({ panel: false, highlights: false, seen: true });
 });
 test('success has no stars, persists completion after reload, and retains future stage locks',async({page})=>{
   await start(page,1);
